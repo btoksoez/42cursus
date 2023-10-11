@@ -1,44 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 16:54:23 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/11 14:04:14 by btoksoez         ###   ########.fr       */
+/*   Created: 2023/10/11 14:07:56 by btoksoez          #+#    #+#             */
+/*   Updated: 2023/10/11 14:18:02 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static int	is_delimiter(char c, char s)
 {
-	char	*res;
-	int		i;
-
-	res = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (res == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (*s2)
-	{
-		res[i] = *s2;
-		i++;
-		s2++;
-	}
-	res[i] = '\0';
-	return (res);
+	if (c == s)
+		return (1);
+	return (0);
 }
-// #include <stdio.h>
-// int	main(void)
+
+static int	count_words(char const *s, char c)
+{
+	int	count;
+
+	count = 0;
+	if (*s == c)
+		count -= 1;
+	while (*s)
+	{
+		if (is_delimiter(*s, c))
+			count++;
+		s++;
+	}
+	if (is_delimiter(*(s - 1), c))
+		count -= 1;
+	return (count + 1);
+}
+// char	**ft_split(char const *s, char c)
 // {
-// 	char *res = ft_strjoin("hello", "world");
-// 	printf("%s", res);
 // }
+
+int main(void)
+{
+	printf("%d", count_words("foooffffooofoof", 'f'));
+}
