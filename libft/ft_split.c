@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:07:56 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/11 14:18:02 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/12 09:54:05 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,85 @@ static int	count_words(char const *s, char c)
 	int	count;
 
 	count = 0;
-	if (*s == c)
-		count -= 1;
 	while (*s)
 	{
-		if (is_delimiter(*s, c))
+		while (*s && is_delimiter(*s, c))
+			s++;
+		if (*s)
 			count++;
+		while (*s && (!is_delimiter(*s, c)))
+			s++;
+	}
+	return (count);
+}
+
+static int	word_len(const char *s, char c)
+{
+	int	len;
+
+	len = 0;
+	while (*s && (!is_delimiter(*s, c)))
+	{
+		len++;
 		s++;
 	}
-	if (is_delimiter(*(s - 1), c))
-		count -= 1;
-	return (count + 1);
+	return (len);
 }
-// char	**ft_split(char const *s, char c)
-// {
-// }
 
-int main(void)
+static char	*ft_strdup(const char *s, int len)
 {
-	printf("%d", count_words("foooffffooofoof", 'f'));
+	int		i;
+	char	*res;
+
+	i = 0;
+	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (i < len)
+	{
+		res[i] = s[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }
+
+char	**ft_split(char const *s, char c)
+{
+	char	**res;
+	int		i;
+
+	res = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (i < count_words(s, c))
+	{
+		while (*s)
+		{
+			while (*s && is_delimiter(*s, c))
+				s++;
+			if (*s)
+			{
+				res[i] = ft_strdup(s, word_len(s, c));
+				i++;
+			}
+			while (*s && (!is_delimiter(*s, c)))
+				s++;
+		}
+	}
+	res[i] = NULL;
+	return (res);
+}
+// int main(void)
+// {
+// 	char *s = "ccccchelloocoeoeoeoc";
+// 	char c = 'c';
+// 	char **res = ft_split(s, c);
+// 	while (*res)
+// 	{
+// 		printf("%s\n", *res);
+// 		res++;
+// 	}
+// 	printf("%s", *res);
+// }
