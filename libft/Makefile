@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2023/10/08 14:46:34 by btoksoez         ###   ########.fr        #
+#    Updated: 2023/10/14 14:45:54 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,17 +22,22 @@ HEADER = libft.h
 CC_FLAGS = -Wall -Werror -Wextra
 
 %.o: %.c
-	$(CC) $(CC_FLAGS) -c $< -o $@
+	@$(CC) $(CC_FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(HEADER)
-	ar rc $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	@ar rc $(NAME) $(OBJS)
+	@echo "$(NAME) created."
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	@rm -rf $(OBJS)
+	@echo "$(OBJS) deleted."
 
 fclean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "$(NAME) deleted."
 
 re: fclean all
+
+.PHONY: clean fclean re all
