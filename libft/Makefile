@@ -6,12 +6,15 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2023/10/14 14:45:54 by btoksoez         ###   ########.fr        #
+#    Updated: 2023/10/15 12:37:18 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = $(shell find . -name "ft_*.c")
+SRCS = $(shell find . -name 'ft_*.c' ! -name 'ft_lst*.c')
 OBJS = $(SRCS:.c=.o)
+
+SRCSBNS = $(shell find . -name 'ft_*.c')
+OBJSBNS = $(SRCSBNS:.c=.o)
 
 NAME = libft.a
 
@@ -31,7 +34,7 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJS) $(OBJSBNS)
 	@echo "$(OBJS) deleted."
 
 fclean:
@@ -40,4 +43,9 @@ fclean:
 
 re: fclean all
 
-.PHONY: clean fclean re all
+bonus: $(OBJSBNS)
+	@ar rc $(NAME) $(OBJSBNS)
+	@echo "$(NAME) Bonus created."
+
+
+.PHONY: clean fclean re all bonus
