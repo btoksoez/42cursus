@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_s.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 13:54:36 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/22 16:50:58 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:06:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	ft_print_s(const char *format, va_list args)
 {
 	char	*s;
 
-	ft_printf("hello");
 	if (!format || !args)
 		return (0);
 	s = va_arg(args, char *);

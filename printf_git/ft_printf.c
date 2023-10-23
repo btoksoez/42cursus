@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:56:46 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/22 16:58:14 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/23 18:17:08 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	ft_printf(const char *format, ...)
 			if (va_arg(args, void *) == NULL)
 				return (0);
 			count += ft_format(format, args);
-			va_arg(args, int);
 			format += 2;
 		}
 		else
@@ -70,8 +69,10 @@ int main(void)
 {
 	int n = 3;
 	int *p = &n;
-	int count = printf("abcPrintf: NULL %s NULL ", NULL);
-	int count2 = ft_printf("Ft_printf: NULL %s NULL ", NULL);
+	int count = printf("abcPrintf: %p ", -1);
+	int count2 = ft_printf("Ft_printf: %p ", -1);
+	// int count = printf("abcPrintf: %s %s\n", "", "");
+	// int count2 = ft_printf("Ft_printf: %s %s\n", "", "");
 	printf("Count printf: %d\n", count);
 	printf("Count ft_printf: %d\n", count2);
 }
