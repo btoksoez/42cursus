@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:56:46 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/23 18:17:08 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:32:44 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int	ft_format(const char *format, va_list args)
 {
-	int	count;
+	void	*temp;
 
-	count = 0;
 	if (*(format + 1) == 's')
-		count += ft_print_s(format, args);
+	{
+		temp = va_arg(args, char *);
+		if (!temp)
+			temp = "(null)";
+		ft_putstr_fd((char *)temp, 1);
+		return(ft_strlen(temp));
+	}
 	if (*(format + 1) == 'c')
-		count += ft_print_c(format, args);
+		ft_putchar_fd(va_arg(args, int), 1);
 	if (*(format + 1) == 'p')
 		count += ft_print_p(format, args);
 	if (*(format + 1) == 'd')
@@ -35,7 +40,7 @@ int	ft_format(const char *format, va_list args)
 		count += ft_print_x_upper(format, args);
 	if (*(format + 1) == '%')
 		count += ft_putchar_fd('%', 1);
-	return (count);
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -51,8 +56,6 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (va_arg(args, void *) == NULL)
-				return (0);
 			count += ft_format(format, args);
 			format += 2;
 		}
@@ -69,8 +72,8 @@ int main(void)
 {
 	int n = 3;
 	int *p = &n;
-	int count = printf("abcPrintf: %p ", -1);
-	int count2 = ft_printf("Ft_printf: %p ", -1);
+	int count = printf("abcPrintf: %c ", 95);
+	int count2 = ft_printf("Ft_printf: %c ", 95);
 	// int count = printf("abcPrintf: %s %s\n", "", "");
 	// int count2 = ft_printf("Ft_printf: %s %s\n", "", "");
 	printf("Count printf: %d\n", count);
