@@ -6,11 +6,11 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2023/10/21 17:41:46 by btoksoez         ###   ########.fr        #
+#    Updated: 2023/10/25 11:29:25 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_print_c.c ft_print_d.c ft_print_hex.c ft_print_p.c ft_print_s.c ft_print_x_upper.c ft_print_x.c ft_putnbrhex.c
+SRCS = ft_printf.c ft_putnbr_base.c ft_print_hex.c
 
 OBJS = $(SRCS:.c=.o)
 

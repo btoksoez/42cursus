@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:56:46 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/24 14:32:44 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:02:48 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	ft_is_in(char *s, char c)
+{
+	while (*s)
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
 
 int	ft_format(const char *format, va_list args)
 {
@@ -22,24 +33,22 @@ int	ft_format(const char *format, va_list args)
 		if (!temp)
 			temp = "(null)";
 		ft_putstr_fd((char *)temp, 1);
-		return(ft_strlen(temp));
+		return (ft_strlen(temp));
 	}
 	if (*(format + 1) == 'c')
 		ft_putchar_fd(va_arg(args, int), 1);
 	if (*(format + 1) == 'p')
-		count += ft_print_p(format, args);
-	if (*(format + 1) == 'd')
-		count += ft_print_d(format, args);
-	if (*(format + 1) == 'i')
-		count += ft_print_d(format, args);
+		return (ft_print_hex(va_arg(args, void *)));
+	if (*(format + 1) == 'd' || *(format + 1) == 'i')
+		return (ft_putnbr_base(va_arg(args, int), "0123456789"));
 	if (*(format + 1) == 'u')
-		count += ft_print_d(format, args);
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789"));
 	if (*(format + 1) == 'x')
-		count += ft_print_x(format, args);
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef"));
 	if (*(format + 1) == 'X')
-		count += ft_print_x_upper(format, args);
+		return (ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF"));
 	if (*(format + 1) == '%')
-		count += ft_putchar_fd('%', 1);
+		ft_putchar_fd('%', 1);
 	return (1);
 }
 
@@ -47,14 +56,16 @@ int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
+	char	*options;
 
 	if (!format || *format == 0)
 		return (0);
 	count = 0;
+	options = "csxXdipu%";
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format == '%' && ft_is_in(options, (*(format + 1))))
 		{
 			count += ft_format(format, args);
 			format += 2;
@@ -68,14 +79,14 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-int main(void)
-{
-	int n = 3;
-	int *p = &n;
-	int count = printf("abcPrintf: %c ", 95);
-	int count2 = ft_printf("Ft_printf: %c ", 95);
-	// int count = printf("abcPrintf: %s %s\n", "", "");
-	// int count2 = ft_printf("Ft_printf: %s %s\n", "", "");
-	printf("Count printf: %d\n", count);
-	printf("Count ft_printf: %d\n", count2);
-}
+// int main(void)
+// {
+// 	int n = 3;
+// 	int *p = &n;
+// 	int count = printf("abcPrintf: %% ", "");
+// 	int count2 = ft_printf("Ft_printf: %% ", "");
+// 	// int count = printf("abcPrintf: %s %s\n", "", "");
+// 	// int count2 = ft_printf("Ft_printf: %s %s\n", "", "");
+// 	printf("Count printf: %d\n", count);
+// 	printf("Count ft_printf: %d\n", count2);
+// }

@@ -18,14 +18,8 @@
 # include <stdint.h>
 # include "libft/libft.h"
 
-void	ft_print_hex(void *p);
-int		ft_putnbr_hex(int n, int s);
-int		ft_print_s(const char *format, va_list args);
-int		ft_print_p(const char *format, va_list args);
-int		ft_print_c(const char *format, va_list args);
-int		ft_print_d(const char *format, va_list args);
-int		ft_print_x_upper(const char *format, va_list args);
-int		ft_print_x(const char *format, va_list args);
+int		ft_print_hex(void *p);
+int		ft_putnbr_base(long n, char *s);
 int		ft_printf(const char *format, ...);
 
 #endif
