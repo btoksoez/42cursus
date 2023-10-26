@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:13:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/25 13:47:01 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:58:28 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,13 @@ char *get_next_line(int fd)
 	i = 0;
 	while(read(fd, &buffer[i], sizeof(buffer)))
 	{
-		if (buffer[i] == '\n')
+		while (buffer[i])
 		{
-			res = (char *)malloc(i + 1);
-			if (res)
-			{
-				j = 0;
-				while (j++ <= i)
-					res[j] = buffer[j];
-				res[i + 1] = '\0';
-			}
+			printf("%c", buffer[i]);
+			i++;
 		}
-		i++;
 	}
-	return (res);
+	return (0);
 }
 
 int main(void)
@@ -44,12 +37,12 @@ int main(void)
 	int fd = open("test.txt", O_RDONLY);
 	char *line;
 
-    while ((line = get_next_line(fd)))
-	{
-        printf("%s\n", line);
-        free(line);
-    }
+	line = get_next_line(fd);
 
+    while (line)
+	{
+		get_next_line(fd);
+    }
     close(fd);
     return 0;
 }
