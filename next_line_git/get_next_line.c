@@ -6,43 +6,83 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:13:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/26 14:58:28 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/05 18:26:15 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+void	clean_buffer(char *buffer)
 {
-	char buffer[buffer_size];
-	char *res;
-	ssize_t bytes_read;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	while(read(fd, &buffer[i], sizeof(buffer)))
+	while (i < BUFFER_SIZE)
 	{
-		while (buffer[i])
-		{
-			printf("%c", buffer[i]);
-			i++;
-		}
+		buffer[i] = 0;
+		i++;
 	}
-	return (0);
+}
+
+void	shift_buffer(char *buffer)
+{
+	char	*new_start;
+
+	new_start = (ft_strchr(buffer, '\n') + 1);
+	if (new_start[0] == '\0')
+		clean_buffer(buffer);
+	else
+		ft_strlcpy(buffer, (new_start), ft_strlen(new_start));
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+
+	line = NULL;
+	if (read(fd, 0, 0) < 0 || BUFFER_SIZE < 1)
+	{
+		clean_buffer(buffer);
+		return (NULL);
+	}
+	while (buffer[0] || read(fd, buffer, BUFFER_SIZE) > 0)
+	{
+		line = ft_strjoin(line, buffer);
+		if (ft_strchr(buffer, '\n'))
+		{
+			shift_buffer(buffer);
+			break ;
+		}
+		else
+			clean_buffer(buffer);
+	}
+	return (line);
 }
 
 int main(void)
 {
-	int fd = open("test.txt", O_RDONLY);
-	char *line;
+    int fd;
+    char *result;
 
-	line = get_next_line(fd);
-
-    while (line)
-	{
-		get_next_line(fd);
-    }
-    close(fd);
-    return 0;
+    fd = open("test.txt", O_RDONLY);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    result = get_next_line(fd);
+    printf("final: %s\n", result);
+    free(result);
+    return (0);
 }
