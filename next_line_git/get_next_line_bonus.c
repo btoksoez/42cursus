@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:13:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/07 17:19:56 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/07 17:14:30 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	clean_buffer(char *buffer)
 {
@@ -67,22 +67,23 @@ char	*get_next_line(int fd)
 //     int fd;
 //     char *result;
 
-//     result = get_next_line(1);
+//     fd = open("test.txt", O_RDONLY);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
-//     result = get_next_line(1);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
-//     result = get_next_line(1);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
-//     result = get_next_line(1);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
-//     result = get_next_line(1);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
-//     result = get_next_line(1);
+//     result = get_next_line(fd);
 //     printf("final: %s\n", result);
 //     free(result);
 //     return (0);
