@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:24:04 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 13:29:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:32:15 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	char	*new_big;
 
 	i = 0;
+	if (!big || !little)
+		return (NULL);
 	new_big = (char *)big;
 	little_len = ft_strlen(((char *)little));
 	if (little_len == 0 || big == little)

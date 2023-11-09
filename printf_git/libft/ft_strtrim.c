@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:08:08 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 18:30:04 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:10:39 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1);
 	while (ft_is_in(s1[start], set))
 		start++;
-	if (start == ((int)ft_strlen(s1)))
-	{
-		res = ft_strdup("");
-		if (!res)
-			return (NULL);
-		else
-			return (res);
-	}
 	while (ft_is_in(s1[end - 1], set))
 		end--;
 	res = ft_substr(s1, start, end - start);

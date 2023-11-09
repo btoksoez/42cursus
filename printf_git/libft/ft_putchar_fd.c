@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:39:58 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/22 16:29:11 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:46:36 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	ft_putchar_fd(char c, int fd)
 }
 // int	main(void)
 // {
-// 	ft_putchar_fd('n', 1);
+// 	ft_putchar_fd('l', 1);
 // }

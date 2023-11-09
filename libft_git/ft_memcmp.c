@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:12:03 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 17:03:21 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:19:25 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	size_t	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (0);
 	while (i < n)
 	{
 		if (*(unsigned char *)s1 != *(unsigned char *)s2)

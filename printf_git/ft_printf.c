@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:56:46 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/25 12:02:48 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:05:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	ft_printf(const char *format, ...)
 	int		count;
 	char	*options;
 
-	if (!format || *format == 0)
-		return (0);
+	if (!format)
+		return (-1);
 	count = 0;
 	options = "csxXdipu%";
 	va_start(args, format);
@@ -81,10 +81,9 @@ int	ft_printf(const char *format, ...)
 }
 // int main(void)
 // {
-// 	int n = 3;
-// 	int *p = &n;
-// 	int count = printf("abcPrintf: %% ", "");
-// 	int count2 = ft_printf("Ft_printf: %% ", "");
+// 	int n = 0;
+// 	int count = printf('0');
+// 	int count2 = ft_printf('0');
 // 	// int count = printf("abcPrintf: %s %s\n", "", "");
 // 	// int count2 = ft_printf("Ft_printf: %s %s\n", "", "");
 // 	printf("Count printf: %d\n", count);

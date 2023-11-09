@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 13:18:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:32:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:25:37 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memset(void *s, int c, size_t n)
 
 	p = s;
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (i < n)
 	{
 		p[i] = c;

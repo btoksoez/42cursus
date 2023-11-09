@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:39:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:55:26 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:19:14 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_memchr(const void *s, int c, size_t n)
 {
 	unsigned char	*str;
 
+	if (!s)
+		return (NULL);
 	str = (unsigned char *)s;
 	while (n > 0)
 	{

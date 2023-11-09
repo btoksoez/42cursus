@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:54:23 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:31:14 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:31:29 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*res;
 	int		i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	res = (char *)malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
 	if (res == NULL)
 		return (NULL);
@@ -38,6 +40,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 // #include <stdio.h>
 // int	main(void)
 // {
-// 	char *res = ft_strjoin("hello", "world");
+// 	char *p;
+// 	p = NULL;
+// 	char *res = ft_strjoin(p, "ccc");
 // 	printf("%s", res);
 // }

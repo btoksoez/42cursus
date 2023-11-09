@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:05:53 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 17:23:55 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:05:46 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (size * nmemb > 2147483647)
 		return (NULL);
+	if (!nmemb || !size)
+		return (malloc(0));
 	res = malloc(size * nmemb);
 	if (!res)
 		return (NULL);

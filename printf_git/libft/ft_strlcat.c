@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 15:13:22 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:13:26 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:34:41 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ size_t	ft_strlcat(char *dst, char *src, unsigned int size)
 	i = 0;
 	j = 0;
 	l = 0;
+	if (!src || !dst)
+		return (0);
 	while (dst[i] != '\0')
 		i++;
 	while (src[l] != '\0')

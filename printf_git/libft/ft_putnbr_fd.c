@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 14:29:38 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/21 14:47:25 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:02:34 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_putnbr_fd(int n, int fd)
 	if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);
+		return ;
 	}
 	if (n < 0)
 	{
@@ -30,9 +31,7 @@ void	ft_putnbr_fd(int n, int fd)
 	c = n % 10 + '0';
 	write(fd, &c, 1);
 }
-// #include <stdio.h>
 // int main(void)
 // {
-// 	int count = ft_putnbr_fd(2147483647, 1);
-// 	printf("\n\n%d", count);
+// 	ft_putnbr_fd(2147483647, 1);
 // }

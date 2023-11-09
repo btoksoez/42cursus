@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:40:23 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:03:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:03:18 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
+// #include <stdio.h>
 // int	main(void)
 // {
 // 	int data1 = 1;
-// 	t_list *new = ft_lstnew(&data1);
+// 	t_list *new = NULL;
 // 	printf("%d", ft_lstsize(new));
 // }

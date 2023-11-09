@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:55:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/05 13:05:36 by btoksoez         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:18:21 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_atoi(const char *nptr)
 	res = 0;
 	m = 1;
 	i = 0;
+	if (!nptr)
+		return (0);
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
 		i++;
 	if (nptr[i] == '-')
