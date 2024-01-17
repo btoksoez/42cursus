@@ -1,0 +1,39 @@
+Stack A Test 1:
+Element 1: 33
+Element 2: 12
+
+Info:
+Amin Val: 12
+Amin Pos: 2
+Amax Val: 33
+Amax Pos: 1
+Bmin Val: -445
+Bmin Pos: 1
+Bmax Val: 90
+Bmax Pos: 3
+Mincost: 2147483647
+Cheapest Element Val: 3, Pos: 7
+---------------------------
+
+Stack B Test 2:
+Element 1: -445
+Element 2: -11
+Element 3: 90
+Element 4: 2
+Element 5: 1
+Element 6: 6
+Element 7: 3
+
+Info:
+Amin Val: 12
+Amin Pos: 2
+Amax Val: 33
+Amax Pos: 1
+Bmin Val: -445
+Bmin Pos: 1
+Bmax Val: 90
+Bmax Pos: 3
+Mincost: 2147483647
+Cheapest Element Val: 3, Pos: 7
+---------------------------
+
