@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/17 13:02:51 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:23:29 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,13 +157,14 @@ t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b)
 	//go through all elements, add up + correct for rr & rrr, return cheapest
 }
 
-void	push_cheapest(t_stack *stack_a, t_stack *stack_b)
+void	push_cheapest(t_stack *stack_a, t_stack *stack_b, t_info *info)
 {
 	t_stack	*cheapest;
 
-	assign_steps(stack_a, stack_b);
+	assign_steps(stack_a, stack_b, info);
 	cheapest = find_cheapest(stack_a, stack_b);
 	push(cheapest);
+	update_info(&stack_a, &stack_b, info);
 
 
 }
