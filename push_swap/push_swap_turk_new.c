@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/17 13:23:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:09:22 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,21 +152,66 @@ void sort(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
 	update_info(stack_a, stack_b, info);
 }
 
+void	correct_rotations(t_stack *stack_b)
+{
+	t_stack	*current;
+	
+	current = stack_b;
+
+	while (current)
+	{
+		if (current->ra && current->rb)
+		{
+			if (current->ra > current->rb)
+			{
+				current->rr = current->rb;
+				current->ra = current->ra - current->rb;
+				current->rb = 0;
+			}
+			else
+			{
+				current->rr = current->ra;
+				current->rb = current->rb - current->ra;
+				current->ra = 0;
+			}
+		if (current->rra && current->rrb)
+			if (current->rra > current->rrb)
+			{
+				current->rrr = current->rrb;
+				current->rra = current->rra - current->rrb;
+				current->rrb = 0;
+			}
+			else
+			{
+				current->rrr = current->rra;
+				current->rrb = current->rrb - current->rra;
+				current->rra = 0;
+			}
+		}
+		current = current->next;
+	}
+}
+
 t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b)
 {
-	//go through all elements, add up + correct for rr & rrr, return cheapest
+	int		cost;
+	t_stack	*current;
+	
+	cost = 0;
+	current = stack_b;
+	
+	//go through all elements, add up return cheapest
 }
 
 void	push_cheapest(t_stack *stack_a, t_stack *stack_b, t_info *info)
 {
 	t_stack	*cheapest;
 
-	assign_steps(stack_a, stack_b, info);
-	cheapest = find_cheapest(stack_a, stack_b);
-	push(cheapest);
-	update_info(&stack_a, &stack_b, info);
-
-
+	assign_rotations(stack_a, stack_b);
+	correct_rotations(stack_b);
+	//cheapest = find_cheapest(stack_a, stack_b);
+	//push(cheapest);
+	//update_info(&stack_a, &stack_b, info);
 }
 
 void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
@@ -214,6 +259,15 @@ void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
     }
     fprintf(file, "---------------------------\n\n");
     count++;
+	printf("Linked List with Indices and Rotations:\n");
+	if (!stack)
+		return ;
+	t_stack *current = stack;
+	while (current) {
+		printf("Value: %d, Index: %d, RA: %d, RB: %d, RRA: %d, RRB: %d, RR: %d, RRR: %d\n",
+			current->value, current->index, current->ra, current->rb, current->rra, current->rrb, current->rr, current->rrr);
+		current = current->next;
+	}
 }
 
 int main(int argc, char *argv[])
@@ -231,11 +285,13 @@ int main(int argc, char *argv[])
 		get_index(stack_a);	//assign optimal position to elements in a
 		stack_b = NULL;	//initilize stack_b
 		info = init_info(&stack_a, &stack_b); //find min
-		while (ft_stacksize(stack_a) > 2)
+		while (ft_stacksize(stack_a) > 5)
 			push_b(commands, &stack_a, &stack_b, info);		//push all but two numbers to b
 		print_test(file, stack_a, 'A', info);
 		print_test(file, stack_b, 'B', info);
-		push_cheapest(stack_a, stack_b);
+		push_cheapest(stack_a, stack_b, info);
+		print_test(file, stack_b, 'B', info);
+
 		//calculate steps needed for each element and put into struct
 			//
 		//push back to a
@@ -247,7 +303,8 @@ int main(int argc, char *argv[])
 }
 
 
-
+//something with the rotations does't work yet, with b1>amax values; 
+//check again if rottations are correct
 //fix sort
 
 //fix libft
