@@ -17,7 +17,7 @@ t_stack *create_node(int value) {
 int main() {
     // Create a linked list in the main
     t_stack *stack_a = create_node(90);
-    stack_a->next = create_node(0);
+    stack_a->next = create_node(5);
     stack_a->next->next = create_node(-4);
     stack_a->next->next->next = create_node(12);
 

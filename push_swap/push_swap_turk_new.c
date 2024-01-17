@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_turk_new.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/16 14:25:13 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:02:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,22 @@ void sort(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
 	update_info(stack_a, stack_b, info);
 }
 
+t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b)
+{
+	//go through all elements, add up + correct for rr & rrr, return cheapest
+}
+
+void	push_cheapest(t_stack *stack_a, t_stack *stack_b)
+{
+	t_stack	*cheapest;
+
+	assign_steps(stack_a, stack_b);
+	cheapest = find_cheapest(stack_a, stack_b);
+	push(cheapest);
+
+
+}
+
 void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
 {
 	int	i = 1;
@@ -171,16 +187,19 @@ void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
     {
         fprintf(file, "Amin Val: %d\n", info->amin->value);
         fprintf(file, "Amin Pos: %d\n", info->amin->position);
+		fprintf(file, "Amin Index: %d\n", info->amin->index);
     }
     if (info->amax != NULL)
     {
         fprintf(file, "Amax Val: %d\n", info->amax->value);
         fprintf(file, "Amax Pos: %d\n", info->amax->position);
+		fprintf(file, "Amax Index: %d\n", info->amax->index);
     }
     if (info->bmin != NULL)
     {
         fprintf(file, "Bmin Val: %d\n", info->bmin->value);
         fprintf(file, "Bmin Pos: %d\n", info->bmin->position);
+		fprintf(file, "Bmin Index: %d\n", info->bmin->index);
     }
     if (info->bmax != NULL)
     {
@@ -215,12 +234,10 @@ int main(int argc, char *argv[])
 			push_b(commands, &stack_a, &stack_b, info);		//push all but two numbers to b
 		print_test(file, stack_a, 'A', info);
 		print_test(file, stack_b, 'B', info);
+		push_cheapest(stack_a, stack_b);
 		//calculate steps needed for each element and put into struct
 			//
 		//push back to a
-
-		// while(stack_b) //push all back to a;
-		// 	push_a(commands, &stack_b, &stack_a, info);
 	}
 
 	// free(info);
