@@ -6,13 +6,13 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/10 16:05:24 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:28:02 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rotate(FILE *commands, t_stack **stack, char name)
+void rotate(t_stack **stack)
 {
 	t_stack *first;
 	t_stack *second;
@@ -30,10 +30,9 @@ void rotate(FILE *commands, t_stack **stack, char name)
 	current->next = first;
 	first->previous = current;
 	*stack = second;
-	fprintf(commands, "r%c\n", name);
 }
 
-void reverse_rotate(FILE *commands, t_stack **stack, char name)
+void reverse_rotate(t_stack **stack)
 {
 	t_stack *first;
 	t_stack *last;
@@ -51,10 +50,9 @@ void reverse_rotate(FILE *commands, t_stack **stack, char name)
 	current->previous = NULL;
 	current->next = first;
 	*stack = current;
-	fprintf(commands, "rr%c\n", name);
 }
 
-void push_b(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
+void push_b(t_stack **stack_a, t_stack **stack_b, t_info *info)
 {
 	t_stack	*a1;
 	t_stack	*a2;
@@ -74,39 +72,61 @@ void push_b(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
 	*stack_a = a2;
 	*stack_b = a1;
 	update_info(stack_a, stack_b, info);
-	fprintf(commands, "pb\n");	//print pb
+	printf("pb\n");	//print pb
 }
 
-// void print_stack(t_stack *stack, char name)
-// {
-//     printf("Stack %c: ", name);
-//     while (stack)
-//     {
-//         printf("(%d, %d) ", stack->value, stack->position);
-//         stack = stack->next;
-//     }
-//     printf("\n");
-// }
+void push_a(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*b1;
+	t_stack	*b2;
+	t_stack	*a1;
+
+	if (!stack_a || !(*stack_b) || !stack_b)
+		return ;
+	a1 = *stack_a;
+	b1 = *stack_b;
+	b2 = b1->next;
+	if (a1 != NULL)
+		a1->previous = b1;
+	if (b2 != NULL)
+		b2->previous = NULL;
+	b1->next = a1;
+	b1->previous = NULL;
+	*stack_a = b1;
+	*stack_b = b2;
+	printf("pa\n");	//print pb
+}
+void print_stack(t_stack *stack, char name)
+{
+    printf("Stack %c: ", name);
+    while (stack)
+    {
+        printf("(%d, %d) ", stack->value, stack->position);
+        stack = stack->next;
+    }
+    printf("\n");
+}
 
 // int main()
 // {
 //     // Create a stack with some values
 //     char *arr[] = {"1", "2", "3", "4", "5", NULL};
 //     t_stack *stack_a = stackcreate(arr);
+//     t_stack *stack_b = stackcreate(arr);
 
 //     // Print the initial state of the stack
 //     print_stack(stack_a, 'A');
+//     print_stack(stack_b, 'B');
 
 //     // Open a commands file for writing
-//     FILE *commands = fopen("commands.txt", "w");
 
 //     // Test rotate and reverse_rotate functions
-//     rotate(commands, &stack_a, 'A');
+//     rotate(&stack_a);
 //     print_stack(stack_a, 'A');
 //     update_position(&stack_a);
 //     print_stack(stack_a, 'A');
 
-//     reverse_rotate(commands, &stack_a, 'A');
+//     reverse_rotate(&stack_a);
 //     print_stack(stack_a, 'A');
 //     update_position(&stack_a);
 //     print_stack(stack_a, 'A');
@@ -117,13 +137,13 @@ void push_b(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
 //     print_stack(stack_a, 'A');
 
 //     // Test rotate and update position again after adding a new element
-//     rotate(commands, &stack_a, 'A');
+//     push_a(&stack_a, &stack_b);
 //     print_stack(stack_a, 'A');
+//     print_stack(stack_b, 'B');
 //     update_position(&stack_a);
 //     print_stack(stack_a, 'A');
 
-//     // Close the commands file
-//     fclose(commands);
+//     // Close the commands fil
 
 //     return 0;
 // }

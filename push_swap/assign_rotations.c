@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_rotations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:02:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/17 14:37:07 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:18:06 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	assign_rotations(t_stack *stack_a, t_stack *stack_b)
 int rotations_a(t_stack *current, t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack *element_a;
-	
+
 	element_a = stack_a;
 	while (element_a->index < current->index && element_a->next != NULL)
 		element_a = element_a -> next;
@@ -47,7 +47,7 @@ int rotations_a(t_stack *current, t_stack *stack_a, t_stack *stack_b)
 int rev_rotations_a(t_stack *current, t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack *element_a;
-	
+
 	element_a = stack_a;
 	while (element_a->index < current->index && element_a->next != NULL)
 		element_a = element_a -> next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_turk_new.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/17 16:09:22 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:31:28 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,193 +25,6 @@ int check_input(char *arr)
 void cleanup(FILE *commands)
 {
 	//merge rra and rrb etc to rrall
-}
-void	push(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
-{
-	int	count;
-	t_stack	*current_b;
-
-	current_b = *stack_b;
-//push element at cheapest_element->position to stack_b; get instructions from cost?
-	//rotate a
-	if (info->cheapest_element->position > (ft_stacksize(*stack_a) / 2))
-	{
-		count = ft_stacksize(*stack_a) - info->cheapest_element->position + 1;
-		while (count-- != 0)
-			reverse_rotate(commands, stack_a, 'a');
-	}
-	else
-	{
-		count = info->cheapest_element->position - 1;
-		while (count-- != 0)
-			rotate(commands, stack_a, 'a');
-	}
-	//rotate b
-	if (info->cheapest_element->value > info->bmax->value || info->cheapest_element->value < info->bmin->value)
-	{
-		if (info->bmax->position > (ft_stacksize(*stack_b) / 2))
-		{
-			count = ft_stacksize(*stack_b) - info->bmax->position + 1;
-			while (count-- != 0)
-				reverse_rotate(commands, stack_b, 'b');
-		}
-		else
-		{
-			count = info->bmax->position - 1;
-			while (count-- != 0)
-				rotate(commands, stack_b, 'b');
-		}
-	}
-	else
-	{
-		while (!(info->cheapest_element->value < current_b->value && info->cheapest_element->value > current_b->next->value))
-			current_b = current_b->next;
-		if (current_b->position > (ft_stacksize(*stack_b) / 2))
-		{
-			count = ft_stacksize(*stack_b) - current_b->position + 1;
-			while (count-- != 0)
-				reverse_rotate(commands, stack_b, 'b');
-		}
-		else
-		{
-			count = current_b->position - 1;
-			while (count-- != 0)
-				rotate(commands, stack_b, 'b');
-		}
-	}
-	push_b(commands, stack_a, stack_b, info);
-}
-
-int calculate_between_cost(t_stack *current, t_stack *stack_b, int half_size)
-{
-    int	cost;
-	t_stack	*current_b;
-
-	cost = 0;
-	current_b = stack_b;
-	while (current->value > current_b->value)
-		current_b = current_b->next;
-	while (current->value < current_b->value && current_b->next != NULL)
-		current_b = current_b->next;
-	if (current_b->next == NULL && current->value < current_b->value)
-			current_b->position += 1;
-	if (current_b->position > half_size)
-		cost = half_size - current_b->position + 1;
-	else
-		cost = current_b->position - 1;
-	return (cost);
-}
-
-int push_cost(t_stack *current, t_stack **stack_a, t_stack **stack_b, t_info *info)
-{
-	int	cost;
-
-	if (!stack_a || !stack_b || !(*stack_a) || !current || !info)
-		return (0);
-	if (!(*stack_b))
-		return (1);
-	cost = 1;
-    if (current->position == 1)
-		cost = 1;
-	else if (current->position > (ft_stacksize(*stack_a) / 2 + 1))
-		cost += ft_stacksize(*stack_a) - current->position + 1;
-	else
-		cost += current->position - 1;
-	if (current->value > info->bmax->value || current->value < info->bmin->value)
-	{
-		if (info->bmax->position > (ft_stacksize(*stack_b) / 2 + 1))
-			cost += ft_stacksize(*stack_b) - info->bmax->position + 1;
-		else
-			cost += info->bmax->position - 1;
-	}
-	else
-		cost += calculate_between_cost(current, *stack_b, ft_stacksize(*stack_b) / 2 + 1);
-	return (cost);
-}
-
-void sort(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info)
-{
-	t_stack	*current;
-
-	if (!stack_a || !*stack_a)
-		return ;
-	current = *stack_a;
-	while (current)
-	{
-		if (push_cost(current, stack_a, stack_b, info) < info->mincost)
-		{
-			info->cheapest_element = current;
-			info->mincost = push_cost(current, stack_a, stack_b, info);
-		}
-		if (current->next == NULL)
-			break;
-		current = current->next;
-		update_info(stack_a, stack_b, info);
-	}
-	push(commands, stack_a, stack_b, info); //push element with lowest cost to right position
-	update_info(stack_a, stack_b, info);
-}
-
-void	correct_rotations(t_stack *stack_b)
-{
-	t_stack	*current;
-	
-	current = stack_b;
-
-	while (current)
-	{
-		if (current->ra && current->rb)
-		{
-			if (current->ra > current->rb)
-			{
-				current->rr = current->rb;
-				current->ra = current->ra - current->rb;
-				current->rb = 0;
-			}
-			else
-			{
-				current->rr = current->ra;
-				current->rb = current->rb - current->ra;
-				current->ra = 0;
-			}
-		if (current->rra && current->rrb)
-			if (current->rra > current->rrb)
-			{
-				current->rrr = current->rrb;
-				current->rra = current->rra - current->rrb;
-				current->rrb = 0;
-			}
-			else
-			{
-				current->rrr = current->rra;
-				current->rrb = current->rrb - current->rra;
-				current->rra = 0;
-			}
-		}
-		current = current->next;
-	}
-}
-
-t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b)
-{
-	int		cost;
-	t_stack	*current;
-	
-	cost = 0;
-	current = stack_b;
-	
-	//go through all elements, add up return cheapest
-}
-
-void	push_cheapest(t_stack *stack_a, t_stack *stack_b, t_info *info)
-{
-	t_stack	*cheapest;
-
-	assign_rotations(stack_a, stack_b);
-	correct_rotations(stack_b);
-	//cheapest = find_cheapest(stack_a, stack_b);
-	//push(cheapest);
-	//update_info(&stack_a, &stack_b, info);
 }
 
 void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
@@ -259,15 +72,6 @@ void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
     }
     fprintf(file, "---------------------------\n\n");
     count++;
-	printf("Linked List with Indices and Rotations:\n");
-	if (!stack)
-		return ;
-	t_stack *current = stack;
-	while (current) {
-		printf("Value: %d, Index: %d, RA: %d, RB: %d, RRA: %d, RRB: %d, RR: %d, RRR: %d\n",
-			current->value, current->index, current->ra, current->rb, current->rra, current->rrb, current->rr, current->rrr);
-		current = current->next;
-	}
 }
 
 int main(int argc, char *argv[])
@@ -286,15 +90,13 @@ int main(int argc, char *argv[])
 		stack_b = NULL;	//initilize stack_b
 		info = init_info(&stack_a, &stack_b); //find min
 		while (ft_stacksize(stack_a) > 5)
-			push_b(commands, &stack_a, &stack_b, info);		//push all but two numbers to b
+			push_b(&stack_a, &stack_b, info);		//push all but two numbers to b
 		print_test(file, stack_a, 'A', info);
 		print_test(file, stack_b, 'B', info);
 		push_cheapest(stack_a, stack_b, info);
 		print_test(file, stack_b, 'B', info);
 
-		//calculate steps needed for each element and put into struct
-			//
-		//push back to a
+		//figure out if rotate_push works
 	}
 
 	// free(info);
@@ -303,7 +105,7 @@ int main(int argc, char *argv[])
 }
 
 
-//something with the rotations does't work yet, with b1>amax values; 
+//something with the rotations does't work yet, with b1>amax values;
 //check again if rottations are correct
 //fix sort
 

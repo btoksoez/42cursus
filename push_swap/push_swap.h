@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/17 16:00:09 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:31:58 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,10 @@ t_stack	*min_element(t_stack *head);
 t_info	*init_info(t_stack **stack_a, t_stack **stack_b);
 void	update_info(t_stack **stack_a, t_stack **stack_b, t_info *info);
 
-void	push_b(FILE *commands, t_stack **stack_a, t_stack **stack_b, t_info *info);
-void	reverse_rotate(FILE *commands, t_stack **stack, char name);
-void	rotate(FILE *commands, t_stack **stack, char name);
-
-int		find_smallest_but_bigger(t_stack *element_in_a, t_stack *stack_b);
+void	push_b(t_stack **stack_a, t_stack **stack_b, t_info *info);
+void	push_a(t_stack **stack_a, t_stack **stack_b);
+void	reverse_rotate(t_stack **stack);
+void	rotate(t_stack **stack);
 
 void	get_index(t_stack *stack_a);
 void	assign_index(t_stack *stack_a, int *array);
@@ -75,4 +74,8 @@ int		rotations_b(t_stack *current, t_stack *stack_a, t_stack *stack_b);
 int		rev_rotations_b(t_stack *current, t_stack *stack_a, t_stack *stack_b);
 
 void	correct_rotations(t_stack *stack_b);
+void	rotate_push(t_stack *current, t_stack *stack_a, t_stack *stack_b);
+void	push_cheapest(t_stack *stack_a, t_stack *stack_b, t_info *info);
+t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b);
+
 #endif
