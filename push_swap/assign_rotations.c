@@ -6,70 +6,76 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:02:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/18 14:18:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:49:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	assign_rotations(t_stack *stack_a, t_stack *stack_b)
+void	assign_rotations(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current;
+	t_stack	*element_a;
+	int		stacksize_a;
+	int		stacksize_b;
 
 	if (!stack_b || !stack_a)
 		return ;
-	current = stack_b;
+	current = *stack_b;
+	stacksize_a = ft_stacksize(*stack_a);
+	stacksize_b = ft_stacksize(*stack_b);
 	while (current)
 	{
-		current->ra = rotations_a(current, stack_a, stack_b);
-		current->rb = rotations_b(current, stack_a, stack_b);
-		current->rra = rev_rotations_a(current, stack_a, stack_b);
-		current->rrb = rev_rotations_b(current, stack_a, stack_b);
+		element_a = find_smallest_greater(*stack_a, current->index);
+		rotations_a(current, element_a, stacksize_a);
+		rotations_b(current, stacksize_b);
 		current = current->next;
 	}
 }
 
-int rotations_a(t_stack *current, t_stack *stack_a, t_stack *stack_b)
+t_stack *find_smallest_greater(t_stack *stack_a, int index_b)
 {
-	t_stack *element_a;
+	t_stack	*current;
+	t_stack	*element_a;
 
-	element_a = stack_a;
-	while (element_a->index < current->index && element_a->next != NULL)
-		element_a = element_a -> next;
-	if (element_a->next == NULL && element_a->index < current->index)
-		return (0);
-	if (element_a->position > (ft_stacksize(stack_a) / 2 + 1))
-		return (0);
-	else
-		return (element_a->position - 1);
+	current = stack_a;
+	element_a = NULL;
+	while (current != NULL)
+	{
+		if (current->index > index_b)
+			if (element_a == NULL || current->index < element_a->index)
+				element_a = current;
+		current = current->next;
+	}
+	if (element_a == NULL)
+		element_a = min_element(stack_a);
+	return (element_a);
 }
 
-int rev_rotations_a(t_stack *current, t_stack *stack_a, t_stack *stack_b)
+void	rotations_a(t_stack *current, t_stack *element_a, int stacksize)
 {
-	t_stack *element_a;
-
-	element_a = stack_a;
-	while (element_a->index < current->index && element_a->next != NULL)
-		element_a = element_a -> next;
-	if (element_a->next == NULL && element_a->index < current->index)
-		return (0);
-	if (element_a->position > (ft_stacksize(stack_a) / 2 + 1))
-		return (ft_stacksize(stack_a) - element_a->position + 1);
+	if (element_a->position > (stacksize / 2 + 1))
+	{
+		current->rra = stacksize - element_a->position + 1;
+		current->ra = 0;
+	}
 	else
-		return (0);
+	{
+		current->ra = element_a->position - 1;
+		current->rra = 0;
+	}
 }
 
-int	rotations_b(t_stack *current, t_stack *stack_a, t_stack *stack_b)
+void	rotations_b(t_stack *current, int stacksize)
 {
-	if (current->position > (ft_stacksize(stack_b) / 2 + 1))
-		return (0);
-	return (current->position - 1);
-}
-
-int	rev_rotations_b(t_stack *current, t_stack *stack_a, t_stack *stack_b)
-{
-	if (current->position > (ft_stacksize(stack_b) / 2 + 1))
-		return (ft_stacksize(stack_b) - current->position + 1);
+	if (current->position > (stacksize / 2 + 1))
+	{
+		current->rrb = stacksize - current->position + 1;
+		current->rb = 0;
+	}
 	else
-		return (0);
+	{
+		current->rb = current->position - 1;
+		current->rrb = 0;
+	}
 }

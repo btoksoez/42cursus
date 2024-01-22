@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/18 14:28:02 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:51:12 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void rotate(t_stack **stack)
 	first = *stack;
 	second = first->next;
 	current = first->next;
-	first->next = NULL;
 	second->previous = NULL;
 	while (current->next != NULL)
 		current = current->next;
+	first->next = NULL;
 	current->next = first;
 	first->previous = current;
 	*stack = second;
@@ -94,18 +94,9 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
 	b1->previous = NULL;
 	*stack_a = b1;
 	*stack_b = b2;
-	printf("pa\n");	//print pb
+	printf("pa\n");
 }
-void print_stack(t_stack *stack, char name)
-{
-    printf("Stack %c: ", name);
-    while (stack)
-    {
-        printf("(%d, %d) ", stack->value, stack->position);
-        stack = stack->next;
-    }
-    printf("\n");
-}
+
 
 // int main()
 // {

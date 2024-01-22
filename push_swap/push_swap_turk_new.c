@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/18 14:31:28 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/22 17:51:43 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ int check_input(char *arr)
 	return (1);
 }
 
-void cleanup(FILE *commands)
-{
-	//merge rra and rrb etc to rrall
-}
-
 void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
 {
 	int	i = 1;
@@ -37,9 +32,9 @@ void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
 		fprintf(file, "Stack->NULL\n");
     while (copy)
     {
-        fprintf(file, "Element %d: %d\n", i, copy->value);
+        fprintf(file, "Element %d: %d, Pos: %d, Index: %d\n", i, copy->value, copy->position, copy->index);
         copy = copy->next;
-		i++;
+        i++;
     }
 	fprintf(file, "\nInfo:\n");
     if (info->amin != NULL)
@@ -89,14 +84,35 @@ int main(int argc, char *argv[])
 		get_index(stack_a);	//assign optimal position to elements in a
 		stack_b = NULL;	//initilize stack_b
 		info = init_info(&stack_a, &stack_b); //find min
-		while (ft_stacksize(stack_a) > 5)
+		while (ft_stacksize(stack_a) > 2)
 			push_b(&stack_a, &stack_b, info);		//push all but two numbers to b
 		print_test(file, stack_a, 'A', info);
 		print_test(file, stack_b, 'B', info);
-		push_cheapest(stack_a, stack_b, info);
+		sort_two(&stack_a);
+		update_info(&stack_a, &stack_b, info);
+		print_test(file, stack_a, 'A', info);
+		print_test(file, stack_b, 'B', info);
+		push_cheapest(&stack_a, &stack_b, info);
+		print_test(file, stack_a, 'A', info);
+		print_test(file, stack_b, 'B', info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		print_test(file, stack_a, 'A', info);
+		print_test(file, stack_b, 'B', info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		push_cheapest(&stack_a, &stack_b, info);
+		print_test(file, stack_a, 'A', info);
 		print_test(file, stack_b, 'B', info);
 
-		//figure out if rotate_push works
+
 	}
 
 	// free(info);
@@ -104,10 +120,8 @@ int main(int argc, char *argv[])
 	fclose(commands);
 }
 
-
-//something with the rotations does't work yet, with b1>amax values;
-//check again if rottations are correct
-//fix sort
+//fix correct_rotations
+//make it work with 0
 
 //fix libft
 	//fix printf
@@ -115,23 +129,3 @@ int main(int argc, char *argv[])
 //sort functions
 //free
 //fix that it takes separate arguments as args
-//optimize
-	//add heuristics function? (cheat could be to just calculate )
-	//distance to last number pushed?
-	//check if switching a1 and a2 would make sense based on b1 value?
-	//could add separete functions like addfront, delete_end .. )
-//add position to list
-
-
-//if top value is smaller than A1 and last element of B is bigger than A1, then push
-//fix: rotates, although bmax on top and a1 > bmax
-
-//make functions that calculate for each number in stack_a how many steps it would take to make it bmax;
-	//need to return int cost;
-	//calls all functions ra, rr, ... until is_sorted=true; randomly? how to know which ones to call?
-	//function returning true or false: is_sorted() -> checks if stack is correctly sorted
-	//
-//count rotations of a and b as 1 step;
-	//if ra & rb -> res - 1;
-//go through all numbers in a
-//push back
