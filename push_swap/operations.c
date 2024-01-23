@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/22 17:51:12 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:42:53 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void reverse_rotate(t_stack **stack)
 	*stack = current;
 }
 
-void push_b(t_stack **stack_a, t_stack **stack_b, t_info *info)
+void push_b(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*a1;
 	t_stack	*a2;
@@ -71,7 +71,6 @@ void push_b(t_stack **stack_a, t_stack **stack_b, t_info *info)
 	a1->previous = NULL;
 	*stack_a = a2;
 	*stack_b = a1;
-	update_info(stack_a, stack_b, info);
 	printf("pb\n");	//print pb
 }
 

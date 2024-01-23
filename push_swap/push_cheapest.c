@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:30:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/22 17:48:59 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:44:19 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	correct_rotations(t_stack *stack_b)
 {
 	t_stack	*current;
-	t_stack	*first;
 
 	current = stack_b;
 
@@ -122,17 +121,37 @@ void	rotate_push(t_stack *current, t_stack **stack_a, t_stack **stack_b)
 	push_a(stack_a, stack_b);
 }
 
+void	set_to_zero(t_stack *stack)
+{
+	t_stack	*current;
 
-void	push_cheapest(t_stack **stack_a, t_stack **stack_b, t_info *info)
+	current = stack;
+	while (current)
+	{
+		current->ra = 0;
+		current->rb = 0;
+		current->rra = 0;
+		current->rrb = 0;
+		current->rr = 0;
+		current->rrr = 0;
+		current = current->next;
+	}
+}
+
+
+
+void	push_cheapest(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*cheapest;
 
+	set_to_zero(*stack_b);
 	assign_rotations(stack_a, stack_b);
-	//correct_rotations(*stack_b);
+	//print_rotations(*stack_b);
+	correct_rotations(*stack_b);
+	//print_rotations(*stack_b);
 	cheapest = find_cheapest(*stack_a, *stack_b);
-	printf("Cheapest Element: %d\n", cheapest->value);
+	//printf("Cheapest Element: %d\n", cheapest->value);
 	rotate_push(cheapest, stack_a, stack_b);
-	update_info(stack_a, stack_b, info);
 	update_position(stack_a);
 	update_position(stack_b);
 }

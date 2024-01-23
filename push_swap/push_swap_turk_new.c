@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/22 17:51:43 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:55:31 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int check_input(char *arr)
 	return (1);
 }
 
-void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
+void print_test(FILE *file, t_stack *stack, char stackname)
 {
 	int	i = 1;
 	static int count = 1;
@@ -36,37 +36,6 @@ void print_test(FILE *file, t_stack *stack, char stackname, t_info *info)
         copy = copy->next;
         i++;
     }
-	fprintf(file, "\nInfo:\n");
-    if (info->amin != NULL)
-    {
-        fprintf(file, "Amin Val: %d\n", info->amin->value);
-        fprintf(file, "Amin Pos: %d\n", info->amin->position);
-		fprintf(file, "Amin Index: %d\n", info->amin->index);
-    }
-    if (info->amax != NULL)
-    {
-        fprintf(file, "Amax Val: %d\n", info->amax->value);
-        fprintf(file, "Amax Pos: %d\n", info->amax->position);
-		fprintf(file, "Amax Index: %d\n", info->amax->index);
-    }
-    if (info->bmin != NULL)
-    {
-        fprintf(file, "Bmin Val: %d\n", info->bmin->value);
-        fprintf(file, "Bmin Pos: %d\n", info->bmin->position);
-		fprintf(file, "Bmin Index: %d\n", info->bmin->index);
-    }
-    if (info->bmax != NULL)
-    {
-        fprintf(file, "Bmax Val: %d\n", info->bmax->value);
-        fprintf(file, "Bmax Pos: %d\n", info->bmax->position);
-    }
-    fprintf(file, "Mincost: %d\n", info->mincost);
-    if (info->cheapest_element != NULL)
-    {
-        fprintf(file, "Cheapest Element Val: %d, Pos: %d\n", info->cheapest_element->value, info->cheapest_element->position);
-    }
-    fprintf(file, "---------------------------\n\n");
-    count++;
 }
 
 int main(int argc, char *argv[])
@@ -74,58 +43,47 @@ int main(int argc, char *argv[])
 	char **res;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	t_info	*info;
 	FILE *file = fopen("output.txt", "w"); //write output
 	FILE *commands = fopen("commands.txt", "w"); //write output
+	FILE *original_stdout = stdout;
+	freopen("commands.txt", "w", stdout);
 	if (check_input(argv[1]))
 	{
 		res = ft_split(argv[1], ' ');
 		stack_a = stackcreate(res); //fill stack_a with values
 		get_index(stack_a);	//assign optimal position to elements in a
 		stack_b = NULL;	//initilize stack_b
-		info = init_info(&stack_a, &stack_b); //find min
 		while (ft_stacksize(stack_a) > 2)
-			push_b(&stack_a, &stack_b, info);		//push all but two numbers to b
-		print_test(file, stack_a, 'A', info);
-		print_test(file, stack_b, 'B', info);
-		sort_two(&stack_a);
-		update_info(&stack_a, &stack_b, info);
-		print_test(file, stack_a, 'A', info);
-		print_test(file, stack_b, 'B', info);
-		push_cheapest(&stack_a, &stack_b, info);
-		print_test(file, stack_a, 'A', info);
-		print_test(file, stack_b, 'B', info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		print_test(file, stack_a, 'A', info);
-		print_test(file, stack_b, 'B', info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		push_cheapest(&stack_a, &stack_b, info);
-		print_test(file, stack_a, 'A', info);
-		print_test(file, stack_b, 'B', info);
-
-
+			push_b(&stack_a, &stack_b);		//push all but two numbers to b
+		print_test(file, stack_a, 'A');
+		print_test(file, stack_b, 'B');
+		print_test(file, stack_a, 'A');
+		print_test(file, stack_b, 'B');
+		while (stack_b)
+			push_cheapest(&stack_a, &stack_b);
+		print_test(file, stack_a, 'A');
+		print_test(file, stack_b, 'B');
+		final_rotate(&stack_a);
+		print_test(file, stack_a, 'A');
+		print_test(file, stack_b, 'B');
 	}
+    fclose(stdout);
+    stdout = original_stdout;
 
 	// free(info);
 	fclose(file);
 	fclose(commands);
 }
 
-//fix correct_rotations
 //make it work with 0
+//fix that it takes separate arguments as args
+//free
+//tester
 
+//sort functions
 //fix libft
 	//fix printf
 //make makefile
-//sort functions
-//free
-//fix that it takes separate arguments as args
+
+
+

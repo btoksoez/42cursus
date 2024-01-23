@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:02:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/22 17:49:51 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/23 09:07:22 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,15 @@ t_stack *find_smallest_greater(t_stack *stack_a, int index_b)
 void	rotations_a(t_stack *current, t_stack *element_a, int stacksize)
 {
 	if (element_a->position > (stacksize / 2 + 1))
-	{
 		current->rra = stacksize - element_a->position + 1;
-		current->ra = 0;
-	}
 	else
-	{
 		current->ra = element_a->position - 1;
-		current->rra = 0;
-	}
 }
 
 void	rotations_b(t_stack *current, int stacksize)
 {
 	if (current->position > (stacksize / 2 + 1))
-	{
 		current->rrb = stacksize - current->position + 1;
-		current->rb = 0;
-	}
 	else
-	{
 		current->rb = current->position - 1;
-		current->rrb = 0;
-	}
 }
