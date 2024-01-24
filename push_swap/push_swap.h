@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:43:23 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:19:00 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
+# include "libft/libft.h"
 
 typedef struct s_stack
 {
@@ -35,6 +36,11 @@ typedef struct s_stack
 	int				rr;
 	int				rrr;
 }					t_stack;
+
+int		is_valid_int(const char *str);
+int		no_duplicates(int argc, char *argv[]);
+int		is_valid(int argc, char *argv[]);
+char	**parse_args(int argc, char *argv[]);
 
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stacknew(int value);
@@ -65,8 +71,6 @@ void	rotate_push(t_stack *current, t_stack **stack_a, t_stack **stack_b);
 void	push_cheapest(t_stack **stack_a, t_stack **stack_b);
 t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b);
 void	set_to_zero(t_stack *stack);
-
-void	sort_two(t_stack **stack);
 
 void	print_rotations(t_stack *stack);
 void	final_rotate(t_stack **stack_a);

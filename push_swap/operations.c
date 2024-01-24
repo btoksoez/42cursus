@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:42:53 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:08:38 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void push_b(t_stack **stack_a, t_stack **stack_b)
 	a1->previous = NULL;
 	*stack_a = a2;
 	*stack_b = a1;
-	printf("pb\n");	//print pb
+	ft_printf("pb\n");	//print pb
 }
 
 void push_a(t_stack **stack_a, t_stack **stack_b)
@@ -93,7 +93,7 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
 	b1->previous = NULL;
 	*stack_a = b1;
 	*stack_b = b2;
-	printf("pa\n");
+	ft_printf("pa\n");
 }
 
 

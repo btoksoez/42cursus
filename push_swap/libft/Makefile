@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2023/12/27 09:39:36 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/24 15:05:03 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,10 @@ SRCS = ft_memset.c		\
 		ft_putendl_fd.c	\
 		ft_striteri.c	\
 		ft_putnbr_fd.c	\
-		get_next_line_bonus.c	\
-		get_next_line_utils_bonus.c	\
 		ft_putnbr_base.c	\
-		ft_printf.c	\
+		ft_printf.c		\
 		ft_print_hex.c	\
+
 
 OBJS = $(SRCS:.c=.o)
 

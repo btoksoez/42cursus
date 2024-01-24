@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    tester.py                                          :+:      :+:    :+:    #
+#    complexity_tester.py                               :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/01 14:19:22 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/01 14:20:16 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/24 15:15:44 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
-def run_program(input_str):
+def run_program(input_list):
     # Run your program with the given input
-    command = ["./a.out", input_str]
+    command = ["./a.out"] + input_list
     subprocess.run(command)
 
 def count_lines(file_path):
@@ -35,12 +35,12 @@ def main():
     commands_counts = []
 
     for size in input_sizes:
-        # Generate space-separated list of non-duplicated integers
+        # Generate list of non-duplicated integers
         input_data = list(range(1, size + 1))
         random.shuffle(input_data)
-        input_str = ' '.join(str(i) for i in input_data)
 
-        # Run the program with the generated input
+        # Convert integers to strings and run the program
+        input_str = [str(i) for i in input_data]
         run_program(input_str)
 
         # Count lines in commands.txt

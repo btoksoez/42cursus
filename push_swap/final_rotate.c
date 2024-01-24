@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 09:16:22 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:29:20 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:07:22 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	final_rotate(t_stack **stack_a)
 		while (rotations--)
 		{
 			rotate(stack_a);
-			printf("ra\n");
+			ft_printf("ra\n");
 		}
 	}
 	else
@@ -36,7 +36,7 @@ void	final_rotate(t_stack **stack_a)
 		while (rotations--)
 		{
 			reverse_rotate(stack_a);
-			printf("rra\n");
+			ft_printf("rra\n");
 		}
 	}
 }

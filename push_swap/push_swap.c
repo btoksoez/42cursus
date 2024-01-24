@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_turk_new.c                               :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:55:31 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:23:09 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
-
-int check_input(char *arr)
-{
-	//is it only numbers
-	//is there input
-	//no duplicates
-	return (1);
-}
 
 void print_test(FILE *file, t_stack *stack, char stackname)
 {
@@ -38,6 +28,20 @@ void print_test(FILE *file, t_stack *stack, char stackname)
     }
 }
 
+void	free_stack(t_stack *stack)
+{
+	t_stack	*current;
+	t_stack	*next;
+
+	current = stack;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	char **res;
@@ -47,43 +51,37 @@ int main(int argc, char *argv[])
 	FILE *commands = fopen("commands.txt", "w"); //write output
 	FILE *original_stdout = stdout;
 	freopen("commands.txt", "w", stdout);
-	if (check_input(argv[1]))
-	{
-		res = ft_split(argv[1], ' ');
-		stack_a = stackcreate(res); //fill stack_a with values
-		get_index(stack_a);	//assign optimal position to elements in a
-		stack_b = NULL;	//initilize stack_b
-		while (ft_stacksize(stack_a) > 2)
-			push_b(&stack_a, &stack_b);		//push all but two numbers to b
-		print_test(file, stack_a, 'A');
-		print_test(file, stack_b, 'B');
-		print_test(file, stack_a, 'A');
-		print_test(file, stack_b, 'B');
-		while (stack_b)
-			push_cheapest(&stack_a, &stack_b);
-		print_test(file, stack_a, 'A');
-		print_test(file, stack_b, 'B');
-		final_rotate(&stack_a);
-		print_test(file, stack_a, 'A');
-		print_test(file, stack_b, 'B');
-	}
+	res = parse_args(argc, argv);
+	if (!res)
+		return (0);
+	stack_a = stackcreate(res); //fill stack_a with values
+	get_index(stack_a);	//assign optimal position to elements in a
+	stack_b = NULL;	//initilize stack_b
+	while (ft_stacksize(stack_a) > 2)
+		push_b(&stack_a, &stack_b);		//push all but two numbers to b
+	print_test(file, stack_a, 'A');
+	print_test(file, stack_b, 'B');
+	print_test(file, stack_a, 'A');
+	print_test(file, stack_b, 'B');
+	while (stack_b)
+		push_cheapest(&stack_a, &stack_b);
+	print_test(file, stack_a, 'A');
+	print_test(file, stack_b, 'B');
+	final_rotate(&stack_a);
+	print_test(file, stack_a, 'A');
+	print_test(file, stack_b, 'B');
     fclose(stdout);
     stdout = original_stdout;
-
-	// free(info);
 	fclose(file);
 	fclose(commands);
+	free(res);
+	//free_stack(stack_a);
+
+	return (0);
 }
 
-//make it work with 0
-//fix that it takes separate arguments as args
 //free
 //tester
 
-//sort functions
-//fix libft
-	//fix printf
+//sort functions & norminette
 //make makefile
-
-
-

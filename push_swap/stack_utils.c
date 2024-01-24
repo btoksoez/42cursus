@@ -6,12 +6,11 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:17:05 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/16 13:58:21 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:22:52 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
 t_stack	*ft_stacknew(int value)
 {
@@ -84,8 +83,6 @@ t_stack *stackcreate(char *arr[])
 	t_stack	*new_element;
 
 	stack_a = NULL;
-	//create new list for stack a
-	//add each value in arr as new list element in the back
 	while (*arr)
 	{
 		new_element = ft_stacknew(ft_atoi(*arr));

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 11:29:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/12/28 14:12:18 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:54:41 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <stdarg.h>
-# include <fcntl.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 512
-# endif
 
 typedef struct s_list
 {
@@ -81,9 +76,5 @@ int				ft_toupper(int c);
 int				ft_print_hex(void *p);
 int				ft_putnbr_base(long n, char *s);
 int				ft_printf(const char *format, ...);
-
-char			*get_next_line(int fd);
-size_t			ft_strlen_next(const char *str);
-char			*ft_strjoin_next(char *line, char *buffer);
 
 #endif

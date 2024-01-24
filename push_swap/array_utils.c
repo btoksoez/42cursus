@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:12:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/16 14:12:11 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/23 10:36:13 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,14 @@ void	sort_array(int *array, int arraysize)
 void	assign_index(t_stack *stack_a, int *array)
 {
 	int	i;
+	int	stacksize;
+
+	stacksize = ft_stacksize(stack_a);
 
 	while (stack_a)
 	{
 		i = 0;
-		while (array[i])
+		while (i < stacksize)
 		{
 			if (array[i] == stack_a->value)
 			{
