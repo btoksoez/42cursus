@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 15:08:38 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:35:36 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void rotate(t_stack **stack)
 	current->next = first;
 	first->previous = current;
 	*stack = second;
+	update_position(stack);
 }
 
 void reverse_rotate(t_stack **stack)
@@ -50,6 +51,7 @@ void reverse_rotate(t_stack **stack)
 	current->previous = NULL;
 	current->next = first;
 	*stack = current;
+	update_position(stack);
 }
 
 void push_b(t_stack **stack_a, t_stack **stack_b)
@@ -72,6 +74,8 @@ void push_b(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = a2;
 	*stack_b = a1;
 	ft_printf("pb\n");	//print pb
+	update_position(stack_b);
+	update_position(stack_a);
 }
 
 void push_a(t_stack **stack_a, t_stack **stack_b)
@@ -94,6 +98,8 @@ void push_a(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = b1;
 	*stack_b = b2;
 	ft_printf("pa\n");
+	update_position(stack_b);
+	update_position(stack_a);
 }
 
 

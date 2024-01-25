@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 16:23:09 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:24:52 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
 }
 
 //free
+//fix mistakes that happen
 //tester
 
 //sort functions & norminette

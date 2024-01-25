@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 16:19:00 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:26:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	push_cheapest(t_stack **stack_a, t_stack **stack_b);
 t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b);
 void	set_to_zero(t_stack *stack);
 
-void	print_rotations(t_stack *stack);
+void	print_rotations(FILE *rotations, t_stack *stack);
 void	final_rotate(t_stack **stack_a);
 
 #endif

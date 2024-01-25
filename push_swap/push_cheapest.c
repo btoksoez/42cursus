@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:30:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 16:18:05 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:27:36 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,17 +138,23 @@ void	set_to_zero(t_stack *stack)
 	}
 }
 
-
-
 void	push_cheapest(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*cheapest;
+	FILE *rotations = fopen("rotations.txt", "a");
 
+	fprintf(rotations, "\nPush Cheapest Start:\n");
 	set_to_zero(*stack_b);
+	print_rotations(rotations, *stack_b);
 	assign_rotations(stack_a, stack_b);
+	print_rotations(rotations, *stack_b);
 	correct_rotations(*stack_b);
+	print_rotations(rotations, *stack_b);
 	cheapest = find_cheapest(*stack_a, *stack_b);
+	fprintf(rotations, "\nCheapest Element: %d\n\n", cheapest->value);
 	rotate_push(cheapest, stack_a, stack_b);
 	update_position(stack_a);
 	update_position(stack_b);
+
+	fclose(rotations);
 }
