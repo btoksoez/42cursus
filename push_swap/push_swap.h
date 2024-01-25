@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/25 12:26:51 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:45:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	set_to_zero(t_stack *stack);
 
 void	print_rotations(FILE *rotations, t_stack *stack);
 void	final_rotate(t_stack **stack_a);
+int		is_sorted(t_stack *stack_a);
 
 #endif

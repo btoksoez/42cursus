@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 16:24:52 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:48:58 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,20 @@ void	free_stack(t_stack *stack)
 	}
 }
 
+int	is_sorted(t_stack *stack_a)
+{
+	t_stack	*current;
+
+	current = stack_a;
+	while (current)
+	{
+		if (current->position != current->index)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
+
 int main(int argc, char *argv[])
 {
 	char **res;
@@ -59,29 +73,25 @@ int main(int argc, char *argv[])
 	stack_b = NULL;	//initilize stack_b
 	while (ft_stacksize(stack_a) > 2)
 		push_b(&stack_a, &stack_b);		//push all but two numbers to b
-	print_test(file, stack_a, 'A');
-	print_test(file, stack_b, 'B');
-	print_test(file, stack_a, 'A');
-	print_test(file, stack_b, 'B');
 	while (stack_b)
 		push_cheapest(&stack_a, &stack_b);
-	print_test(file, stack_a, 'A');
-	print_test(file, stack_b, 'B');
 	final_rotate(&stack_a);
 	print_test(file, stack_a, 'A');
 	print_test(file, stack_b, 'B');
+	if (is_sorted(stack_a))
+		fprintf(file, "Sorted.\n");
+	else
+		fprintf(file, "Failed.\n");
     fclose(stdout);
     stdout = original_stdout;
 	fclose(file);
 	fclose(commands);
 	free(res);
-	//free_stack(stack_a);
-
+	free_stack(stack_a);
 	return (0);
 }
 
 //free
-//fix mistakes that happen
 //tester
 
 //sort functions & norminette
