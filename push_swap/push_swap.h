@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/26 13:32:49 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:44:47 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdint.h>
-# include <stdarg.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>

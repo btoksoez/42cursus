@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/25 12:48:58 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:59:39 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ int main(int argc, char *argv[])
 	t_stack	*stack_b;
 	FILE *file = fopen("output.txt", "w"); //write output
 	FILE *commands = fopen("commands.txt", "w"); //write output
-	FILE *original_stdout = stdout;
-	freopen("commands.txt", "w", stdout);
 	res = parse_args(argc, argv);
 	if (!res)
 		return (0);
@@ -82,8 +80,6 @@ int main(int argc, char *argv[])
 		fprintf(file, "Sorted.\n");
 	else
 		fprintf(file, "Failed.\n");
-    fclose(stdout);
-    stdout = original_stdout;
 	fclose(file);
 	fclose(commands);
 	free(res);

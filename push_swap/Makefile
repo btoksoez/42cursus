@@ -6,44 +6,49 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/24 15:18:50 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/26 14:10:30 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_putnbr_base.c ft_print_hex.c
+SRCS = array_utils.c	\
+		assign_rotations.c	\
+		correct_rotations.c	\
+		final_rotate.c	\
+		info_utils.c	\
+		operations.c	\
+		parse_args.c	\
+		push_cheapest.c	\
+		main.c	\
+		rotate_push.c	\
+		stack_utils.c	\
 
-OBJS = $(SRCS:.c=.o)
-
-NAME = libft.a
+NAME = push_swap
 
 CC = cc
 
-LIBFTPATH = ./libft
-LIBFT = $(LIBFTPATH)/libft.a
+LIBFTDIR = ./libft
+LIBFT = $(LIBFTDIR)/libft.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-%.o: %.c
-	@$(CC) $(CC_FLAGS) -c $< -o $@
-
-$(NAME): $(LIBFT) $(OBJS)
-	cp $(LIBFT) $(NAME)
-	@ar rc $(NAME) $(OBJS)
+$(NAME): $(SRCS) $(LIBFT)
+	@echo "Creating $(NAME)"
+	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 	@echo "$(NAME) created."
 
 all: $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFTPATH) all
+	@$(MAKE) -sC $(LIBFTDIR)
 
 clean:
-	make -C $(LIBFTPATH) clean
-	@rm -rf $(OBJS)
-	@echo "$(OBJS) & $(LIBFT) deleted."
+	make -C $(LIBFTDIR) clean
+	@echo "$(LIBFT) deleted."
 
 fclean: clean
-	make -C $(LIBFTPATH) fclean
+	make -C $(LIBFTDIR) fclean
 	rm -rf $(NAME)
+	@echo "$(LIBFT) & $(NAME) deleted."
 
 re: fclean all
 
