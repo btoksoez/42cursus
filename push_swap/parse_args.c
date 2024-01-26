@@ -6,21 +6,22 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 11:50:12 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:24:41 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_valid_int(const char *str)
+int	is_valid_int(const char *str)
 {
-    if (str[0] == '-')
-        str++;
-    if (ft_strlen(str) > ft_strlen("2147483647"))
-        return (0);
-    if (ft_strlen(str) == ft_strlen("2147483647") && ft_strncmp(str, "2147483647", ft_strlen(str)) > 0)
-        return (0);
-    return (1);
+	if (str[0] == '-')
+		str++;
+	if (ft_strlen(str) > ft_strlen("2147483647"))
+		return (0);
+	if (ft_strlen(str) == ft_strlen("2147483647")
+		&& ft_strncmp(str, "2147483647", ft_strlen(str)) > 0)
+		return (0);
+	return (1);
 }
 
 int	no_duplicates(int argc, char *argv[])
@@ -53,7 +54,8 @@ int	is_valid(int argc, char *argv[])
 		return (0);
 	while (i < argc)
 	{
-		if (!ft_isdigit(argv[i][0]) && !(argv[i][0] == '-' && ft_isdigit(argv[i][1])))
+		if (!ft_isdigit(argv[i][0]) && !(argv[i][0] == '-'
+			&& ft_isdigit(argv[i][1])))
 			return (0);
 		j = 1;
 		while (argv[i][j] != '\0')
@@ -71,8 +73,8 @@ int	is_valid(int argc, char *argv[])
 
 char	**parse_args(int argc, char *argv[])
 {
-	char **res;
-	int	i;
+	char	**res;
+	int		i;
 
 	i = 1;
 	if (!(is_valid(argc, argv)))
@@ -90,24 +92,3 @@ char	**parse_args(int argc, char *argv[])
 	res[i - 1] = NULL;
 	return (res);
 }
-// int main(int argc, char *argv[])
-// {
-// 	char **parsedArgs = parse_args(argc, argv);
-//     if (!parsedArgs)
-//     {
-//         printf("Failed to parse arguments.\n");
-//         return 0;
-//     }
-
-//     // Print the parsed arguments
-//     printf("Parsed Arguments:\n");
-//     for (int i = 0; parsedArgs[i] != NULL; i++)
-//     {
-//         printf("%s %d\n", parsedArgs[i], i);
-//     }
-
-//     // Free the allocated memory
-//     free(parsedArgs);
-
-//     return 0;
-// }

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:17:05 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 16:22:52 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:51:12 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,9 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new)
 		*lst = new;
 		return ;
 	}
-	i = 2;
-	while (current->next)
-	{
+	i = 1;
+	while (current->next && i++)
 		current = current->next;
-		i++;
-	}
 	current->next = new;
 	new->next = NULL;
 	new->previous = current;
@@ -77,7 +74,7 @@ int	ft_stacksize(t_stack *stack)
 	return (i);
 }
 
-t_stack *stackcreate(char *arr[])
+t_stack	*stackcreate(char *arr[])
 {
 	t_stack	*stack_a;
 	t_stack	*new_element;

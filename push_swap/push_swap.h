@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/25 12:45:42 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:32:49 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,16 @@ int		*create_array(t_stack *stack_a);
 void	rotations_a(t_stack *current, t_stack *element_a, int stacksize);
 void	assign_rotations(t_stack **stack_a, t_stack **stack_b);
 void	rotations_b(t_stack *current, int stacksize);
-t_stack *find_smallest_greater(t_stack *stack_a, int index_b);
+t_stack	*find_smallest_greater(t_stack *stack_a, int index_b);
 
 void	correct_rotations(t_stack *stack_b);
-void	rotate_push(t_stack *current, t_stack **stack_a, t_stack **stack_b);
+void	correct_rev_rotations(t_stack *stack_b);
+void	rotate_push_1(t_stack *current, t_stack **stack_a, t_stack **stack_b);
+void	rotate_push_2(t_stack *current, t_stack **stack_a, t_stack **stack_b);
 void	push_cheapest(t_stack **stack_a, t_stack **stack_b);
-t_stack	*find_cheapest(t_stack *stack_a, t_stack *stack_b);
+t_stack	*find_cheapest(t_stack *stack_b);
 void	set_to_zero(t_stack *stack);
 
-void	print_rotations(FILE *rotations, t_stack *stack);
 void	final_rotate(t_stack **stack_a);
 int		is_sorted(t_stack *stack_a);
 

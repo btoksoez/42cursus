@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:03:09 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:41:46 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:28:56 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	update_position(t_stack **stack)
 {
-	t_stack *current;
+	t_stack	*current;
 	int		i;
 
 	if (!stack)
-		return;
+		return ;
 	current = *stack;
 	i = 1;
 	while (current)
@@ -29,10 +29,10 @@ void	update_position(t_stack **stack)
 	}
 }
 
-t_stack *max_element(t_stack *head)
+t_stack	*max_element(t_stack *head)
 {
 	t_stack	*current;
-	t_stack *max;
+	t_stack	*max;
 
 	if (!head)
 		return (NULL);
@@ -47,10 +47,10 @@ t_stack *max_element(t_stack *head)
 	return (max);
 }
 
-t_stack *min_element(t_stack *head)
+t_stack	*min_element(t_stack *head)
 {
 	t_stack	*current;
-	t_stack *min;
+	t_stack	*min;
 
 	if (!head)
 		return (NULL);

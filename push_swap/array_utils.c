@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:12:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 10:36:13 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:30:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	*create_array(t_stack *stack_a)
 void	swap(int *a, int *b)
 {
 	int	temp;
+
 	temp = *a;
 	*a = *b;
 	*b = temp;
@@ -72,7 +73,6 @@ void	assign_index(t_stack *stack_a, int *array)
 	int	stacksize;
 
 	stacksize = ft_stacksize(stack_a);
-
 	while (stack_a)
 	{
 		i = 0;
@@ -91,7 +91,7 @@ void	assign_index(t_stack *stack_a, int *array)
 
 void	get_index(t_stack *stack_a)
 {
-	int *array;
+	int	*array;
 
 	array = create_array(stack_a);
 	sort_array(array, ft_stacksize(stack_a));

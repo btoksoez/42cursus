@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:02:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/23 09:07:22 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:29:27 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	assign_rotations(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-t_stack *find_smallest_greater(t_stack *stack_a, int index_b)
+t_stack	*find_smallest_greater(t_stack *stack_a, int index_b)
 {
 	t_stack	*current;
 	t_stack	*element_a;
