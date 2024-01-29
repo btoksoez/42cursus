@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:17:05 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/25 12:51:12 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:24:58 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new)
 		*lst = new;
 		return ;
 	}
-	i = 1;
+	i = 2;
 	while (current->next && i++)
 		current = current->next;
 	current->next = new;

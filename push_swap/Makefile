@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/26 14:10:30 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/29 09:09:59 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = array_utils.c	\
 		main.c	\
 		rotate_push.c	\
 		stack_utils.c	\
+		write_stderr.c
+		
 
 NAME = push_swap
 
@@ -29,7 +31,7 @@ CC = cc
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 $(NAME): $(SRCS) $(LIBFT)
 	@echo "Creating $(NAME)"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/26 13:59:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:51:08 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,13 @@ int main(int argc, char *argv[])
 	FILE *commands = fopen("commands.txt", "w"); //write output
 	res = parse_args(argc, argv);
 	if (!res)
-		return (0);
+		return (1);
 	stack_a = stackcreate(res); //fill stack_a with values
 	get_index(stack_a);	//assign optimal position to elements in a
 	stack_b = NULL;	//initilize stack_b
+	print_test(file, stack_a, 'A');
+	if (is_sorted(stack_a))
+		return (0);
 	while (ft_stacksize(stack_a) > 2)
 		push_b(&stack_a, &stack_b);		//push all but two numbers to b
 	while (stack_b)
@@ -89,6 +92,4 @@ int main(int argc, char *argv[])
 
 //free
 //tester
-
-//sort functions & norminette
-//make makefile
+//make sort small function

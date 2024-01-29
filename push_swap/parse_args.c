@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/26 13:24:41 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/29 09:39:30 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_valid_int(const char *str)
 {
+	if (ft_strncmp(str, "-2147483648", 11) == 0)
+		return (1);
 	if (str[0] == '-')
 		str++;
 	if (ft_strlen(str) > ft_strlen("2147483647"))
@@ -77,10 +79,11 @@ char	**parse_args(int argc, char *argv[])
 	int		i;
 
 	i = 1;
-	if (!(is_valid(argc, argv)))
+	if (!is_valid(argc, argv) || !no_duplicates(argc, argv))
+	{
+		write_stderror();
 		return (NULL);
-	if (!no_duplicates(argc, argv))
-		return (NULL);
+	}
 	res = (char **)malloc(sizeof(char *) * argc);
 	if (!res)
 		return (NULL);

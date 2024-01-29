@@ -1,0 +1,11 @@
+Stack A Test 1:
+Element 1: 5, Pos: 1, Index: 3
+Element 2: 3, Pos: 2, Index: 2
+Element 3: 2, Pos: 3, Index: 1
+Stack A Test 1:
+Element 1: 2, Pos: 1, Index: 1
+Element 2: 3, Pos: 2, Index: 2
+Element 3: 5, Pos: 3, Index: 3
+Stack B Test 1:
+Stack->NULL
+Sorted.

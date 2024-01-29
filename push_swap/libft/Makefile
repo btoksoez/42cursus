@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/24 15:05:03 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/29 09:27:56 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJSBNS)
+bonus: $(OBJSBNS) $(NAME)
 	@ar rc $(NAME) $(OBJSBNS)
 	@echo "$(NAME) Bonus created."
 
