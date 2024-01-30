@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/29 09:51:08 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:41:23 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ int main(int argc, char *argv[])
 	print_test(file, stack_a, 'A');
 	if (is_sorted(stack_a))
 		return (0);
-	while (ft_stacksize(stack_a) > 2)
+	while (ft_stacksize(stack_a) > 3)
 		push_b(&stack_a, &stack_b);		//push all but two numbers to b
+	print_test(file, stack_a, 'A');
+	sort_small(&stack_a);
+	print_test(file, stack_a, 'A');
 	while (stack_b)
 		push_cheapest(&stack_a, &stack_b);
 	final_rotate(&stack_a);

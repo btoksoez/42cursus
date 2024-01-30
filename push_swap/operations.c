@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:01:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/26 13:28:13 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:24:01 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_stack **stack)
+void	rotate(t_stack **stack, char stackname, int both)
 {
 	t_stack	*first;
 	t_stack	*second;
@@ -30,10 +30,12 @@ void	rotate(t_stack **stack)
 	current->next = first;
 	first->previous = current;
 	*stack = second;
+	if (both == 0)
+		ft_printf("r%c\n", stackname);
 	update_position(stack);
 }
 
-void	reverse_rotate(t_stack **stack)
+void	reverse_rotate(t_stack **stack, char stackname, int both)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -51,6 +53,8 @@ void	reverse_rotate(t_stack **stack)
 	current->previous = NULL;
 	current->next = first;
 	*stack = current;
+	if (both == 0)
+		ft_printf("rr%c\n", stackname);
 	update_position(stack);
 }
 
@@ -100,4 +104,22 @@ void	push_a(t_stack **stack_a, t_stack **stack_b)
 	ft_printf("pa\n");
 	update_position(stack_b);
 	update_position(stack_a);
+}
+
+void	swap_stack(t_stack **stack, char stackname)
+{
+	t_stack	*first;
+	t_stack	*second;
+
+	if (!stack || !(*stack) || !((*stack)->next))
+		return ;
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	first->previous = second;
+	second->next = first;
+	second->previous = NULL;
+	*stack = second;
+	ft_printf("s%c\n", stackname);
+	update_position(stack);
 }

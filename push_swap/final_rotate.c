@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   final_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 09:16:22 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 15:07:22 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:18:26 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,12 @@ void	final_rotate(t_stack **stack_a)
 	{
 		rotations = stacksize - current->index + 1;
 		while (rotations--)
-		{
-			rotate(stack_a);
-			ft_printf("ra\n");
-		}
+			rotate(stack_a, 'a', 0);
 	}
 	else
 	{
 		rotations = current->index - 1;
 		while (rotations--)
-		{
-			reverse_rotate(stack_a);
-			ft_printf("rra\n");
-		}
+			reverse_rotate(stack_a, 'a', 0);
 	}
 }

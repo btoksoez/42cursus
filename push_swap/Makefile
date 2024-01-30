@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/29 09:09:59 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/30 12:35:09 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS = array_utils.c	\
 		main.c	\
 		rotate_push.c	\
 		stack_utils.c	\
-		write_stderr.c
+		write_stderr.c	\
+		sort_small.c
 		
 
 NAME = push_swap

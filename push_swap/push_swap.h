@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/29 09:08:08 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:17:18 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ t_stack	*min_element(t_stack *head);
 
 void	push_b(t_stack **stack_a, t_stack **stack_b);
 void	push_a(t_stack **stack_a, t_stack **stack_b);
-void	reverse_rotate(t_stack **stack);
-void	rotate(t_stack **stack);
+void	reverse_rotate(t_stack **stack, char stackname, int both);
+void	rotate(t_stack **stack, char stackname, int both);
+void	swap_stack(t_stack **stack, char stackname);
 
 void	get_index(t_stack *stack_a);
 void	assign_index(t_stack *stack_a, int *array);
@@ -75,5 +76,6 @@ void	set_to_zero(t_stack *stack);
 void	final_rotate(t_stack **stack_a);
 void	write_stderror(void);
 int		is_sorted(t_stack *stack_a);
+void    sort_small(t_stack **stack_a);
 
 #endif
