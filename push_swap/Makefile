@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/01/30 12:35:09 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/02/05 12:40:05 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS = array_utils.c	\
 		stack_utils.c	\
 		write_stderr.c	\
 		sort_small.c
-		
+
 
 NAME = push_swap
 
@@ -32,7 +32,7 @@ CC = cc
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -g -Wall -Werror -Wextra
 
 $(NAME): $(SRCS) $(LIBFT)
 	@echo "Creating $(NAME)"

@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/05 10:28:07 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:52:21 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_stack(t_stack *stack)
+int	free_stack(t_stack *stack)
 {
-	t_stack	*next;
+	t_stack	*node;
+	t_stack	*previous;
 
-	while (stack)
+	if (!stack)
+		return (0);
+	node = stack;
+	while (node->next)
+		node = node->next;
+	while (node->previous)
 	{
-		next = stack->next;
-		free(stack);
-		stack = next;
+		previous = node->previous;
+		free(node);
+		node = previous;
 	}
+	free(node);
+	return (0);
 }
 
 void	ft_sort(t_stack *stack_a, t_stack *stack_b)
@@ -67,6 +75,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	stack_a = stackcreate(res);
+	if (!stack_a)
+		return (free_stack(stack_a));
 	get_index(stack_a);
 	stack_b = NULL;
 	if (is_sorted(stack_a))

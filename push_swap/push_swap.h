@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/05 10:22:13 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:52:10 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	ft_sort(t_stack *stack_a, t_stack *stack_b);
 void	sort_small(t_stack **stack_a);
 void	head_max(t_stack **stack_a, t_stack *head, t_stack *min);
 void	head_min(t_stack **stack_a);
+int		free_stack(t_stack *stack);
 
 #endif

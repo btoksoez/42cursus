@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:17:05 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/29 09:24:58 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 12:26:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,11 @@ t_stack	*stackcreate(char *arr[])
 	while (*arr)
 	{
 		new_element = ft_stacknew(ft_atoi(*arr));
+		if (!new_element)
+		{
+			free_stack(stack_a);
+			return (NULL);
+		}
 		ft_stackadd_back(&stack_a, new_element);
 		arr++;
 	}
