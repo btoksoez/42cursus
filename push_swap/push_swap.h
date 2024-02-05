@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 14:13:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/05 09:54:28 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:22:13 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	set_to_zero(t_stack *stack);
 void	final_rotate(t_stack **stack_a);
 void	write_stderror(void);
 int		is_sorted(t_stack *stack_a);
+void	ft_sort(t_stack *stack_a, t_stack *stack_b);
 
 void	sort_small(t_stack **stack_a);
 void	head_max(t_stack **stack_a, t_stack *head, t_stack *min);

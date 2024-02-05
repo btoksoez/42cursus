@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/29 09:39:30 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:14:16 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ char	**parse_args(int argc, char *argv[])
 
 	i = 1;
 	if (!is_valid(argc, argv) || !no_duplicates(argc, argv))
-	{
 		write_stderror();
-		return (NULL);
-	}
 	res = (char **)malloc(sizeof(char *) * argc);
 	if (!res)
 		return (NULL);

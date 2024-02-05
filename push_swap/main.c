@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 22:58:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/05 09:59:57 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:28:07 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,27 @@
 
 void	free_stack(t_stack *stack)
 {
-	t_stack	*current;
 	t_stack	*next;
 
-	current = stack;
-	while (current)
+	while (stack)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		next = stack->next;
+		free(stack);
+		stack = next;
+	}
+}
+
+void	ft_sort(t_stack *stack_a, t_stack *stack_b)
+{
+	if (ft_stacksize(stack_a) <= 3)
+		sort_small(&stack_a);
+	else
+	{
+		while (ft_stacksize(stack_a) > 2)
+			push_b(&stack_a, &stack_b);
+		while (stack_b)
+			push_cheapest(&stack_a, &stack_b);
+		final_rotate(&stack_a);
 	}
 }
 
@@ -46,24 +58,20 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
+	if (argc == 1)
+		return (0);
 	res = parse_args(argc, argv);
 	if (!res)
-		return (1);
+	{
+		free (res);
+		return (0);
+	}
 	stack_a = stackcreate(res);
 	get_index(stack_a);
 	stack_b = NULL;
 	if (is_sorted(stack_a))
 		return (0);
-	if (ft_stacksize(stack_a) <= 3)
-		sort_small(&stack_a);
-	else
-	{
-		while (ft_stacksize(stack_a) > 2)
-			push_b(&stack_a, &stack_b);
-		while (stack_b)
-			push_cheapest(&stack_a, &stack_b);
-		final_rotate(&stack_a);
-	}
+	ft_sort(stack_a, stack_b);
 	free(res);
 	free_stack(stack_a);
 	return (0);
