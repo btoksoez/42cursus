@@ -56,7 +56,7 @@ def calculate_combination(nb):
 			max_moves = moves_output
 		all_moves.append((int(moves_output), str(cmd)))
 
-		res_cmd = "./push_swap " + cmd + " | ./checker_linux " + cmd
+		res_cmd = "./push_swap " + cmd + " | ./checker_Mac " + cmd
 		res_output = os.popen(res_cmd).read()
 		all_res.append((str(res_output), str(cmd)))
 
@@ -82,7 +82,7 @@ def calculate_combination(nb):
 		all_too_much = [("./push_swap " + item[1] + " | wc -l") for item in all_moves if item[0] > 12]
 	else:
 		all_too_much = None
-	all_wrong_values = [("./push_swap " + item[1] + " | ./checker_linux " + item[1]) for item in all_res if item[0] == "KO\n"]
+	all_wrong_values = [("./push_swap " + item[1] + " | ./checker_Mac " + item[1]) for item in all_res if item[0] == "KO\n"]
 	if all_too_much:
 		f = open('trace.txt', 'a+')
 		if limit == 3:
@@ -109,16 +109,16 @@ def calculate(nb):
 	for x in range(0, 10):
 		nbs = ' '.join([str(random.randint(-2147483648, 2147483647)) for x in range(0, nb)])
 
-		res_cmd = "./push_swap " + nbs + " | ./checker_linux " + nbs	
+		res_cmd = "./push_swap " + nbs + " | ./checker_Mac " + nbs
 		res_output = os.popen(res_cmd).read()
 		if res_output == "KO\n":
 			print(color.BOLD + f"TEST {x + 1} 👉 \t❌ " + color.RED + "KO" + color.END)
-			wrong_values.append(("./push_swap " + nbs + " | ./checker_linux " + nbs))
+			wrong_values.append(("./push_swap " + nbs + " | ./checker_Mac " + nbs))
 		else:
 			print(color.BOLD + f"TEST {x + 1} 👉 \t✅ " + color.GREEN + "OK" + color.END)
-		
+
 		moves_cmd = "./push_swap " + nbs + " | wc -l"
-		moves_output = os.popen(moves_cmd).read()	
+		moves_output = os.popen(moves_cmd).read()
 		moves.append(int(moves_output))
 
 	if wrong_values:
@@ -173,7 +173,7 @@ def parsing_check():
 		print(color.GREEN + "✅ OK" + color.END)
 	else:
 		parsing_error()
-	
+
 	res = os.popen('./push_swap 1 2 3').read()
 	print(color.BOLD + './push_swap 1 2 3\t\t\t' + color.END, end = '')
 	if res:
@@ -198,21 +198,21 @@ def parsing_check():
 		print(color.GREEN + "✅ OK" + color.END)
 	else:
 		parsing_error()
-	
+
 	res = os.popen('./push_swap "2147483647 -2147483648"').read()
 	print(color.BOLD + './push_swap "2147483647 -2147483648"\t' + color.END, end = '')
 	if res != "sa\n" and res != "ra\n" and res != "rra\n":
 		parsing_error()
 	else:
-		print(color.GREEN + "✅ OK" + color.END)	
+		print(color.GREEN + "✅ OK" + color.END)
 
 if __name__ == "__main__":
 	if os.path.exists("trace.txt"):
 		os.system("rm -rf trace.txt")
 	if not os.path.exists("push_swap"):
 		os.system("make")
-	if not os.path.exists("checker_linux"):
-		print(color.RED + "\nError: the tester needs checker_linux at the root of the repository!\n" + color.END)
+	if not os.path.exists("checker_Mac"):
+		print(color.RED + "\nError: the tester needs checker_Mac at the root of the repository!\n" + color.END)
 		exit(1)
 
 	print(color.CYAN + "\n** Welcome to push_swap tester by jcauchet **" + color.END)
@@ -223,7 +223,7 @@ if __name__ == "__main__":
 	for i in range(3, 6):
 		print(color.BLUE + f"\n>> Testing for all combinations of {i} numbers <<" + color.END)
 		calculate_combination(i)
-	
+
 	print(color.BLUE + f"\n>> Testing 10 times for 100 numbers <<" + color.END)
 	calculate(100)
 

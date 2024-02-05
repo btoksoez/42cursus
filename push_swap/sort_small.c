@@ -3,43 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:52:16 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/30 14:43:59 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:53:49 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	head_min(t_stack **stack_a)
+{
+	reverse_rotate(stack_a, 'a', 0);
+	swap_stack(stack_a, 'a');
+}
+
+void	head_max(t_stack **stack_a, t_stack *head, t_stack *min)
+{
+	if (head->next == min)
+		rotate(stack_a, 'a', 0);
+	else
+	{
+		swap_stack(stack_a, 'a');
+		reverse_rotate(stack_a, 'a', 0);
+	}
+}
+
 void	sort_small(t_stack **stack_a)
 {
-	int	first;
-	int	second;
-	int	third;
+	t_stack	*head;
+	t_stack	*min;
+	t_stack	*max;
 
 	if (!stack_a)
 		return ;
-	first = (*stack_a)->value;
-	second = (*stack_a)->next->value;
-	third = (*stack_a)->next->next->value;
-	if (first < second && second < third)
-	{
-		ft_printf("hello");
+	head = *stack_a;
+	min = min_element(*stack_a);
+	max = max_element(*stack_a);
+	if (is_sorted(*stack_a))
 		return ;
-	}
-	if (first > second && third > second && first > third)
-		rotate(stack_a, 'a', 0);
-	else if (first > second)
-	{
-		swap_stack(stack_a, 'a');
-		if (second > third)
-			reverse_rotate(stack_a, 'a', 0);
-	}
+	if (head == min)
+		head_min(stack_a);
+	else if (head == max)
+		head_max(stack_a, head, min);
 	else
 	{
-		reverse_rotate(stack_a, 'a', 0);
-		if (first < third)
+		if (head->next == min)
 			swap_stack(stack_a, 'a');
+		else
+			reverse_rotate(stack_a, 'a', 0);
 	}
 }
