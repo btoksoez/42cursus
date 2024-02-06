@@ -3,19 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/05 13:43:05 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:03:16 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+int main(int argc, char *argv[])
+{
+
+	//parsing
+	char *cmd1;
+	char *cmd2;
+	int	infile;
+	int	outfile;
+
+	if (argc != 5)
+	{
+		perror("Wrong input format");
+		exit(EXIT_FAILURE);
+	}
+
+	infile = open(argv[1], O_RDONLY);
+	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	cmd1 = argv[2];
+	cmd2 = argv[3];
+	if (infile == -1 || outfile == -1)
+	{
+		perror("Error opening files");
+		exit(EXIT_FAILURE);
+	}
 
 
+	int	pipe_fd[2]; //fd[1] = write, fd[0] = read
+	int	pid1;
+	int	pid2;
 
-//parsing
+	if (pipe(pipe_fd) == -1)
+	{
+		perror("Error opening Pipe");
+		exit(EXIT_FAILURE);
+	}
+	pid1 = fork();
+	if (pid1 < 0)
+	{
+		perror("Fork 1");
+		exit(EXIT_FAILURE);
+	}
+	if (pid1 == 0)	//child process for first command
+	{
+		dup2(infile, STDIN_FILENO);
+		close(infile);
+		close(pipe_fd[0]); //close read end of pipe
+		dup2(pipe_fd[1], STDOUT_FILENO); //reroute stdout to write end of pipe
+		close(pipe_fd[1]);
+		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd1, NULL}, NULL);
+		perror("Execve1 failed");
+		exit(EXIT_FAILURE);
+	}
 
-//pipe
+	pid2 = fork();
+	if (pid2 < 0)
+	{
+		perror("Fork 2");
+		exit(EXIT_FAILURE);
+	}
+	if (pid2 == 0)	//child process for second command
+	{
+		dup2(outfile, STDOUT_FILENO);
+		close(outfile);
+		close(pipe_fd[1]); //close write end of pipe
+		dup2(pipe_fd[0], STDIN_FILENO); //reroute stdin to read end of pipe
+		close(pipe_fd[0]);
+		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd2, NULL}, NULL);
+		perror("Execve2 failed");
+		exit(EXIT_FAILURE);
+	}
+	close(infile);
+	close(outfile);
+	close(pipe_fd[0]);	//close for parent process
+	close(pipe_fd[1]);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
+	return (0);
+
+}
+
+
+//Questions:
+//check if valid command?
+//check if file ?
+//what else need to check?
+
+
 
 

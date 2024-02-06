@@ -1,0 +1,11 @@
+total 120
+drwxr-xr-x@ 10 benian  staff    320 Feb  6 12:56 .
+drwxr-xr-x@  9 benian  staff    288 Feb  6 09:28 ..
+-rwxr-xr-x@  1 benian  staff  33874 Feb  6 10:26 a.out
+-rwxrwxrwx@  1 benian  staff     29 Feb  6 12:52 infile.txt
+-rw-r--r--@  1 benian  staff   2609 Feb  6 10:35 main.c
+-rw-r--r--@  1 benian  staff     29 Feb  6 12:53 outfile.txt
+-rw-r--r--@  1 benian  staff    617 Feb  6 12:57 outfile.txt.my_output.txt
+-rw-r--r--@  1 benian  staff      0 Feb  6 12:57 outfile.txt.shell_output.txt
+-rw-r--r--@  1 benian  staff     29 Feb  6 12:52 output.txt
+-rw-r--r--@  1 benian  staff   1794 Feb  6 12:57 tester.py
