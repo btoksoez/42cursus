@@ -1,0 +1,17 @@
+files_in
+files_out
+infile.txt
+libft
+main.c
+Makefile
+out2.txt
+outfile.txt
+outfile.txt.my_output.txt
+outfile.txt.shell_output.txt
+output.txt
+pipex
+PIPEXaminator
+pipex.dSYM
+pipex_test
+pipex-tester
+tester.py

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/07 11:01:37 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/07 14:28:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int main(int argc, char *argv[])
+
+
+int main(int argc, char *argv[], char *envp[])
 {
 
 	//parsing
@@ -59,12 +61,19 @@ int main(int argc, char *argv[])
 	}
 	if (pid1 == 0)	//child process for first command
 	{
+		if (shell_return(cmd1) < 0)
+		{
+			fprintf(stderr, "command not found: %s\n", cmd1);
+			exit(127);
+		}
+		else
+			printf("Status returned: %d\n", shell_return(cmd1));
 		dup2(infile, STDIN_FILENO);
 		close(infile);
 		close(pipe_fd[0]); //close read end of pipe
 		dup2(pipe_fd[1], STDOUT_FILENO); //reroute stdout to write end of pipe
 		close(pipe_fd[1]);
-		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd1, NULL}, NULL);
+		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd1, NULL}, envp);
 		perror("Execve1 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -82,7 +91,7 @@ int main(int argc, char *argv[])
 		close(pipe_fd[1]); //close write end of pipe
 		dup2(pipe_fd[0], STDIN_FILENO); //reroute stdin to read end of pipe
 		close(pipe_fd[0]);
-		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd2, NULL}, NULL);
+		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd2, NULL}, envp);
 		perror("Execve2 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -99,9 +108,12 @@ int main(int argc, char *argv[])
 
 //Questions:
 //check if valid command?
+	//check with shell_return what exit signal shell has for that command
 //check if file ?
 //what else need to check
-//add envp in main, pass to execve
+//check exit codes
+//check evalsheet
+//norminette + sort functionsg
 
 
 
