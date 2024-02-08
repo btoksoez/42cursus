@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/07 14:28:03 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:35 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include "pipex.h"
 
 
 
@@ -61,7 +62,7 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	if (pid1 == 0)	//child process for first command
 	{
-		if (shell_return(cmd1) < 0)
+		if (shell_return(cmd1) != 0)
 		{
 			fprintf(stderr, "command not found: %s\n", cmd1);
 			exit(127);
@@ -86,6 +87,11 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	if (pid2 == 0)	//child process for second command
 	{
+		if (shell_return(cmd2) != 0)
+		{
+			fprintf(stderr, "command not found: %s\n", cmd2);
+			exit(127);
+		}
 		dup2(outfile, STDOUT_FILENO);
 		close(outfile);
 		close(pipe_fd[1]); //close write end of pipe

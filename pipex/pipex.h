@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:42:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/07 14:11:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:05 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include "libft/libft.h"
+
+int	shell_return(char *cmd);
 
 #endif
