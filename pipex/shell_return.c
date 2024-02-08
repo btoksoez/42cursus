@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_return.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:43:15 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/08 17:43:27 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:29:56 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int shell_return(char *cmd)
 	}
 	else if (shellpid1 == 0)	//child process for first command
 	{
-		dev_null = open("/dev/null", O_RDONLY);
+		dev_null = open("/dev/null", O_RDWR);
 		if (dev_null == -1)
 		{
             perror("open");
@@ -36,13 +36,21 @@ int shell_return(char *cmd)
 		}
 		if (dup2(dev_null, STDIN_FILENO) == -1)
 		{
-			perror("Dev null");
+			perror("Dev null in");
+			exit(EXIT_FAILURE);
+		}
+		if (dup2(dev_null, STDOUT_FILENO) == -1)
+		{
+			perror("Dev null out");
+			exit(EXIT_FAILURE);
+		}
+		if (dup2(dev_null, STDERR_FILENO) == -1)
+		{
+			perror("Dev null err");
 			exit(EXIT_FAILURE);
 		}
 		close(dev_null);
 		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd, NULL}, NULL);
-
-		//add that execve writes not to stdout
 		perror("Shell Execve1 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -60,7 +68,7 @@ int shell_return(char *cmd)
 
 // int main()
 // {
-//     char *cmd = "hello"; // Example command
+//     char *cmd = "grep"; // Example command
 //     int exit_code = shell_return(cmd);
 //     printf("Exit code of '%s': %d\n", cmd, exit_code);
 //     return 0;

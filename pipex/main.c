@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:35 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:48:30 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <stdio.h>
 #include "pipex.h"
-
 
 
 int main(int argc, char *argv[], char *envp[])
@@ -62,19 +56,14 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	if (pid1 == 0)	//child process for first command
 	{
-		if (shell_return(cmd1) != 0)
-		{
-			fprintf(stderr, "command not found: %s\n", cmd1);
-			exit(127);
-		}
-		else
-			printf("Status returned: %d\n", shell_return(cmd1));
 		dup2(infile, STDIN_FILENO);
 		close(infile);
 		close(pipe_fd[0]); //close read end of pipe
 		dup2(pipe_fd[1], STDOUT_FILENO); //reroute stdout to write end of pipe
 		close(pipe_fd[1]);
 		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd1, NULL}, envp);
+		if (errno == ENOENT)
+			exit(127);
 		perror("Execve1 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -87,17 +76,14 @@ int main(int argc, char *argv[], char *envp[])
 	}
 	if (pid2 == 0)	//child process for second command
 	{
-		if (shell_return(cmd2) != 0)
-		{
-			fprintf(stderr, "command not found: %s\n", cmd2);
-			exit(127);
-		}
 		dup2(outfile, STDOUT_FILENO);
 		close(outfile);
 		close(pipe_fd[1]); //close write end of pipe
 		dup2(pipe_fd[0], STDIN_FILENO); //reroute stdin to read end of pipe
 		close(pipe_fd[0]);
 		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd2, NULL}, envp);
+		if (errno == ENOENT)
+			exit(127);
 		perror("Execve2 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -107,8 +93,15 @@ int main(int argc, char *argv[], char *envp[])
 	close(pipe_fd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
+	// int status;
+	// waitpid(pid1, &status, 0);
+	// if (WIFEXITED(status)) {
+	// 	printf("%d", WEXITSTATUS(status)); // Return exit code of the command
+	// } else {
+	// 	// Command was terminated by a signal
+	// 	printf("%d", 128 + WTERMSIG(status));
+	// }
 	return (0);
-
 }
 
 

@@ -6,12 +6,12 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/02/07 10:20:50 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/02/08 21:19:52 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = main.c
-
+SRCS = main.c	\
+		shell_return.c
 
 NAME = pipex
 
