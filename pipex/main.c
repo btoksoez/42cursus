@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/08 21:48:30 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:02:26 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[], char *envp[])
 
 	if (argc != 5)
 	{
-		perror("Wrong input format");
+		write_err("Wrong input format", 1);
 		exit(EXIT_FAILURE);
 	}
 
@@ -32,12 +32,8 @@ int main(int argc, char *argv[], char *envp[])
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	cmd1 = argv[2];
 	cmd2 = argv[3];
-	if (infile == -1 || outfile == -1)
-	{
-		perror("Error opening files");
-		exit(EXIT_FAILURE);
-	}
-
+	check_errors(argv, infile, outfile);
+	check_cmds(cmd1, cmd2);
 
 	int	pipe_fd[2]; //fd[1] = write, fd[0] = read
 	int	pid1;
@@ -62,8 +58,6 @@ int main(int argc, char *argv[], char *envp[])
 		dup2(pipe_fd[1], STDOUT_FILENO); //reroute stdout to write end of pipe
 		close(pipe_fd[1]);
 		execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd1, NULL}, envp);
-		if (errno == ENOENT)
-			exit(127);
 		perror("Execve1 failed");
 		exit(EXIT_FAILURE);
 	}
@@ -106,13 +100,10 @@ int main(int argc, char *argv[], char *envp[])
 
 
 //Questions:
-//check if valid command?
-	//check with shell_return what exit signal shell has for that command
-//check if file ?
-//what else need to check
-//check exit codes
+//finish checkc mds
+//check for file permissions/ file doesn't exist
 //check evalsheet
-//norminette + sort functionsg
+//norminette + sort functions
 
 
 

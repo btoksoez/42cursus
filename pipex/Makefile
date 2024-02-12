@@ -3,15 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/02/08 21:19:52 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/02/12 16:55:11 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c	\
-		shell_return.c
+		shell_return.c	\
+		error_handling.c	\
+		check_cmds.c	\
+
 
 NAME = pipex
 

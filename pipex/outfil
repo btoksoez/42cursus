@@ -1,0 +1,29 @@
+total 100
+-rwxr-xr-x 1 btoksoez 2023_lisboa 33938 Feb  9 16:04 a.out
+drwxr-xr-x 2 btoksoez 2023_lisboa    21 Feb  7 12:58 files_in
+drwxr-xr-x 2 btoksoez 2023_lisboa    19 Feb  7 12:58 files_out
+---------- 1 btoksoez 2023_lisboa    29 Feb  7 12:58 infile.txt
+drwxr-xr-x 2 btoksoez 2023_lisboa  4096 Feb 12 15:14 libft
+-rw-r--r-- 1 btoksoez 2023_lisboa  3281 Feb 12 15:14 main.c
+-rw-r--r-- 1 btoksoez 2023_lisboa  1434 Feb 12 14:51 Makefile
+-rw-r--r-- 1 btoksoez 2023_lisboa    17 Feb  7 12:58 out2.txt
+-rw-r--r-- 1 btoksoez 2023_lisboa     0 Feb 12 15:03 outfi
+-rw-r--r-- 1 btoksoez 2023_lisboa     0 Feb 12 15:14 outfil
+-rw-r--r-- 1 btoksoez 2023_lisboa     0 Feb 12 15:14 outfile
+-rwxr-xr-x 1 btoksoez 2023_lisboa     0 Feb 12 15:03 outfile.txt
+-rwxr-xr-x 1 btoksoez 2023_lisboa     0 Feb  9 16:04 outfile.txt
+
+-rw-r--r-- 1 btoksoez 2023_lisboa   617 Feb  7 12:58 outfile.txt.my_output.txt
+-rw-r--r-- 1 btoksoez 2023_lisboa   617 Feb  7 12:58 outfile.txt.shell_output.txt
+-rw-r--r-- 1 btoksoez 2023_lisboa     0 Feb  7 12:58 output.txt
+-rwxr-xr-x 1 btoksoez 2023_lisboa 18944 Feb 12 15:14 pipex
+drwxr-xr-x 5 btoksoez 2023_lisboa   132 Feb  7 13:01 PIPEXaminator
+drwxr-xr-x 3 btoksoez 2023_lisboa    22 Feb  7 12:58 pipex.dSYM
+drwxr-xr-x 2 btoksoez 2023_lisboa     6 Feb  9 16:04 pipex_git
+-rw-r--r-- 1 btoksoez 2023_lisboa  1175 Feb 12 15:11 pipex.h
+drwxr-xr-x 2 btoksoez 2023_lisboa     6 Feb  7 13:01 pipex_test
+drwxr-xr-x 2 btoksoez 2023_lisboa     6 Feb  7 12:58 pipex-tester
+drwxr-xr-x 8 btoksoez 2023_lisboa   188 Feb  9 16:05 pipex_tester42
+-rw-r--r-- 1 btoksoez 2023_lisboa  2148 Feb  9 16:04 shell_return.c
+-rw-r--r-- 1 btoksoez 2023_lisboa  1794 Feb  7 12:58 tester.py
+-rw-r--r-- 1 btoksoez 2023_lisboa  1127 Feb 12 15:11 write_error.c
