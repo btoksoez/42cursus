@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_error.c                                      :+:      :+:    :+:   */
+/*   exit_with_reason.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 14:49:36 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/12 15:11:09 by btoksoez         ###   ########.fr       */
+/*   Created: 2024/02/13 12:45:50 by btoksoez          #+#    #+#             */
+/*   Updated: 2024/02/13 12:47:46 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	write_err(char *error_message, int ex, int new_line)
+void	exit_reason(int reason)
 {
-	write(STDERR_FILENO, error_message, ft_strlen(error_message));
-	if (new_line == 1)
-		write(STDERR_FILENO, "\n", 1);
-	if (ex == 1)
-		exit(EXIT_FAILURE);
+	if (reason == 0)
+		exit(0);
+	if (reason == 1)
+		exit(1);
+	if (reason == 2)
+		exit(2);
+	if (reason == 127)
+		exit(127);
 }
