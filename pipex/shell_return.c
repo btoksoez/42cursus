@@ -6,13 +6,13 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:43:15 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/13 13:15:11 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:22:33 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	shell_return(char *cmd)
+int	shell_return(char *cmd, char *envp[])
 {
 	int	shellpid1;
 	int	status;
@@ -25,7 +25,7 @@ int	shell_return(char *cmd)
 		exit(EXIT_FAILURE);
 	}
 	else if (shellpid1 == 0)
-		child_shell(cmd);
+		child_shell(cmd, envp);
 	else
 	{
 		wait_result = waitpid(shellpid1, &status, 0);
@@ -39,7 +39,7 @@ int	shell_return(char *cmd)
 	return (1);
 }
 
-void	child_shell(char *cmd)
+void	child_shell(char *cmd, char *envp[])
 {
 	int	dev_null;
 
@@ -61,7 +61,7 @@ void	child_shell(char *cmd)
 		exit(EXIT_FAILURE);
 	}
 	close(dev_null);
-	execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd, NULL}, NULL);
+	execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd, NULL}, envp);
 	perror("Shell Execve1 failed");
 	exit(EXIT_FAILURE);
 }

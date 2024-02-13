@@ -6,16 +6,13 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/02/13 12:49:08 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/02/13 14:26:01 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = main.c	\
 		shell_return.c	\
 		error_handling.c	\
-		check_errors.c	\
-		exit_with_reason.c	\
-
 
 NAME = pipex
 

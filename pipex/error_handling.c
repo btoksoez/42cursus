@@ -6,11 +6,23 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:25:55 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/13 13:31:51 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:25:49 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	check_cmd(char *cmd, char *envp[])
+{
+	if (shell_return(cmd, envp) != 0 && shell_return(cmd, envp) != 256
+		&& shell_return(cmd, envp) != 512)
+	{
+		write_err("command not found: ", 0, 0);
+		write_err(cmd, 1, 0);
+		return (1);
+	}
+	return (0);
+}
 
 int	check_infile(char *argv)
 {
