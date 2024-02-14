@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 13:41:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/13 14:28:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:47:13 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	child_pid1(char *argv[], int pipe_fd[], char *envp[])
 
 	cmd = argv[2];
 	infile = open(argv[1], O_RDONLY);
-	if ((check_cmd(cmd, envp) || check_infile(argv[1])))
-		return ;
+	if (check_cmd(cmd, envp))
+		exit(50);
+	if (check_infile(argv[1]))
+		exit(100);
 	dup2(infile, STDIN_FILENO);
 	close(infile);
 	close(pipe_fd[0]);
@@ -38,8 +40,10 @@ void	child_pid2(char *argv[], int pipe_fd[], char *envp[])
 
 	cmd = argv[3];
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0666);
-	if ((check_cmd(cmd, envp) || check_outfile(argv[4])))
-		exit(127);
+	if (check_cmd(cmd, envp))
+		exit(50);
+	if (check_outfile(argv[4]))
+		exit(5);
 	dup2(outfile, STDOUT_FILENO);
 	close(outfile);
 	close(pipe_fd[1]);
@@ -58,8 +62,22 @@ void	ft_close(int pipe_fd[])
 
 void	ft_wait(int pid1, int pid2)
 {
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	int	status1;
+	int	status2;
+
+	status1 = 0;
+	status2 = 0;
+	waitpid(pid1, &status1, 0);
+	waitpid(pid2, &status2, 0);
+	if (status1 == 25600)
+		exit(1);
+	if ((status1 == 12800 && status2 == 12800)
+		|| (status1 == 36096 && status2 == 12800))
+		exit(127);
+	if (status1 == 256 || status2 == 256)
+		exit(1);
+	if (status2 == 512)
+		exit(2);
 }
 
 int	main(int argc, char *argv[], char *envp[])

@@ -1,3 +1,5 @@
+.
+..
 ded
 error_handling.c
 file2
@@ -8,13 +10,12 @@ main.c
 Makefile
 ou
 ouf
-out
 outfile
 outfile.txt
 outp.txt
 out.txt
 pipex
-PIPEXaminator
 pipex.dSYM
 pipex.h
 shell_return.c
+.vscode

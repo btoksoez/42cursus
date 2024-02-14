@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 15:25:55 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/13 14:25:49 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:27:20 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_cmd(char *cmd, char *envp[])
 
 int	check_infile(char *argv)
 {
-	if (access(argv, R_OK != 0))
+	if (access(argv, R_OK) != 0)
 	{
 		if (errno == EACCES)
 		{
@@ -34,7 +34,7 @@ int	check_infile(char *argv)
 			write_err(argv, 1, 0);
 			return (1);
 		}
-		else
+		else if (errno == ENOENT)
 		{
 			write_err("no such file or directory: ", 0, 0);
 			write_err(argv, 1, 0);
@@ -54,7 +54,7 @@ int	check_outfile(char *argv)
 			write_err(argv, 1, 0);
 			return (1);
 		}
-		else
+		else if (errno == ENOENT)
 		{
 			write_err("no such file or directory: ", 0, 0);
 			write_err(argv, 1, 0);
