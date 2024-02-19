@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:29:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/19 13:06:55 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:57:14 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void	ft_close(t_pipex *pipex)
 {
-	close(pipex->pipe_fd[0]);
-	close(pipex->pipe_fd[1]);
-	close(pipex->infile);
-	close(pipex->outfile);
+	if (pipex->pipe_fd[0] != -1)
+		close(pipex->pipe_fd[0]);
+	if (pipex->pipe_fd[1] != -1)
+		close(pipex->pipe_fd[1]);
+	if (pipex->infile != -1)
+		close(pipex->infile);
+	if (pipex->outfile != -1)
+		close(pipex->outfile);
+	if (pipex->dev_null != -1)
+		close(pipex->dev_null);
 	free(pipex);
 }
 
