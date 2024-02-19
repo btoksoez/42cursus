@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:43:15 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/13 14:22:33 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:03:44 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ void	child_shell(char *cmd, char *envp[])
 	dev_null = open("/dev/null", O_RDWR);
 	if (dev_null == -1)
 	{
-		perror("open");
-		exit(EXIT_FAILURE);
+		close(dev_null);
+		write_err("error open dev_null", 1, 1);
 	}
 	if (dup2(dev_null, STDIN_FILENO) == -1)
 	{
-		perror("Dev null in");
-		exit(EXIT_FAILURE);
+		close(dev_null);
+		write_err("error dup dev_null", 1, 1);
 	}
 	if (dup2(dev_null, STDOUT_FILENO) == -1
 		|| dup2(dev_null, STDERR_FILENO) == -1)
 	{
-		perror("Dev null out or err");
-		exit(EXIT_FAILURE);
+		close(dev_null);
+		write_err("error dup2 dev_null", 1, 1);
 	}
 	close(dev_null);
 	execve("/bin/sh", (char *[]){"/bin/sh", "-c", cmd, NULL}, envp);
