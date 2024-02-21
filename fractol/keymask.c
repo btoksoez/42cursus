@@ -1,7 +1,7 @@
 #include "minilibx-linux/mlx.h"
-#include <X11/keysym.h>
-#include <stdlib.h>
+#include <X11/X.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 
 typedef struct s_mlx_data
@@ -10,18 +10,14 @@ typedef struct s_mlx_data
 	void	*win_ptr;
 }	t_mlx_data;
 
-int handle_input(int keysym, t_mlx_data *data)
+int     button_press(int button, int x, int y, t_mlx_data *data)
 {
-	if (keysym == XK_Escape)
-	{
-		printf("the %d key has been pressed\n\n", keysym);
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
-		exit(1);
-	}
-	printf("The key %d has been pressed", keysym);
-	return (0)
+    if (button == 1)
+        printf("Left mouse button pressed at (%d, %d)!\n", x, y);
+    else if (button == 3)
+        printf("Right mouse button pressed at (%d, %d)!\n", x, y);
+
+    return (0);
 }
 
 int main(void)
@@ -40,7 +36,11 @@ int main(void)
 		return (1);
 	}
 
-	mlx_key_hook(data.win_ptr, handle_input, &data);
+	 mlx_hook(data.win_ptr,
+            ButtonPress,
+            ButtonPressMask,
+            &button_press,
+            &data);
 
 
 	mlx_loop(data.mlx_ptr);
