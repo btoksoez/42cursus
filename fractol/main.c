@@ -6,13 +6,82 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:06:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/21 16:18:23 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:05:49 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
+#include "fractol.h"
 
 
+
+int close_window(t_fractal *fr)
+{
+	printf("Closing Window");
+	mlx_destroy_window(fr->mlx, fr->win);
+	mlx_destroy_image(fr->mlx, fr->img.img_ptr);
+	mlx_destroy_display(fr->mlx);
+	free(fr->mlx);
+	exit(1);
+}
+
+int key_press(int keysym, t_fractal *fractal)
+{
+	if (keysym == XK_Escape)
+	{
+		close_window(fractal);
+	}
+}
+
+void	malloc_error(void)
+{
+	perror("Problems with malloc");
+	exit(EXIT_FAILURE);
+}
+
+void	fractal_init(t_fractal *fractal)
+{
+	fractal->mlx = mlx_init();
+	if (!fractal->mlx)
+		malloc_error();
+	fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGHT, fractal->name);
+	if (fractal->win == NULL)
+	{
+		mlx_destroy_display(fractal->mlx);
+		free(fractal->mlx);
+		malloc_error();
+	}
+	fractal->img.img_ptr = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
+	if (fractal->img.img_ptr == NULL)
+	{
+		mlx_destroy_window(fractal->mlx, fractal->win);
+		mlx_destroy_display(fractal->mlx);
+		free(fractal->mlx);
+		malloc_error();
+	}
+	fractal->img.pixels_ptr = mlx_get_data_addr(fractal->img.img_ptr,
+													&fractal->img.bits_per_pixel,
+													&fractal->img.line_len,
+													&fractal->img.endian);
+	mlx_hook(fractal->win, KeyPress, KeyPressMask, &key_press, fractal);
+	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask, &close_window, fractal);
+	//data_init(fractal);
+}
+
+void	ft_mandelbrot(void)
+{
+	t_fractal	fractal;
+
+	fractal.name = "Mandelbrot";
+	fractal_init(&fractal);
+	fractal_render(&fractal);
+	mlx_loop(fractal.mlx);
+}
+
+void	ft_julia(char *ag1, char *arg2)
+{
+	return ;
+}
 //calculate for all pixels in image if they are in mandelbrot set or not
 	// if yes certain color
 	// if not different color
@@ -28,5 +97,5 @@ int main(int argc, char *argv[])
 	else if (argc == 2 && ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])) == 0)
 		ft_mandelbrot();
 	else
-		ft_printf("Wrong input format\n");
+		printf("Wrong input format\n");
 }
