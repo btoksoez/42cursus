@@ -10,8 +10,28 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 800
+# define HEIGHT 800
+
+//colors
+# define BLACK 0x0000000
+# define WHITE 0xFFFFFFF
+
+// Psychedelic Colors
+# define PSY_PINK 0xFF1493
+# define PSY_PURPLE 0x9b30ff
+# define PSY_BLUE 0x6600FF
+# define PSY_GREEN 0x00FF00
+# define PSY_YELLOW 0xFFFF00
+# define PSY_ORANGE 0xFF7F00
+# define PSY_RED 0xFF0000
+# define PSY_CYAN 0x00FFFF
+# define PSY_TEAL 0x008080
+# define PSY_LIME 0xBFFF00
+# define PSY_MAGENTA 0xFF00FF
+# define PSY_TURQUOISE 0x40E0D0
+
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -27,6 +47,10 @@ typedef struct s_fractal
 	void	*mlx;
 	void	*win;
 	t_img	img;
+	int		zoomx;
+	int		zoomy;
+	int		max_iter;
+	double	threshold;
 
 }	t_fractal;
 
@@ -37,14 +61,14 @@ typedef struct s_complex
 }			t_complex;
 
 void	fractal_init(t_fractal *fractal);
-void	ft_mandelbrot(void);
+int		is_mandelbrot(t_complex c, t_fractal *fractal);
 void	ft_julia(char *ag1, char *arg2);
 int		close_window(t_fractal *fr);
 void	malloc_error(void);
 double	map(double value, double old_min, double old_max, double new_min, double new_max);
 void		handle_pixel(int x, int y, t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
-int		is_mandelbrot(t_complex c);
+void my_pixel_put(int x, int y, t_img *img, int color);
 
 
 #endif

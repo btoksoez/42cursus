@@ -6,27 +6,23 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:08:06 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/22 14:02:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:27:35 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	is_mandelbrot(t_complex c)
+int	is_mandelbrot(t_complex c, t_fractal *fractal)
 {
 	t_complex	z;
 	double temp_real;
 	double temp_imag;
-	int max_iter;
-	double threshold;
+	int i;
 	double magnitude;
 
 	z.real = 0;
 	z.imag = 0;
-	threshold = 2.0;
-	max_iter = 100;
-
-	while (max_iter-- > 0)
+	while (i < fractal->max_iter)
 	{
 		//printf("%f, %f\n", z.real, z.imag);
 		temp_real = (z.real * z.real) - (z.imag * z.imag) + c.real;
@@ -36,8 +32,8 @@ int	is_mandelbrot(t_complex c)
 		z.imag += temp_imag;
 		magnitude = sqrt(z.real * z.real + z.imag * z.imag);
 		//printf("Magnitude: %f\n", magnitude);
-		if (magnitude > threshold)
-			return (0);
+		if (magnitude > fractal->threshold)	//not in mandelbrot set
+			return (i);
 	}
-	return (1);
+	return (PSY_CYAN);	//in mandelbrot
 }

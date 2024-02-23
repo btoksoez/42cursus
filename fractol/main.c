@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:06:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/22 14:05:49 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:26:28 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,32 @@ int key_press(int keysym, t_fractal *fractal)
 	}
 }
 
+int mouse_hook(int button, int x, int y, t_fractal *fractal)
+{
+	if (button == 4)
+	{
+		fractal->zoomx = fractal->zoomx * 0.8 + x;
+		fractal->zoomy = fractal->zoomy * 0.8 + y;
+	}
+	if (button == 5)
+	{
+		fractal->zoomx = fractal->zoomx * 1.2 + x;
+		fractal->zoomy = fractal->zoomy * 1.2 + y;
+	}
+}
+
 void	malloc_error(void)
 {
 	perror("Problems with malloc");
 	exit(EXIT_FAILURE);
+}
+
+void	data_init(t_fractal *fractal)
+{
+	fractal->zoomx = 1.5;
+	fractal->zoomy = 1.5;
+	fractal->max_iter = 250;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
+	fractal->threshold = 2.0;
 }
 
 void	fractal_init(t_fractal *fractal)
@@ -65,7 +87,8 @@ void	fractal_init(t_fractal *fractal)
 													&fractal->img.endian);
 	mlx_hook(fractal->win, KeyPress, KeyPressMask, &key_press, fractal);
 	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask, &close_window, fractal);
-	//data_init(fractal);
+	mlx_mouse_hook(fractal->win, mouse_hook, fractal);
+	data_init(fractal);
 }
 
 void	ft_mandelbrot(void)
