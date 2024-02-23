@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:08:06 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/23 16:27:35 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:29:34 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	is_mandelbrot(t_complex c, t_fractal *fractal)
 
 	z.real = 0;
 	z.imag = 0;
+	i = 0;
 	while (i < fractal->max_iter)
 	{
 		//printf("%f, %f\n", z.real, z.imag);
@@ -30,10 +31,10 @@ int	is_mandelbrot(t_complex c, t_fractal *fractal)
 
 		z.real += temp_real;
 		z.imag += temp_imag;
-		magnitude = sqrt(z.real * z.real + z.imag * z.imag);
-		//printf("Magnitude: %f\n", magnitude);
-		if (magnitude > fractal->threshold)	//not in mandelbrot set
-			return (i);
+		magnitude = z.real * z.real + z.imag * z.imag;
+		if (magnitude > (fractal->threshold * fractal->threshold))	//not in mandelbrot set
+			return (map(i, 0, fractal->max_iter, WHITE, BLACK));
+		i++;
 	}
-	return (PSY_CYAN);	//in mandelbrot
+	return (PSY_MAGENTA);	//in mandelbrot
 }

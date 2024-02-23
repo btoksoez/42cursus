@@ -47,8 +47,8 @@ typedef struct s_fractal
 	void	*mlx;
 	void	*win;
 	t_img	img;
-	int		zoomx;
-	int		zoomy;
+	double		zoomx;
+	double		zoomy;
 	int		max_iter;
 	double	threshold;
 

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:53:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/23 16:26:11 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:27:50 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 double	map(double value, double old_min, double old_max, double new_min, double new_max)
 {
-	value = (value - old_min) * (new_max - new_min) / (old_max - old_min) + new_min;
-	return (value);
+	return (value - old_min) * (new_max - new_min) / (old_max - old_min) + new_min;
 }
 
 void my_pixel_put(int x, int y, t_img *img, int color)
@@ -34,13 +33,13 @@ void	handle_pixel(int x, int y, t_fractal *fractal)
 	t_complex c;
 	int	color;
 
-	img_pixel = (unsigned int *)fractal->img.pixels_ptr;
-	new_x = map(x, 0, WIDTH, -fractal->zoomx, fractal->zoomx);
-	new_y = map(y, 0, HEIGHT, fractal->zoomy, -fractal->zoomy);
+	new_x = map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx);
+	new_y = map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy);
 	c.real = new_x;
 	c.imag = new_y;
-	color = map(is_mandelbrot(c, fractal), BLACK, WHITE, 0, fractal->max_iter);
+	color = is_mandelbrot(c, fractal);
 	my_pixel_put(x, y, &fractal->img, color);
+	printf("Put pixel!\n");
 }
 
 void	fractal_render(t_fractal *fractal)

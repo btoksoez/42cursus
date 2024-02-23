@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:06:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/23 16:26:28 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:33:58 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,22 @@ int mouse_hook(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == 4)
 	{
-		fractal->zoomx = fractal->zoomx * 0.8 + x;
-		fractal->zoomy = fractal->zoomy * 0.8 + y;
+		fractal->zoomx = fractal->zoomx * 0.8 + map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx);
+		fractal->zoomy = fractal->zoomy * 0.8 + map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy);
+		printf("zoom in\n");
+		printf("zoom: %f\n", fractal->zoomx);
+		fractal->max_iter *= 2;
+		fractal_render(fractal);
+		//map stuff is wrong
+		//first let user scroll, wait until no movement, then recalculate image?
+		//increase iterations with zoom
 	}
 	if (button == 5)
 	{
-		fractal->zoomx = fractal->zoomx * 1.2 + x;
-		fractal->zoomy = fractal->zoomy * 1.2 + y;
+		fractal->zoomx = fractal->zoomx * 1.2 + map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx);;
+		fractal->zoomy = fractal->zoomy * 1.2 + map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy);
+		printf("zoom out\n");
+		fractal_render(fractal);
 	}
 }
 
@@ -55,10 +64,17 @@ void	malloc_error(void)
 
 void	data_init(t_fractal *fractal)
 {
-	fractal->zoomx = 1.5;
-	fractal->zoomy = 1.5;
-	fractal->max_iter = 250;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
+	fractal->zoomx = 2;
+	fractal->zoomy = 2;
+	fractal->max_iter = 100;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
 	fractal->threshold = 2.0;
+}
+
+static void	events_init(t_fractal *fractal)
+{
+	mlx_hook(fractal->win, KeyPress, KeyPressMask, &key_press, fractal);
+	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask, &close_window, fractal);
+	mlx_mouse_hook(fractal->win, mouse_hook, fractal);
 }
 
 void	fractal_init(t_fractal *fractal)
@@ -85,9 +101,7 @@ void	fractal_init(t_fractal *fractal)
 													&fractal->img.bits_per_pixel,
 													&fractal->img.line_len,
 													&fractal->img.endian);
-	mlx_hook(fractal->win, KeyPress, KeyPressMask, &key_press, fractal);
-	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask, &close_window, fractal);
-	mlx_mouse_hook(fractal->win, mouse_hook, fractal);
+	events_init(fractal);
 	data_init(fractal);
 }
 
