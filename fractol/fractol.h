@@ -13,6 +13,10 @@
 # define WIDTH 800
 # define HEIGHT 800
 
+//sets
+# define MANDELBROT 1
+
+
 //colors
 # define BLACK 0x0000000
 # define WHITE 0xFFFFFFF
@@ -32,6 +36,7 @@
 # define PSY_TURQUOISE 0x40E0D0
 
 
+
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -43,14 +48,19 @@ typedef struct s_img
 
 typedef struct s_fractal
 {
-	char	*name;
+	int		name;
 	void	*mlx;
 	void	*win;
 	t_img	img;
-	double		zoomx;
-	double		zoomy;
+	double		zoom;
+	double		shiftx;
+	double		shifty;
 	int		max_iter;
 	double	threshold;
+	double	min_r;
+	double	max_r;
+	double	min_i;
+	double	max_i;
 
 }	t_fractal;
 
@@ -69,6 +79,14 @@ double	map(double value, double old_min, double old_max, double new_min, double 
 void		handle_pixel(int x, int y, t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
 void my_pixel_put(int x, int y, t_img *img, int color);
+
+/* initialization	*/
+void	get_initial_size(t_fractal *f);
+
+/* events */
+int mouse_hook(int button, int x, int y, t_fractal *fractal);
+int key_press(int keysym, t_fractal *fractal);
+int close_window(t_fractal *fr);
 
 
 #endif

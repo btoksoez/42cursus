@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 13:08:06 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/23 18:29:34 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:56:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	is_mandelbrot(t_complex c, t_fractal *fractal)
 		z.imag += temp_imag;
 		magnitude = z.real * z.real + z.imag * z.imag;
 		if (magnitude > (fractal->threshold * fractal->threshold))	//not in mandelbrot set
-			return (map(i, 0, fractal->max_iter, WHITE, BLACK));
+			return (map(i, 0, fractal->max_iter, PSY_ORANGE, PSY_PURPLE));
 		i++;
 	}
-	return (PSY_MAGENTA);	//in mandelbrot
+	return (BLACK);	//in mandelbrot
 }

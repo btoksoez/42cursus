@@ -6,55 +6,12 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:06:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/02/23 18:33:58 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:45:16 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fractol.h"
-
-
-
-int close_window(t_fractal *fr)
-{
-	printf("Closing Window");
-	mlx_destroy_window(fr->mlx, fr->win);
-	mlx_destroy_image(fr->mlx, fr->img.img_ptr);
-	mlx_destroy_display(fr->mlx);
-	free(fr->mlx);
-	exit(1);
-}
-
-int key_press(int keysym, t_fractal *fractal)
-{
-	if (keysym == XK_Escape)
-	{
-		close_window(fractal);
-	}
-}
-
-int mouse_hook(int button, int x, int y, t_fractal *fractal)
-{
-	if (button == 4)
-	{
-		fractal->zoomx = fractal->zoomx * 0.8 + map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx);
-		fractal->zoomy = fractal->zoomy * 0.8 + map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy);
-		printf("zoom in\n");
-		printf("zoom: %f\n", fractal->zoomx);
-		fractal->max_iter *= 2;
-		fractal_render(fractal);
-		//map stuff is wrong
-		//first let user scroll, wait until no movement, then recalculate image?
-		//increase iterations with zoom
-	}
-	if (button == 5)
-	{
-		fractal->zoomx = fractal->zoomx * 1.2 + map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx);;
-		fractal->zoomy = fractal->zoomy * 1.2 + map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy);
-		printf("zoom out\n");
-		fractal_render(fractal);
-	}
-}
 
 void	malloc_error(void)
 {
@@ -64,10 +21,12 @@ void	malloc_error(void)
 
 void	data_init(t_fractal *fractal)
 {
-	fractal->zoomx = 2;
-	fractal->zoomy = 2;
-	fractal->max_iter = 100;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
+	fractal->zoom = 1.0;
+	fractal->max_iter = 60;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
 	fractal->threshold = 2.0;
+	fractal->shiftx = 0;
+	fractal->shifty = 0;
+	get_initial_size(fractal);
 }
 
 static void	events_init(t_fractal *fractal)
@@ -82,7 +41,7 @@ void	fractal_init(t_fractal *fractal)
 	fractal->mlx = mlx_init();
 	if (!fractal->mlx)
 		malloc_error();
-	fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGHT, fractal->name);
+	fractal->win = mlx_new_window(fractal->mlx, WIDTH, HEIGHT, "Fractol");
 	if (fractal->win == NULL)
 	{
 		mlx_destroy_display(fractal->mlx);
@@ -105,11 +64,23 @@ void	fractal_init(t_fractal *fractal)
 	data_init(fractal);
 }
 
+/* set initial size in complex plane based on which set */
+void	get_initial_size(t_fractal *f)
+{
+	if (f->name == MANDELBROT)
+	{
+		f->min_r = -4.0;
+		f->max_r = 4.0;
+		f->min_i = -4.0;
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
+}
+
 void	ft_mandelbrot(void)
 {
 	t_fractal	fractal;
 
-	fractal.name = "Mandelbrot";
+	fractal.name = MANDELBROT;
 	fractal_init(&fractal);
 	fractal_render(&fractal);
 	mlx_loop(fractal.mlx);
@@ -136,3 +107,14 @@ int main(int argc, char *argv[])
 	else
 		printf("Wrong input format\n");
 }
+
+
+
+
+//add zoom
+//correct shifting etc.
+
+//add julia
+//add threads?
+//check https://github.com/GlThibault/Fractol/?source=post_page-----6664b6b045b5--------------------------------
+
