@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:02:45 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/11 13:48:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/12 13:53:31 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,44 @@
 
 static void zoom(t_fractal *f, double zoom)
 {
-	//to do
+	double	width;
+	double	height;
+
+	width = f->max_r - f->min_r;
+	height = f->max_i - f->min_i;
+	f->min_r = f->min_r + (width - zoom * width) / 2;
+	f->max_r = f->max_r - (width - zoom * width) / 2;
+	f->min_i = f->min_i + (height - zoom * height) / 2;
+	f->max_i = f->max_i - (height - zoom * height) / 2;
 }
 
 static void move(t_fractal *f, double distance, char direction)
 {
-	//to do
-}
+	double	center_r;
+	double	center_i;
 
-int close_window(t_fractal *fr)
-{
-	printf("Closing Window");
-	mlx_destroy_window(fr->mlx, fr->win);
-	mlx_destroy_image(fr->mlx, fr->img.img_ptr);
-	mlx_destroy_display(fr->mlx);
-	free(fr->mlx);
-	exit(1);
+	center_r = f->max_r - f->min_r;
+	center_i = f->max_i - f->min_i;
+	if (direction == 'L')
+	{
+		f->max_r -= center_r * distance;
+		f->min_r -= center_r * distance;
+	}
+	if (direction == 'R')
+	{
+		f->max_r += center_r * distance;
+		f->min_r += center_r * distance;
+	}
+	if (direction == 'U')
+	{
+		f->max_i += center_i * distance;
+		f->min_i += center_i * distance;
+	}
+	if (direction == 'D')
+	{
+		f->max_i -= center_i * distance;
+		f->min_i -= center_i * distance;
+	}
 }
 
 int key_press(int keysym, t_fractal *fractal)
@@ -39,15 +61,20 @@ int key_press(int keysym, t_fractal *fractal)
 	if (keysym == XK_equal)
 		fractal->max_iter += 10;
 	if (keysym == XK_minus)
-		fractal->max_iter -= 10;
+	{
+		if (fractal->max_iter > 10)
+			fractal->max_iter -= 10;
+		else
+			fractal->max_iter = 10;
+	}
 	if (keysym == XK_Left)
-		fractal->shiftx -= 0.2 * fractal->zoom;
+		move(fractal, 0.1, 'L');
 	if (keysym == XK_Right)
-		fractal->shiftx += 0.2 * fractal->zoom;
+		move(fractal, 0.1, 'R');
 	if (keysym == XK_Up)
-		fractal->shifty -= 0.2 * fractal->zoom;
+		move(fractal, 0.1, 'U');
 	if (keysym == XK_Down)
-		fractal->shifty += 0.2 * fractal->zoom;
+		move(fractal, 0.1, 'D');
 	fractal_render(fractal);
 }
 
@@ -55,17 +82,22 @@ int mouse_hook(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == 4)
 	{
-		fractal->zoom *= 0.95;
-		// fractal->shiftx = map(x, 0, WIDTH, (-2 * fractal->zoom), (2 * fractal->zoom)) + 0.2 * fractal->zoom;
-		// fractal->shifty = map(y, 0, HEIGHT, (-2 * fractal->zoom), (2 * fractal->zoom)) + 0.2 * fractal->zoom;
-		// fractal->max_iter *= 2;
+		x -= WIDTH / 2;
+		y -= HEIGHT / 2;
+		zoom(fractal, 0.5);
+		if (x < 0)
+			move(fractal, (double)(-x) / WIDTH, 'L');
+		if (x > 0)
+			move(fractal, (double)x / WIDTH, 'R');
+		if (y > 0)
+			move(fractal, (double)y / HEIGHT, 'D');
+		if (y < 0)
+			move(fractal, (double)(-y) / HEIGHT, 'U');
 		fractal_render(fractal);
 	}
 	if (button == 5)
 	{
-		fractal->zoom *= 1.05;
-		// fractal->shiftx = map(x, 0, WIDTH, -(fractal->zoomx), fractal->zoomx) + fractal->shiftx;
-		// fractal->shifty = map(y, 0, HEIGHT, -(fractal->zoomy), fractal->zoomy) + fractal->shifty;
+		zoom(fractal, 2.0);
 		fractal_render(fractal);
 	}
 }

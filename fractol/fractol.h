@@ -10,11 +10,12 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-# define WIDTH 800
-# define HEIGHT 800
+# define WIDTH 2000
+# define HEIGHT 1500
 
 //sets
 # define MANDELBROT 1
+# define JULIA 2
 
 
 //colors
@@ -46,6 +47,12 @@ typedef struct s_img
 	int		line_len;
 }				t_img;
 
+typedef struct s_complex
+{
+	double	real;
+	double	imag;
+}			t_complex;
+
 typedef struct s_fractal
 {
 	int		name;
@@ -53,10 +60,9 @@ typedef struct s_fractal
 	void	*win;
 	t_img	img;
 	double		zoom;
-	double		shiftx;
-	double		shifty;
 	int		max_iter;
 	double	threshold;
+	t_complex	julia_c;
 	double	min_r;
 	double	max_r;
 	double	min_i;
@@ -64,15 +70,8 @@ typedef struct s_fractal
 
 }	t_fractal;
 
-typedef struct s_complex
-{
-	double	real;
-	double	imag;
-}			t_complex;
-
 void	fractal_init(t_fractal *fractal);
-int		is_mandelbrot(t_complex c, t_fractal *fractal);
-void	ft_julia(char *ag1, char *arg2);
+
 int		close_window(t_fractal *fr);
 void	malloc_error(void);
 double	map(double value, double old_min, double old_max, double new_min, double new_max);
@@ -80,13 +79,24 @@ void		handle_pixel(int x, int y, t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
 void my_pixel_put(int x, int y, t_img *img, int color);
 
+/* parsing arguments */
+int		check_julia(char *argv[]);
+int		parse_args(int argc, char *argv[], t_fractal *fractal);
+int		help_message(int n);
+
 /* initialization	*/
 void	get_initial_size(t_fractal *f);
+void	data_init(t_fractal *fractal);
+void	events_init(t_fractal *fractal);
+void	fractal_init(t_fractal *fractal);
 
 /* events */
 int mouse_hook(int button, int x, int y, t_fractal *fractal);
 int key_press(int keysym, t_fractal *fractal);
 int close_window(t_fractal *fr);
 
+/* sets */
+int		mandelbrot(t_complex c, t_fractal *fractal);
+int		julia(t_complex z, t_fractal *f);
 
 #endif

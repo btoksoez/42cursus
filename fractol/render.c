@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:53:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/11 13:43:10 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/12 12:43:07 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ void my_pixel_put(int x, int y, t_img *img, int color)
 
 	offset = (y * img->line_len) + (x * (img->bits_per_pixel / 8));
 	*(unsigned int *)(img->pixels_ptr + offset) = color;
+
 }
 
 int	calculate_fractal(t_complex c, t_fractal *f)
 {
 	if (f->name == MANDELBROT)
-		return (is_mandelbrot(c, f));
+		return (mandelbrot(c, f));
+	if (f->name == JULIA)
+		return (julia(c, f));
 }
 
 void	fractal_render(t_fractal *f)
