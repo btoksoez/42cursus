@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 11:29:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 16:43:36 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:54:41 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -48,7 +50,7 @@ void			*ft_memchr(const void *s, int c, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *s, int c, size_t n);
-void			ft_putchar_fd(char c, int fd);
+int				ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
@@ -70,5 +72,9 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
+
+int				ft_print_hex(void *p);
+int				ft_putnbr_base(long n, char *s);
+int				ft_printf(const char *format, ...);
 
 #endif

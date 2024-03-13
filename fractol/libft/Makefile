@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2023/10/20 10:07:42 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/01/29 09:27:56 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,11 @@ SRCS = ft_memset.c		\
 		ft_putstr_fd.c	\
 		ft_putendl_fd.c	\
 		ft_striteri.c	\
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c	\
+		ft_putnbr_base.c	\
+		ft_printf.c		\
+		ft_print_hex.c	\
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -84,7 +88,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJSBNS)
+bonus: $(OBJSBNS) $(NAME)
 	@ar rc $(NAME) $(OBJSBNS)
 	@echo "$(NAME) Bonus created."
 

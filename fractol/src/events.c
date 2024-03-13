@@ -6,13 +6,13 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:02:45 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/12 13:53:31 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:30:15 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void zoom(t_fractal *f, double zoom)
+static void	zoom(t_fractal *f, double zoom)
 {
 	double	width;
 	double	height;
@@ -25,7 +25,7 @@ static void zoom(t_fractal *f, double zoom)
 	f->max_i = f->max_i - (height - zoom * height) / 2;
 }
 
-static void move(t_fractal *f, double distance, char direction)
+static void	move(t_fractal *f, double distance, char direction)
 {
 	double	center_r;
 	double	center_i;
@@ -54,7 +54,7 @@ static void move(t_fractal *f, double distance, char direction)
 	}
 }
 
-int key_press(int keysym, t_fractal *fractal)
+int	key_press(int keysym, t_fractal *fractal)
 {
 	if (keysym == XK_Escape)
 		close_window(fractal);
@@ -76,9 +76,10 @@ int key_press(int keysym, t_fractal *fractal)
 	if (keysym == XK_Down)
 		move(fractal, 0.1, 'D');
 	fractal_render(fractal);
+	return (0);
 }
 
-int mouse_hook(int button, int x, int y, t_fractal *fractal)
+int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == 4)
 	{
@@ -100,4 +101,6 @@ int mouse_hook(int button, int x, int y, t_fractal *fractal)
 		zoom(fractal, 2.0);
 		fractal_render(fractal);
 	}
+	return (0);
+
 }

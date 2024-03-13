@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:58:26 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/12 13:15:40 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:15:38 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 void	data_init(t_fractal *fractal)
 {
 	fractal->zoom = 1.0;
-	fractal->max_iter = 60;	//the more iterations, the clearer the mandelbrot set, because pixels on the limit
+	fractal->max_iter = 60;
 	fractal->threshold = 2.0;
 	get_initial_size(fractal);
+	init_palette(fractal);
 }
 
 /* intialize event hooks */
 void	events_init(t_fractal *fractal)
 {
 	mlx_hook(fractal->win, KeyPress, KeyPressMask, &key_press, fractal);
-	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask, &close_window, fractal);
+	mlx_hook(fractal->win, DestroyNotify, StructureNotifyMask,
+		&close_window, fractal);
 	mlx_mouse_hook(fractal->win, mouse_hook, fractal);
 }
 
@@ -51,9 +53,9 @@ void	fractal_init(t_fractal *fractal)
 		malloc_error();
 	}
 	fractal->img.pixels_ptr = mlx_get_data_addr(fractal->img.img_ptr,
-													&fractal->img.bits_per_pixel,
-													&fractal->img.line_len,
-													&fractal->img.endian);
+			&fractal->img.bits_per_pixel,
+			&fractal->img.line_len,
+			&fractal->img.endian);
 	events_init(fractal);
 	data_init(fractal);
 }
@@ -68,7 +70,7 @@ void	get_initial_size(t_fractal *f)
 		f->min_i = -4.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
-	if (f->name == JULIA)
+	else if (f->name == JULIA)
 	{
 		f->min_r = -2.0;
 		f->max_r = 2.0;
