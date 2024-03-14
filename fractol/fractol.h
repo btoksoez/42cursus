@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:16:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 14:07:45 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:06:41 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FRACTOL_H
 
 # include <stdio.h>
-# include "libft.h"
+# include "libft/libft.h"
 # include <math.h>
-# include "mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -88,6 +88,9 @@ typedef struct s_fractal
 	double		max_i;
 	int			palette[PALETTE_SIZE];
 	int			fast;
+	double		box_s;
+	double		box_r;
+	double		box_f;
 
 }	t_fractal;
 
@@ -117,7 +120,7 @@ void	malloc_error(void);
 /* sets */
 int		mandelbrot(t_complex c, t_fractal *fractal);
 int		julia(t_complex z, t_fractal *f);
-int		mandelbox(t_complex c, t_fractal *fractal);
+int		mandelbox(t_complex c, t_fractal *f);
 
 /* colors */
 void	init_palette(t_fractal *fractal);

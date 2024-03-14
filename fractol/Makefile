@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/03/13 14:06:21 by btoksoez         ###   ########.fr        #
+#    Created: 2024/03/14 11:34:03 by btoksoez          #+#    #+#              #
+#    Updated: 2024/03/14 11:59:20 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,80 +14,52 @@
 NAME = fractol
 
 # Compiler
-CC		= gcc
-CFLAGS	= -g -Wall -Werror -Wextra
+CC = gcc
 
-# Libft
-LIBFT_PATH = libft/
-LIBFT_NAME = libft.a
-LIBFT = $(LIBFT_PATH)$(LIBFT_NAME)
+# Directories
+LIBFTDIR = ./libft
+LIBFT = $(LIBFTDIR)/libft.a
 
-# Minilibx
-MLX_PATH	= minilibx-linux/
-MLX_NAME	= libmlx.a
-MLX 		= $(MLX_PATH)$(MLX_NAME)
+MLXDIR = ./minilibx-linux
+MLX = $(MLXDIR)/libmlx.a
 
-# Additional libraries
-ADDITIONAL_LIBS = -lm -lX11 -lXext
+# Sources and Objects
+SRCS = color.c events.c main.c init.c julia.c mandelbrot.c parse_args.c render.c mandelbox.c
+OBJS = $(SRCS:.c=.o)
 
 # Includes
-INC	=	-I ./includes/\
-		-I ./libft/\
-		-I ./minilibx-linux/
+INC = -I$(LIBFTDIR) -I$(MLXDIR)
 
-# Sources
-SRC_PATH	=	src/
-SRC 		=	color.c	\
-				events.c	\
-				init.c	\
-				julia.c	\
-				main.c	\
-				mandelbrot.c	\
-				parse_args.c	\
-				render.c
-SRCS		= $(addprefix $(SRC_PATH), $(SRC))
+# Compiler flags
+CFLAGS = -g -Wall -Werror -Wextra
 
-# Objects
-OBJ_PATH	= obj/
-OBJ			= $(SRC:.c=.o)
-Objects		= $(addprefix $(OBJ_PATH), $(OBJ))
+# Linker flags
+LDFLAGS = -L$(MLXDIR) -lmlx_Linux -L$(LIBFTDIR) -lft -L/usr/X11/lib -lX11 -lXext -lm
 
-all: $(MLX) $(LIBFT) $(NAME)
+all: $(NAME) $(LIBFT) $(MLX)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
-
-$(OBJS): $(OBJ_PATH)
-
-$(OBJ_PATH):
-	@mkdir $(OBJ_PATH)
-
-$(MLX):
-	@echo "Making MiniLibX..."
-	@make -sC $(MLX_PATH)
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@echo "Creating $(NAME)"
+	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(INC) -o $(NAME)
+	@echo "$(NAME) created."
 
 $(LIBFT):
-	@echo "Making Libft..."
-	@make -sC $(LIBFT_PATH)
+	@make -sC $(LIBFTDIR)
 
-$(NAME): $(OBJS)
-	@echo "Compiling fractol..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) $(ADDITIONAL_LIBS)
-	@echo "Fractol ready."
-
-bonus: all
+$(MLX):
+	@make -sC $(MLXDIR)
 
 clean:
-	@echo "Removing .o object files..."
-	@rm -rf $(OBJ_PATH)
-	@make clean -C $(MLX_PATH)
-	@make clean -C $(LIBFT_PATH)
+	@$(MAKE) clean -C $(LIBFTDIR)
+	@$(MAKE) clean -C $(MLXDIR)
+	@rm -f $(OBJS)
+	@echo "Object files cleaned."
 
 fclean: clean
-	@echo "Removing fractol..."
+	@$(MAKE) fclean -C $(LIBFTDIR)
 	@rm -f $(NAME)
-	@rm -f $(LIBFT_PATH)$(LIBFT_NAME)
+	@echo "$(NAME) deleted."
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: all clean fclean re

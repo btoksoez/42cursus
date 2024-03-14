@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 11:49:18 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:10:54 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:12:54 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,37 +30,27 @@ static double	ball_fold(double r, double m)
 	return (m);
 }
 
-int mandelbox(t_complex c, t_fractal *fractal)
+int	mandelbox(t_complex c, t_fractal *f)
 {
-	double s;
-	double	r;
-	double	f;
-	t_complex v;
-	int i;
-	double magnitude;
+	t_complex	v;
+	int			i;
+	double		magnitude;
 
 	i = 0;
-	s = 2.0;
-	r = 0.5;
-	f = 1.0;
 	v.real = c.real;
 	v.imag = c.imag;
-	while (i < fractal->max_iter)
+	while (i < f->max_iter)
 	{
-		printf("%d\n", i);
-		v.real = f * box_fold(v.real);
-		v.imag = f * box_fold(v.imag);
+		v.real = f->box_f * box_fold(v.real);
+		v.imag = f->box_f * box_fold(v.imag);
 		magnitude = sqrt(v.real * v.real + v.imag * v.imag);
-		v.real = v.real * s * ball_fold(r, magnitude) + c.real;
-		v.imag = v.imag * s * ball_fold(r, magnitude) + c.imag;
-		if (magnitude > fractal->threshold)	//not in mandelbox set
-		{
-			if (fractal->fast == 1)
-				return (map(i, fractal->max_iter, GRAD_START, GRAD_END));
-			int color = map(i, fractal->max_iter, 0, 256);
-			return (PSY_PINK);
-		}
+		v.real = v.real * f->box_s * ball_fold(f->box_r, magnitude) + c.real;
+		v.imag = v.imag * f->box_s * ball_fold(f->box_r, magnitude) + c.imag;
+		if (magnitude > f->threshold && f->fast == 1)
+			return (map(i, f->max_iter, GRAD_START, GRAD_END));
+		if (magnitude > f->threshold)
+			return (f->palette[(int)map(i, f->max_iter, 0, 256)]);
 		i++;
 	}
-	return (GRAD_START);	//in mandelbox
+	return (GRAD_START);
 }

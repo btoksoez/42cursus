@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:53:24 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:28:34 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 11:58:58 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	calculate_fractal(t_complex c, t_fractal *f)
 {
 	if (f->name == MANDELBROT)
 		return (mandelbrot(c, f));
-	if (f->name == JULIA)
+	else if (f->name == JULIA)
 		return (julia(c, f));
+	else if (f->name == MANDELBOX)
+		return (mandelbox(c, f));
 	else
 		return (help_message(0));
-	// if (f->name == MANDELBOX)
-	// 	return (mandelbox(c, f));
+
 }
 
 void	fractal_render(t_fractal *f)

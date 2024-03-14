@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:17:30 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:08:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:14:44 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	help_message(int n)
 	printf("*************************************************************\n");
 	printf("* Usage:                                                    *\n");
 	printf("*   ./fractol mandelbrot {fast}                             *\n");
+	printf("*   ./fractol mandelbox {fast}                             *\n");
 	printf("*   ./fractol julia {real number} {imaginary number} {fast} *\n");
 	printf("*     (Both numbers must be in the range [-2.0, 2.0])       *\n");
 	printf("*     (fast is optional, differen colors)                   *\n");

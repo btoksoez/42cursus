@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 12:58:26 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:15:38 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:11:57 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	data_init(t_fractal *fractal)
 	fractal->zoom = 1.0;
 	fractal->max_iter = 60;
 	fractal->threshold = 2.0;
+	fractal->box_s = 2.0;
+	fractal->box_r = 0.5;
+	fractal->box_f = 1.0;
 	get_initial_size(fractal);
 	init_palette(fractal);
 }
@@ -65,12 +68,12 @@ void	get_initial_size(t_fractal *f)
 {
 	if (f->name == MANDELBROT)
 	{
-		f->min_r = -4.0;
-		f->max_r = 4.0;
-		f->min_i = -4.0;
+		f->min_r = -3.0;
+		f->max_r = 2.0;
+		f->min_i = -3.0;
 		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
-	else if (f->name == JULIA)
+	else
 	{
 		f->min_r = -2.0;
 		f->max_r = 2.0;
