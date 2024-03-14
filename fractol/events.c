@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:02:45 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:30:15 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:20:53 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,4 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 		fractal_render(fractal);
 	}
 	return (0);
-
 }
