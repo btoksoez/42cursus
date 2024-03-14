@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 10:08:25 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 17:35:55 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ft_itoa(int n)
 // {
 
 //     char *result = ft_itoa(0);
-// 	printf("%s", result);
+// 	ft_printf("%s", result);
 // 	free(result);
 
 //     return 0;

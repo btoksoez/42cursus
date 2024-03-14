@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 10:46:44 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 15:05:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	ft_print_hex(void *p)
 // 	p = (void *)-1;
 // 	int n1 = ft_print_hex(p);
 // 	write(1, "\n", 1);
-// 	int n2 = printf("%p", p);
-// 	printf("\nft: %d, pr: %d", n1, n2);
+// 	int n2 = ft_printf("%p", p);
+// 	ft_printf("\nft: %d, pr: %d", n1, n2);
 // }

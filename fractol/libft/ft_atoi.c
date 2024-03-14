@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:55:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:18:21 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ int	ft_atoi(const char *nptr)
 // #include <stdio.h>
 // int	main(void)
 // {
-// 	printf("%d", ft_atoi("fgvdgd"));
+// 	ft_printf("%d", ft_atoi("fgvdgd"));
 // }

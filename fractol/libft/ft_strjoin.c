@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:54:23 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 10:31:29 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 // 	char *p;
 // 	p = NULL;
 // 	char *res = ft_strjoin(p, "ccc");
-// 	printf("%s", res);
+// 	ft_printf("%s", res);
 // }

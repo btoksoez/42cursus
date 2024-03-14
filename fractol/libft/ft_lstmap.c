@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:53:09 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 10:26:51 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 // // Function to display a linked list
 // void displayList(t_list *list, const char *label) {
-//     printf("%s:\n", label);
+//     ft_printf("%s:\n", label);
 //     while (list) {
 //         int *data = (int *)list->content;
-//         printf("Content: %d\n", *data);
+//         ft_printf("Content: %d\n", *data);
 //         list = list->next;
 //     }
-//     printf("\n");
+//     ft_printf("\n");
 // }
 
 // int main() {
@@ -95,7 +95,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 //     t_list *result1 = ft_lstmap(empty_list, doubleInt, deleteInt);
 //     t_list *result1_other = ft_lstmap1(empty_list, doubleInt, deleteInt);
 
-//     printf("Test Case 1:\n");
+//     ft_printf("Test Case 1:\n");
 //     displayList(result1, "Your ft_lstmap result");
 //     displayList(result1_other, "Other solution result");
 
@@ -105,7 +105,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 //     t_list *result2 = ft_lstmap(node, doubleInt, deleteInt);
 //     t_list *result2_other = ft_lstmap1(node, doubleInt, deleteInt);
 
-//     printf("Test Case 2:\n");
+//     ft_printf("Test Case 2:\n");
 //     displayList(result2, "Your ft_lstmap result");
 //     displayList(result2_other, "Other solution result");
 
@@ -119,7 +119,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 //     t_list *result3 = ft_lstmap(list, doubleInt, deleteInt);
 //     t_list *result3_other = ft_lstmap1(list, doubleInt, deleteInt);
 
-//     printf("Test Case 3:\n");
+//     ft_printf("Test Case 3:\n");
 //     displayList(result3, "Your ft_lstmap result");
 //     displayList(result3_other, "Other solution result");
 

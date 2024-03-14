@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:05:53 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 11:05:46 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 //     int *arr = (int *)ft_calloc(nmemb, size);
 
 //     if (arr == NULL) {
-//         printf("Memory allocation failed due to integer overflow.\n");
+//         ft_printf("Memory allocation failed due to integer overflow.\n");
 //         return 1;
 //     }
 

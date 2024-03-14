@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 15:09:03 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:03:53 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 //     // Create a head pointer and set it to NULL (empty list)
 //     t_list *head = NULL;
 
-//     printf("Initial state: Empty list\n");
+//     ft_printf("Initial state: Empty list\n");
 
 //     // Add nodes to the front of the list
-//     printf("Adding node1 to the front of the list\n");
+//     ft_printf("Adding node1 to the front of the list\n");
 //     ft_lstadd_front(&head, node1);
 
-//     printf("Adding node2 to the front of the list\n");
+//     ft_printf("Adding node2 to the front of the list\n");
 //     ft_lstadd_front(&head, node2);
 
-//     printf("Adding node3 to the front of the list\n");
+//     ft_printf("Adding node3 to the front of the list\n");
 //     ft_lstadd_front(&head, node3);
 
 //     // Traverse the list and print the content of each node
-//     printf("Traversing the list and printing the content:\n");
+//     ft_printf("Traversing the list and printing the content:\n");
 
 //     t_list *current = head;
 //     while (current) {
-//         printf("Content: %d\n", *((int *)current->content));
+//         ft_printf("Content: %d\n", *((int *)current->content));
 //         current = current->next;
 //     }
 

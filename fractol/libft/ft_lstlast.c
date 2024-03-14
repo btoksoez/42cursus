@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:00:27 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:03:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ t_list	*ft_lstlast(t_list *lst)
 // {
 //     // Create an empty list
 //     t_list *emptyList = NULL;
-//     printf("Empty List:\n");
+//     ft_printf("Empty List:\n");
 //     t_list *lastNode = ft_lstlast(emptyList);
 //     if (lastNode == NULL) {
-//         printf("List is empty.\n");
+//         ft_printf("List is empty.\n");
 //     }
 
 //     // Create a list with nodes
@@ -46,10 +46,10 @@ t_list	*ft_lstlast(t_list *lst)
 //     node2->next = node3;
 //     node3->next = NULL;
 
-//     printf("\nList with Nodes:\n");
+//     ft_printf("\nList with Nodes:\n");
 //     lastNode = ft_lstlast(node1);
 //     if (lastNode != NULL) {
-//         printf("Last Node Content: %d\n", *((int *)(lastNode->content)));
+//         ft_printf("Last Node Content: %d\n", *((int *)(lastNode->content)));
 //     }
 
 //     // Free the memory for the list nodes

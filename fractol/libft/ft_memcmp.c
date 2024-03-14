@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:12:03 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:19:25 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 //     int stdResult1 = memcmp(str1, str2, n1);
 
 //     if (result1 == stdResult1) {
-//         printf("Test case 1 passed: Result is %d\n", result1);
+//         ft_printf("Test case 1 passed: Result is %d\n", result1);
 //     } else {
-//         printf("Test case 1 failed: Result is %d,
+//         ft_printf("Test case 1 failed: Result is %d,
 //expected %d\n", result1, stdResult1);
 //     }
 
@@ -57,9 +57,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 //     int stdResult2 = memcmp(str3, str4, n2);
 
 //     if (result2 == stdResult2) {
-//         printf("Test case 2 passed: Result is %d\n", result2);
+//         ft_printf("Test case 2 passed: Result is %d\n", result2);
 //     } else {
-//         printf("Test case 2 failed: Result is %d,
+//         ft_printf("Test case 2 failed: Result is %d,
 //expected %d\n", result2, stdResult2);
 //     }
 
@@ -72,9 +72,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 //     int stdResult3 = memcmp(str5, str6, n3);
 
 //     if (result3 == stdResult3) {
-//         printf("Test case 3 passed: Result is %d\n", result3);
+//         ft_printf("Test case 3 passed: Result is %d\n", result3);
 //     } else {
-//         printf("Test case 3 failed: Result is %d,
+//         ft_printf("Test case 3 failed: Result is %d,
 //expected %d\n", result3, stdResult3);
 //     }
 
@@ -87,9 +87,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 //     int stdResult4 = memcmp(str7, str8, n4);
 
 //     if (result4 == stdResult4) {
-//         printf("Test case 4 passed: Result is %d\n", result4);
+//         ft_printf("Test case 4 passed: Result is %d\n", result4);
 //     } else {
-//         printf("Test case 4 failed: Result is %d,
+//         ft_printf("Test case 4 failed: Result is %d,
 //expected %d\n", result4, stdResult4);
 //     }
 
@@ -102,9 +102,9 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 //     int stdResult5 = memcmp(str9, str10, n5);
 
 //     if (result5 == stdResult5) {
-//         printf("Test case 5 passed: Result is %d\n", result5);
+//         ft_printf("Test case 5 passed: Result is %d\n", result5);
 //     } else {
-//         printf("Test case 5 failed: Result is %d,
+//         ft_printf("Test case 5 failed: Result is %d,
 //expected %d\n", result5, stdResult5);
 //     }
 

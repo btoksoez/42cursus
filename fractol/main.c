@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:06:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/13 13:59:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	malloc_error(void)
 
 int	close_window(t_fractal *fr)
 {
-	printf("Closing Window");
+	ft_printf("Closing Window");
 	mlx_destroy_window(fr->mlx, fr->win);
 	mlx_destroy_image(fr->mlx, fr->img.img_ptr);
 	mlx_destroy_display(fr->mlx);

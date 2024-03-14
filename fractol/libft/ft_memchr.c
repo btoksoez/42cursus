@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:39:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:19:14 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 //     void *result1 = ft_memchr(str1, search1, n1);
 //     if (result1) {
-//         printf("Found '%c' at index %ld\n",
+//         ft_printf("Found '%c' at index %ld\n",
 // search1, (char *)result1 - str1);
 //     } else {
-//         printf("'%c' not found in the string.\n", search1);
+//         ft_printf("'%c' not found in the string.\n", search1);
 //     }
 
 //     // Test case 2: Search for 'l' in an empty string
@@ -54,10 +54,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 //     void *result2 = ft_memchr(str2, search2, n2);
 //     if (result2) {
-//         printf("Found '%c' at index %ld\n",
+//         ft_printf("Found '%c' at index %ld\n",
 // search2, (char *)result2 - str2);
 //     } else {
-//         printf("'%c' not found in the string.\n", search2);
+//         ft_printf("'%c' not found in the string.\n", search2);
 //     }
 
 //     // Test case 3: Search for '\0' (null terminator) in a string
@@ -68,10 +68,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 //     void *result3 = ft_memchr(str3, search3, n3);
 //     if (result3) {
-//         printf("Found '%c' at index %ld\n",
+//         ft_printf("Found '%c' at index %ld\n",
 // search3, (char *)result3 - str3);
 //     } else {
-//         printf("'%c' not found in the string.\n", search3);
+//         ft_printf("'%c' not found in the string.\n", search3);
 //     }
 
 //     return 0;

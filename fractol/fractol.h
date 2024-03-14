@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:16:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/14 12:06:41 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:35:45 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int		check_julia_params(char *argv[]);
 int		check_julia(int argc, char *argv[], t_fractal *fractal);
 int		parse_args(int argc, char *argv[], t_fractal *fractal);
 int		help_message(int n);
+double	ft_atof(const char *n);
+void	fractal_fast(int argc, char *argv[], t_fractal *fractal);
 
 /* initialization	*/
 void	get_initial_size(t_fractal *f);

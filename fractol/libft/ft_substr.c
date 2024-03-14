@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 16:23:20 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/18 17:50:47 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 // int main(void)
 // {
 // 	char *string = ft_substr("hell", 2, 10);
-// 	printf("%s", string);
+// 	ft_printf("%s", string);
 // }

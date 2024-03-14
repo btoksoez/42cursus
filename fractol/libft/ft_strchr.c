@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 13:11:07 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:26:28 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ char	*ft_strchr(const char *s, int c)
 
 //     char *result1 = ft_strchr(str, search1);
 //     if (result1) {
-//         printf("Found '%c' at position %ld\n", search1, result1 - str);
+//         ft_printf("Found '%c' at position %ld\n", search1, result1 - str);
 //     } else {
-//         printf("'%c' not found in the string.\n", search1);
+//         ft_printf("'%c' not found in the string.\n", search1);
 //     }
 
 //     char *result2 = ft_strchr(str, search2);
 //     if (result2) {
-//         printf("Found '%c' at position %ld\n", search2, result2 - str);
+//         ft_printf("Found '%c' at position %ld\n", search2, result2 - str);
 //     } else {
-//         printf("'%c' not found in the string.\n", search2);
+//         ft_printf("'%c' not found in the string.\n", search2);
 //     }
 
 //     return 0;

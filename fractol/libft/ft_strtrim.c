@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:08:08 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 10:10:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 // int	main(void)
 // {
 // 	char *res = ft_strtrim("fef", "fef");
-// 	printf("%s", res);
+// 	ft_printf("%s", res);
 // }

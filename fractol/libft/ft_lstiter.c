@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:39:32 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/17 12:03:43 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	}
 }
 // void printContent(void *content) {
-//     printf("Content: %d\n", *(int*)content);
+//     ft_printf("Content: %d\n", *(int*)content);
 // }
 
 // int main() {

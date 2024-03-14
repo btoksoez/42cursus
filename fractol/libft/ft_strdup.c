@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:33:27 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:35:23 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*ft_strdup(const char *s)
 //     char *duplicate = ft_strdup(original);
 
 //     if (duplicate == NULL) {
-//         printf("Memory allocation for duplicate failed.\n");
+//         ft_printf("Memory allocation for duplicate failed.\n");
 //         return 1;
 //     }
 
 //     // Check if the duplicate is equal to the original
 //     if (strcmp(duplicate, original) == 0) {
 //     } else {
-//         printf("Original and duplicate strings are different.\n");
+//         ft_printf("Original and duplicate strings are different.\n");
 //     }
 
 //     // Don't forget to free the allocated memory when you're done with it.

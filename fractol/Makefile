@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 11:34:03 by btoksoez          #+#    #+#              #
-#    Updated: 2024/03/14 11:59:20 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/03/14 13:58:20 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MLXDIR = ./minilibx-linux
 MLX = $(MLXDIR)/libmlx.a
 
 # Sources and Objects
-SRCS = color.c events.c main.c init.c julia.c mandelbrot.c parse_args.c render.c mandelbox.c
+SRCS = color.c events.c main.c init.c atof.c julia.c mandelbrot.c parse_args.c render.c mandelbox.c
 OBJS = $(SRCS:.c=.o)
 
 # Includes

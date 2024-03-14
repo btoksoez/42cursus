@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:24:04 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/09 12:32:15 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%s", ft_strnstr("", "j", 2));
+// 	ft_printf("%s", ft_strnstr("", "j", 2));
 // }

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 15:58:50 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 10:58:05 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 // int	main(void)
 // {
 // 	char *test = "hello";
-// 	printf("%s", ft_strmapi(test, ft_test));
+// 	ft_printf("%s", ft_strmapi(test, ft_test));
 // }

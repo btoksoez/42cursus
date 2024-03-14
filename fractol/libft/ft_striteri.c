@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:24:49 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 11:07:38 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 // int	main(void)
 // {
 // 	char test[] = "hello";
-// 	printf("%s\n", test);
+// 	ft_printf("%s\n", test);
 // 	ft_striteri(test, ft_test);
-// 	printf("%s", test);
+// 	ft_printf("%s", test);
 // }

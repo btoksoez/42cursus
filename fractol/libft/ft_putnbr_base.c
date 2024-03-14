@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:43:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/01/24 14:57:54 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	ft_putnbr_base(long n, char *s)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("\n\n%d",ft_putnbr_base(15, "0123456789abcdef"));
+// 	ft_printf("\n\n%d",ft_putnbr_base(15, "0123456789abcdef"));
 // }

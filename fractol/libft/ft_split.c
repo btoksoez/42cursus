@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 14:07:56 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/10/20 10:54:50 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,13 @@ char	**ft_split(char const *s, char c)
 // 	char **res = ft_split(s, c);
 // 	if (!res)
 // 	{
-// 		printf("null");
+// 		ft_printf("null");
 // 	 	return (0);
 // 	}
 // 	while (*res)
 // 	{
-// 		printf("%s\n", *res);
+// 		ft_printf("%s\n", *res);
 // 		res++;
 // 	}
-// 	printf("%s", *res);
+// 	ft_printf("%s", *res);
 // }
