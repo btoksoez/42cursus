@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:17:30 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:02:37 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,41 @@ int	check_julia(int argc, char *argv[], t_fractal *fractal)
 		return (0);
 }
 
-void	fractal_fast(int argc, char *argv[], t_fractal *fractal)
+int	fractal_fast(int argc, char *argv[], t_fractal *fractal)
 {
 	if ((argc == 3 && ft_strncmp(argv[2], "fast", 4) == 0)
 		|| (argc == 5 && ft_strncmp(argv[4], "fast", 4) == 0))
 		fractal->fast = 1;
+	else if (argc == 3 || argc == 5)
+		return (help_message(0));
 	else
 		fractal->fast = 0;
+	return (1);
 }
 
 /* checks which set and if number of args is correct & assigns color */
 int	parse_args(int argc, char *argv[], t_fractal *fractal)
 {
 	if ((argc == 4 || argc == 5)
-		&& ft_strncmp(argv[1], "julia", 5) == 0)
+		&& ft_strncmp(argv[1], "julia", 5) == 0
+		&& ft_strlen(argv[1]) == 5)
 	{
 		if (!check_julia(argc, argv, fractal))
 			return (0);
 	}
 	else if ((argc == 2 || argc == 3)
-		&& ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+		&& ft_strncmp(argv[1], "mandelbrot", 10) == 0
+		&& ft_strlen(argv[1]) == 10)
 	{
 		fractal->name = 1;
-		fractal_fast(argc, argv, fractal);
+		return (fractal_fast(argc, argv, fractal));
 	}
 	else if ((argc == 2 || argc == 3)
-		&& ft_strncmp(argv[1], "mandelbox", 9) == 0)
+		&& ft_strncmp(argv[1], "mandelbox", 9) == 0
+		&& ft_strlen(argv[1]) == 9)
 	{
 		fractal->name = 3;
-		fractal_fast(argc, argv, fractal);
+		return (fractal_fast(argc, argv, fractal));
 	}
 	else
 		return (help_message(0));

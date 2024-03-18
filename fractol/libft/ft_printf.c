@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:56:46 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/03/14 14:41:19 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:56:21 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_format(const char *format, va_list args)
 	return (1);
 }
 
-int	ft_ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
@@ -83,9 +83,9 @@ int	ft_ft_printf(const char *format, ...)
 // {
 // 	int n = 0;
 // 	int count = ft_printf('0');
-// 	int count2 = ft_ft_printf('0');
+// 	int count2 = ft_printf('0');
 // 	// int count = ft_printf("abcft_printf: %s %s\n", "", "");
-// 	// int count2 = ft_ft_printf("Ft_ft_printf: %s %s\n", "", "");
+// 	// int count2 = ft_printf("ft_printf: %s %s\n", "", "");
 // 	ft_printf("Count ft_printf: %d\n", count);
-// 	ft_printf("Count ft_ft_printf: %d\n", count2);
+// 	ft_printf("Count ft_printf: %d\n", count2);
 // }

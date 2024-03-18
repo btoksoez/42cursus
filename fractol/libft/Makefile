@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 14:20:21 by btoksoez          #+#    #+#              #
-#    Updated: 2024/03/14 14:42:42 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/03/18 11:54:49 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRCS = ft_memset.c		\
 		ft_striteri.c	\
 		ft_putnbr_fd.c	\
 		ft_putnbr_base.c	\
-		ft_ft_printf.c		\
+		ft_printf.c		\
 		ft_print_hex.c	\
 
 

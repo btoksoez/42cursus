@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/14 11:34:03 by btoksoez          #+#    #+#              #
-#    Updated: 2024/03/14 13:58:20 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/03/18 11:59:33 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = fractol
 
 # Compiler
-CC = gcc
+CC = cc
 
 # Directories
 LIBFTDIR = ./libft
@@ -36,8 +36,6 @@ CFLAGS = -g -Wall -Werror -Wextra
 # Linker flags
 LDFLAGS = -L$(MLXDIR) -lmlx_Linux -L$(LIBFTDIR) -lft -L/usr/X11/lib -lX11 -lXext -lm
 
-all: $(NAME) $(LIBFT) $(MLX)
-
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@echo "Creating $(NAME)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(INC) -o $(NAME)
@@ -48,6 +46,8 @@ $(LIBFT):
 
 $(MLX):
 	@make -sC $(MLXDIR)
+
+all: $(NAME) $(LIBFT) $(MLX)
 
 clean:
 	@$(MAKE) clean -C $(LIBFTDIR)
@@ -62,4 +62,6 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: all
+
+.PHONY: all clean fclean re bonus
