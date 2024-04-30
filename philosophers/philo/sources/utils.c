@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/04/25 11:11:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/04/30 22:32:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,49 @@ int ft_atoi(char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+long	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
+
+void	print_message(char *message, int id, t_table *table)
+{
+	long	time_ms;
+
+	time_ms = get_time() - table->start_time;
+	if (is_dead(table))
+		return ;
+	printf("%ld %d %s\n", time_ms, id, message);
+}
+
+void print_table(t_table *table)
+{
+    printf("Number of philosophers: %d\n", table->num_philos);
+    printf("Time to die: %zu\n", table->time_to_die);
+    printf("Time to eat: %zu\n", table->time_to_eat);
+    printf("Time to sleep: %zu\n", table->time_to_sleep);
+    printf("Number of times each philosopher must eat: %d\n", table->num_eat);
+
+    for (int i = 0; i < table->num_philos; i++) {
+        printf("Philosopher %d:\n", i);
+        printf("\tID: %d\n", table->philos[i].id);
+        printf("\tLeft fork: %d\n", table->philos[i].left_fork);
+        printf("\tRight fork: %d\n", table->philos[i].right_fork);
+        printf("\tNumber of times eaten: %d\n", table->philos[i].num_eaten);
+    }
 }

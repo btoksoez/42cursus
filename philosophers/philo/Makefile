@@ -1,12 +1,12 @@
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 CC = cc
 COMPRESS = ar rcs
 RM = rm -rf
 
 OBJ_DIR = objects
 SRC_DIR = sources
-SRC = main.c utils.c
+SRC = main.c utils.c init.c parsing.c
 
 SRCS := $(addprefix $(SRC_DIR)/,$(SRC))
 OBJ := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -1,0 +1,12 @@
+still prints stuff after death
+./philo 3 100 1000 1000
+[4 200 205 200]
+
+
+philo is dying after time_to_die, doesn't eat again
+
+dies althoguht hey shouldn't
+[5 800 200 200 7]
+
+check data races
+check valgrind
