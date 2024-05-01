@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/04/30 22:59:33 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:11:05 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,11 @@ void	init_philos(t_table *table)
 	while (i < table->num_philos)
 	{
 		philo[i].id = i + 1;
-		if (i == 0)	//to avoid deadlock, the first one should pick up the right fork first
-		{
-			philo[i].right_fork = i;
-			philo[i].left_fork = (i + 1) % table->num_philos;
-		}
+		philo[i].right_fork = i;
+		if (i == 0)
+			philo[i].left_fork = table->num_philos - 1;
 		else
-		{
-			philo[i].left_fork = i;
-			philo[i].right_fork = (i + 1) % table->num_philos;
-		}
+			philo[i].left_fork = i - 1;
 		philo[i].num_eaten = 0;
 		philo[i].last_meal = get_time();
 		philo[i].table = table;

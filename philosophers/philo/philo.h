@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/04/30 22:57:50 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:37:39 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ long	get_time(void);
 int		ft_atoi(char *str);
 void	print_message(char *message, int id, t_table *table);
 void	print_table(t_table *table);
+int		ft_usleep(useconds_t time);
 
 #endif

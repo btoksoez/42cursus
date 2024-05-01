@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/04/30 22:32:03 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/01 11:37:27 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,13 @@ void print_table(t_table *table)
         printf("\tRight fork: %d\n", table->philos[i].right_fork);
         printf("\tNumber of times eaten: %d\n", table->philos[i].num_eaten);
     }
+}
+
+int	ft_usleep(useconds_t time)
+{
+	u_int64_t	start;
+	start = get_time();
+	while ((get_time() - start) < time)
+		usleep(time / 10);
+	return(0);
 }
