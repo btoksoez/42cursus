@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/01 11:11:05 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:20:39 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void	init_table(t_table *table)
 	pthread_mutex_init(&table->die_lock, NULL);
 	pthread_mutex_init(&table->meal_lock, NULL);
 	pthread_mutex_init(&table->eating_lock, NULL);
+	pthread_mutex_init(&table->info_lock, NULL);
 }

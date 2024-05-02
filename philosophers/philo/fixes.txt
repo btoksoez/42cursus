@@ -1,12 +1,22 @@
+(FIXED)
 still prints stuff after death
 ./philo 3 100 1000 1000
 [4 200 205 200]
 
-
-philo is dying after time_to_die, doesn't eat again
-
+(FIXED)
 dies althoguht hey shouldn't
 [5 800 200 200 7]
 
-check data races
-check valgrind
+terminates too early
+100 800 200 200
+200 800 200 200
+
+
+
+valgrind:
+./philo 3 100 1000 1000
+./philo 4 200 205 200
+./philo eadhed
+./philo 12 12 12 12 12 12 12
+./philo -1 21 12 12
+

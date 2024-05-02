@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/01 11:37:27 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:23:43 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,11 @@ void	print_message(char *message, int id, t_table *table)
 {
 	long	time_ms;
 
+	pthread_mutex_lock(&table->info_lock);
 	time_ms = get_time() - table->start_time;
-	if (is_dead(table))
-		return ;
-	printf("%ld %d %s\n", time_ms, id, message);
+	if (!is_dead(table))
+		printf("%ld %d %s\n", time_ms, id, message);
+	pthread_mutex_unlock(&table->info_lock);
 }
 
 void print_table(t_table *table)
@@ -88,6 +89,7 @@ void print_table(t_table *table)
 int	ft_usleep(useconds_t time)
 {
 	u_int64_t	start;
+
 	start = get_time();
 	while ((get_time() - start) < time)
 		usleep(time / 10);

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:01:36 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/01 11:38:42 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:30:35 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	toggle_eating(t_philosopher *philo, t_table *table)
 {
-	if (is_dead(table))
-		return ;
 	if (philo->is_eating)
 	{
 		pthread_mutex_lock(&table->eating_lock);
@@ -212,6 +210,7 @@ void	clean_up(t_table *table)
 	pthread_mutex_destroy(&table->die_lock);
 	pthread_mutex_destroy(&table->meal_lock);
 	pthread_mutex_destroy(&table->eating_lock);
+	pthread_mutex_destroy(&table->info_lock);
 	free(table->forks);
 	free(table->philos);
 	free(table);

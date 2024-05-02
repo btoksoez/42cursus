@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:28:11 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/04/30 23:01:17 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:49:06 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	check_args(int argc, char *argv[])
 bool	check_table(t_table *table)
 {
 	//maybe add protection for max philosophers
-	if (table->num_philos < 2)
+	if (table->num_philos < 1 || table->num_eat > 200 || table->num_eat < -1)
 	{
 		clean_up(table);
 		return (false);

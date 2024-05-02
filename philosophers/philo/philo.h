@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/01 11:37:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:00:48 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_table
 	pthread_mutex_t			die_lock;
 	pthread_mutex_t			meal_lock;
 	pthread_mutex_t			eating_lock;
+	pthread_mutex_t			info_lock;
 	struct s_philosopher	*philos;
 	long					start_time;
 	int						philo_died;
