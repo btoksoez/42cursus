@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/02 10:20:39 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:36:06 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_forks(t_table *table)
 {
-	int	i;
+	int				i;
 	pthread_mutex_t	*forks;
 
 	forks = malloc(sizeof(pthread_mutex_t) * table->num_philos);
@@ -26,7 +26,6 @@ void	init_forks(t_table *table)
 	}
 	table->forks = forks;
 }
-
 
 void	init_philos(t_table *table)
 {

@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/02 10:00:48 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:50:57 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <sys/time.h>
 
+/*-------------------structs------------------*/
 typedef struct s_table
 {
 	int						num_philos;
@@ -60,11 +61,23 @@ t_table	*parse_args(int argc, char *argv[]);
 bool	check_table(t_table *table);
 bool	check_args(int argc, char *argv[]);
 
+/*-------------------simulation----------------*/
+void	philo_eat(t_philosopher *philo, t_table *table);
+void	philo_sleep(t_philosopher *philo, t_table *table);
+void	philo_think(t_philosopher *philo, t_table *table);
+void	*philo_behaviour(void *arg);
+void	start_simulation(t_table *table);
 
+/*-------------------monitor-------------------*/
 bool	is_dead(t_table *table);
+bool	all_philos_ate(t_table *table);
+void	*observer_behaviour(void *arg);
+bool	is_eating(t_philosopher *philo, t_table *table);
+bool	check_death(t_table *table, t_philosopher *philo);
 
-/*--------------------main--------------------*/
+/*--------------------main---------------------*/
 void	clean_up(t_table *table);
+void	toggle_eating(t_philosopher *philo, t_table *table);
 
 /*--------------------utils--------------------*/
 long	get_time(void);

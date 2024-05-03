@@ -6,17 +6,17 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/02 10:23:43 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:48:31 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
-	int i;
-	int sign;
-	int res;
+	int	i;
+	int	sign;
+	int	res;
 
 	i = 0;
 	sign = 1;
@@ -45,17 +45,7 @@ long	get_time(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
 void	print_message(char *message, int id, t_table *table)
@@ -93,5 +83,5 @@ int	ft_usleep(useconds_t time)
 	start = get_time();
 	while ((get_time() - start) < time)
 		usleep(time / 10);
-	return(0);
+	return (0);
 }

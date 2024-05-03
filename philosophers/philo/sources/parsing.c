@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:28:11 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/02 10:49:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:47:07 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ bool	check_args(int argc, char *argv[])
 
 bool	check_table(t_table *table)
 {
-	//maybe add protection for max philosophers
 	if (table->num_philos < 1 || table->num_eat > 200 || table->num_eat < -1)
 	{
 		clean_up(table);
@@ -49,16 +48,10 @@ t_table	*parse_args(int argc, char *argv[])
 	t_table	*table;
 
 	if (!check_args(argc, argv))
-	{
-		printf("Error: invalid arguments\n");
-		return (NULL);
-	}
+		return (printf("Error: invalid arguments\n"), NULL);
 	table = malloc(sizeof(t_table));
 	if (!table)
-	{
-		printf("Error: malloc failed\n");
-		return (NULL);
-	}
+		return (printf("Error: malloc failed\n"), NULL);
 	init_table(table);
 	table->num_philos = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
@@ -69,9 +62,6 @@ t_table	*parse_args(int argc, char *argv[])
 	else
 		table->num_eat = -1;
 	if (!check_table(table))
-	{
-		printf("Error: invalid table\n");
-		return (NULL);
-	}
+		return (printf("Error: invalid table\n"), NULL);
 	return (table);
 }

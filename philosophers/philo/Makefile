@@ -1,12 +1,12 @@
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 CC = cc
 COMPRESS = ar rcs
 RM = rm -rf
 
 OBJ_DIR = objects
 SRC_DIR = sources
-SRC = main.c utils.c init.c parsing.c
+SRC = main.c utils.c init.c parsing.c monitor.c simulation.c
 
 SRCS := $(addprefix $(SRC_DIR)/,$(SRC))
 OBJ := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -39,8 +39,5 @@ fclean: clean
 	@echo "$(RED)$@$(RESET) $(NAME) $(GREEN)[OK]$(RESET)"
 
 re: fclean all
-
-run: all
-	valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes --track-fds=yes ./minishell
 
 .PHONY: all clean fclean re
