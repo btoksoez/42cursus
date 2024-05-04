@@ -6,15 +6,15 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:34:08 by btoksoez          #+#    #+#              #
-#    Updated: 2024/05/04 11:34:09 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/05/04 11:39:54 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = megaphone.cpp
+SRCS = PhoneBook.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Colours
