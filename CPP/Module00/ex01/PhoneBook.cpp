@@ -6,114 +6,85 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:37:21 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/04 15:55:52 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:24:38 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void Contact::show(void)
+PhoneBook::PhoneBook(void)
 {
-	std::cout << "First Name: " << this->first << std::endl;
-	std::cout << "Last Name: " << this->last << std::endl;
-	std::cout << "Nickname: " << this->nick << std::endl;
-	std::cout << "Phone Number: " << this->num << std::endl;
-	std::cout << "Darkest Secret: " << this->secret << std::endl;
+	_numContacts = 0;
 }
 
-std::string getAndTrim(const std::string& prompt)
+void	PhoneBook::add(Contact& new_contact)
 {
-	std::string	input;
+	static int	i = 0;
 
-	std::cout << prompt;
-	std::getline(std::cin, input);
-	input.erase(0, input.find_first_not_of(" \t\n\r"));
-	input.erase(input.find_last_not_of(" \t\n\r") + 1);
-	return (input);
-
+	this->_contacts[i % 8] = new_contact;
+	this->_contacts[i % 8].setIndex(i % 8);
+	this->_numContacts++;
+	i++;
 }
 
-void Contact::create_new(void)
+void PhoneBook::_printHeader(void)
 {
-
-	this->first = getAndTrim("First Name: ");
-	std::cout << "Last Name:" << std::endl;
-	std::cin >> this->last;
-	std::cout << "Nickname:" << std::endl;
-	std::cin >> this->nick;
-	std::cout << "Phone number:" << std::endl;
-	std::cin >> this->num;
-	std::cout << "Darkest secret:" << std::endl;
-	std::cin >> this->secret;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|--------- PhoneBook: All Entries ----------|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|" << std::setw(10) << "Index";
+	std::cout << "|" << std::setw(10) << "First";
+	std::cout << "|" << std::setw(10) << "Last";
+	std::cout << "|" << std::setw(10) << "Nick";
+	std::cout << "|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
 }
 
-// Contact::is_valid(void)
-// {
-// 	//if none of the fields empty
-// 		//return 1
-// 	//return 0
-// }
-
-// PhoneBook::add(Contact)
-// {
-// 	//check if space available
-// 		//if not add to beginning
-// 		//else add in the end
-// }
-
-void print_prompt() {
-    std::cout << "/* ************************************************************************** */" << std::endl;
-
-    // Print the ASCII art for "PhoneBook"
-	std::cout << ":::::::::  :::    :::  ::::::::  ::::    ::: :::::::::: :::::::::   ::::::::   ::::::::  :::    :::\n"
-			  << ":+:    :+: :+:    :+: :+:    :+: :+:+:   :+: :+:        :+:    :+: :+:    :+: :+:    :+: :+:   :+:\n"
-			  << "+:+    +:+ +:+    +:+ +:+    +:+ :+:+:+  +:+ +:+        +:+    +:+ +:+    +:+ +:+    +:+ +:+  +:+\n"
-			  << "#++:++#+   +#++:++#++ +#+    +:+ +#+ +:+ +#+ +#++:++#   +#++:++#+  +#+    +:+ +#+    +:+ +#++:++\n"
-			  << "+#+        +#+    +#+ +#+    +#+ +#+  +#+#+# +#+        +#+    +#+ +#+    +#+ +#+    +#+ +#+  +#+\n"
-			  << "#+#+       #+#    #+# #+#    #+# #+#   #+#+# #+#        #+#    #+# #+#    #+# #+#    #+# #+#   #+#\n"
-			  << "###        ###    ###  ########  ###    #### ########## #########   ########   ########  ###    ### " << std::endl;
-
-    // Print the bottom frame
-    std::cout << "/* ************************************************************************** */" << std::endl;
-
-    // Prompt the user to choose an option
-    std::cout << "/* Choose an option:                                                        */" << std::endl;
-    std::cout << "/* 1. [ADD]                                                                 */" << std::endl;
-    std::cout << "/* 2. [SEARCH]                                                              */" << std::endl;
-    std::cout << "/* 3. [EXIT]                                                                */" << std::endl;
-
-    // Print the bottom frame
-    std::cout << "/* ************************************************************************** */" << std::endl;
-	std::cout << "Your choice: ";
-}
-
-
-int main()
+void	PhoneBook::show_all(void)
 {
-	// PhoneBook	phonebook;
-	Contact		contact;
-	std::string str;
-
-	while (true)
+	int	i = 0;
+	_printHeader();
+	if (_numContacts == 0)
 	{
-		print_prompt();
-		std::cin >> str;
-		if (str == "ADD" || str == "1")
-		{
-			contact.create_new();
-			contact.show();
-			// if (contact.is_valid())
-			// 	phonebook.add(contact);
-		}
-		//if search
-			//phonebook.show(contacs)
-			//prompt for index of entry
-				//check input
-			//phonebook.showEntry(index)
-		if (str == "EXIT" || str == "3")
-			break ;
-		//else
-			//do nothing
+		std::cout << "|           No contacts saved yet           |" << std::endl;
 	}
-
+	else
+	{
+		while (i < _numContacts)
+			this->_contacts[i++].show();
+	}
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << std::endl;
 }
+
+void	PhoneBook::show_entry(void)
+{
+	int index;
+
+	std::cout << "Choose entry to see: ";
+	std::cin >> index;
+	if (index >= _numContacts || std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "|-------------------------------------------|" << std::endl;
+		std::cout << "|            Entry doesn't exist            |" << std::endl;
+		std::cout << "|-------------------------------------------|" << std::endl;
+		return ;
+	}
+	//validate input, reprompt
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|------------ Showing Entry: " << index << " -------------|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	std::cout << "|" << std::setw(10) << "Index";
+	std::cout << "|" << std::setw(10) << "First";
+	std::cout << "|" << std::setw(10) << "Last";
+	std::cout << "|" << std::setw(10) << "Nick";
+	std::cout << "|" << std::endl;
+	std::cout << "|-------------------------------------------|" << std::endl;
+	this->_contacts[index].show();
+	std::cout << "|-------------------------------------------|" << std::endl;
+}
+
+
+

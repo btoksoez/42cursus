@@ -5,32 +5,20 @@
 #include <iomanip>
 #include <string>
 #include <iostream>
-
-class Contact
-{
-	private:
-		std::string first;
-		std::string last;
-		std::string nick;
-		std::string num;
-		std::string secret;
-
-	public:
-		void	create_new(void);
-		bool	is_valid(void);
-		void	show(void);
-
-
-};
+#include "Contact.hpp"
 
 class PhoneBook
 {
 	private:
-		std::array<Contact, 8> contacts;
+		int		_numContacts;
+		Contact	_contacts[8];
+		void	_printHeader(void);
+
 	public:
-		void	add(Contact);
+		PhoneBook();
+		void	add(Contact& new_contact);
 		void	show_all(void);
-		void	show_entry(int index);
+		void	show_entry(void);
 };
 
 
