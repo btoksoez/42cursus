@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:21:22 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/06 14:23:33 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:04:43 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,17 @@ void	printHeader()
 
 void	printPrompt()
 {
-    std::cout << "/* ************************************************************************** */" << std::endl;
+    std::cout << "/* *************************************** */" << std::endl;
 
     // Prompt the user to choose an option
-    std::cout << "/* Choose an option:                                                          */" << std::endl;
-    std::cout << "/* 1. [ADD]                                                                   */" << std::endl;
-    std::cout << "/* 2. [SEARCH]                                                                */" << std::endl;
-    std::cout << "/* 3. [EXIT]                                                                  */" << std::endl;
+    std::cout << "/* Choose an option:                       */" << std::endl;
+    std::cout << "/* 1. [ADD]                                */" << std::endl;
+    std::cout << "/* 2. [SEARCH]                             */" << std::endl;
+    std::cout << "/* 3. [EXIT]                               */" << std::endl;
 
     // Print the bottom frame
-    std::cout << "/* ************************************************************************** */" << std::endl;
-	std::cout << "Your choice: ";
+    std::cout << "/* *************************************** */\n";
 }
-
 
 int main()
 {
@@ -55,7 +53,8 @@ int main()
 	while (true)
 	{
 		printPrompt();
-		std::cin >> str;
+		str = getInput("Your choice: ");
+		// std::cin >> str;
 		if (str == "ADD" || str == "1")
 		{
 			contact.create_new();

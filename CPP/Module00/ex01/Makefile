@@ -6,7 +6,7 @@
 #    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:34:08 by btoksoez          #+#    #+#              #
-#    Updated: 2024/05/06 12:20:48 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/05/07 12:08:13 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = phonebook
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = PhoneBook.cpp Contact.cpp main.cpp
-OBJS = $(SRCS:.cpp=.o)
+SRCS = PhoneBook.cpp Contact.cpp main.cpp utils.cpp
+OBJS = $(addprefix obj/, $(SRCS:.cpp=.o))
+OBJDIR = obj
 
 # Colours
 GREEN = \033[1;32m
@@ -28,7 +29,8 @@ RESET = \033[0m
 
 all: $(NAME)
 
-%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp
+	@mkdir -p $(OBJDIR)
 	@echo "$(GREY)Compiling...	$(WHITE)$<"
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -37,7 +39,7 @@ $(NAME): $(OBJS)
 	@echo "$(CYAN)make$(RESET)   $@ $(GREEN)[OK]$(RESET)"
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) -r $(OBJDIR)
 	@echo "$(ORANGE)$@$(RESET)  $(NAME) $(GREEN)[OK]$(RESET)"
 
 fclean: clean

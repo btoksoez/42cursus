@@ -1,10 +1,10 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include <array>
-#include <iomanip>
-#include <string>
-#include <iostream>
+# include <iomanip>
+# include <string>
+# include <iostream>
+# include "utils.hpp"
 
 class Contact
 {
@@ -16,11 +16,6 @@ class Contact
 		std::string _num;
 		std::string _secret;
 
-		std::string	_getInput(std::string str);
-		std::string	_getInputNum(std::string str);
-		bool		_isDigitStr(std::string str);
-		bool		_isWhitespace(const std::string& str);
-		std::string	_trim(std::string& str);
 		std::string	_printLen(std::string str);
 
 
