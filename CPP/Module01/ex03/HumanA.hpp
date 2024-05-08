@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 11:24:13 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/08 14:32:20 by btoksoez         ###   ########.fr       */
+/*   Created: 2024/05/08 14:52:03 by btoksoez          #+#    #+#             */
+/*   Updated: 2024/05/08 15:31:37 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
 
-# include <iomanip>
-# include <string>
-# include <iostream>
-# include <sstream>
-# include "Contact.hpp"
-# include "utils.hpp"
+#include <iostream>
+#include "Weapon.hpp"
 
-class PhoneBook
+class HumanA
 {
 	private:
-		int		_numContacts;
-		Contact	_contacts[8];
-		void	_printHeader(void);
-
+		Weapon		_weapon;
+		std::string	_name;
 	public:
-		PhoneBook();
-		void	add(Contact new_contact);
-		void	show_all(void);
-		void	show_entry(void);
+		HumanA(std::string name, Weapon &weapon);
+		void		attack(void);
 };
 
-
-
 #endif
-

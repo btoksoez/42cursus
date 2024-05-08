@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:37:21 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/07 12:20:40 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/08 14:32:17 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ PhoneBook::PhoneBook(void)
 	_numContacts = 0;
 }
 
-void	PhoneBook::add(Contact& new_contact)
+void	PhoneBook::add(Contact new_contact)
 {
 	static int	i = 0;
 
