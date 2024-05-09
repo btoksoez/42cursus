@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:44:44 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/08 15:26:11 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/09 09:24:52 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ passing type as a const reference because then the function doesn't need to make
 however, when assigning it to _type it will still make a copy.
 */
 
-Weapon::Weapon()
-{
-	_type = "";
-}
 
 Weapon::Weapon(const std::string& type)
 {

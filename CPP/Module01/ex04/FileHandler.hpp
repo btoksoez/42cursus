@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   FileHandler.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 14:52:03 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/09 09:12:48 by btoksoez         ###   ########.fr       */
+/*   Created: 2024/05/09 09:31:45 by btoksoez          #+#    #+#             */
+/*   Updated: 2024/05/09 14:41:12 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#ifndef FILEHANDLER_HPP
+#define FILEHANDLER_HPP
 
-#include <iostream>
-#include "Weapon.hpp"
+# include <unistd.h>
+# include <iostream>
+# include <fstream>
 
-class HumanA
+class FileHandler
 {
 	private:
-		Weapon		*_weapon;
-		std::string	_name;
+		std::ifstream	_infile;
+		std::ofstream	_outfile;
+		std::string		_from;
+		std::string		_to;
+
 	public:
-		HumanA(std::string name, Weapon &weapon);
-		void		attack(void);
+		FileHandler(const std::string& to, const std::string& from);
+		~FileHandler();
+		bool	openFiles(const std::string& infile_name);
+		void	replaceLines(void);
+
 };
 
 #endif
+

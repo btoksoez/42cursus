@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 14:38:12 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/08 15:26:24 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/09 09:25:07 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class Weapon
 	private:
 		std::string			_type;
 	public:
-		Weapon();
 		Weapon(const std::string& type);
 		const std::string&	getType(void);
 		void				setType(const std::string& type);
