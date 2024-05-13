@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/03 12:48:31 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:54:08 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void print_table(t_table *table)
     }
 }
 
-int	ft_usleep(useconds_t time)
+int	ft_usleep(size_t milliseconds)
 {
-	u_int64_t	start;
+	size_t	start;
 
 	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(time / 10);
+	while ((get_time() - start) < milliseconds)
+		usleep(500);
 	return (0);
 }

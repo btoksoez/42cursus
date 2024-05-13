@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/03 12:36:06 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:56:15 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,18 @@ void	init_philos(t_table *table)
 	while (i < table->num_philos)
 	{
 		philo[i].id = i + 1;
-		philo[i].right_fork = i;
+		philo[i].right_fork = &table->forks[i];
 		if (i == 0)
-			philo[i].left_fork = table->num_philos - 1;
+			philo[i].left_fork = &table->forks[table->num_philos - 1];
 		else
-			philo[i].left_fork = i - 1;
+			philo[i].left_fork = &table->forks[i - 1];
 		philo[i].num_eaten = 0;
 		philo[i].last_meal = get_time();
 		philo[i].table = table;
 		philo[i].is_eating = 0;
+		philo[i].meal_lock = &table->meal_lock;
+		philo[i].die_lock = &table->die_lock;
+		philo[i].info_lock = &table->info_lock;
 		i++;
 	}
 	table->philos = philo;
@@ -71,4 +74,5 @@ void	init_table(t_table *table)
 	pthread_mutex_init(&table->meal_lock, NULL);
 	pthread_mutex_init(&table->eating_lock, NULL);
 	pthread_mutex_init(&table->info_lock, NULL);
+	pthread_mutex_init(&table->forks_lock, NULL);
 }

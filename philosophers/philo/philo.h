@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/03 12:50:57 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:25:01 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <pthread.h>
 # include <stdbool.h>
 # include <sys/time.h>
+# include <stdint.h>
+# include <sys/types.h>
+
 
 /*-------------------structs------------------*/
 typedef struct s_table
@@ -35,17 +38,21 @@ typedef struct s_table
 	pthread_mutex_t			meal_lock;
 	pthread_mutex_t			eating_lock;
 	pthread_mutex_t			info_lock;
+	pthread_mutex_t			forks_lock;
 	struct s_philosopher	*philos;
-	long					start_time;
+	uint64_t				start_time;
 	int						philo_died;
 }							t_table;
 
 typedef struct s_philosopher
 {
 	int		id;
-	int		left_fork;
-	int		right_fork;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
 	int		num_eaten;
+	pthread_mutex_t			*die_lock;
+	pthread_mutex_t			*meal_lock;
+	pthread_mutex_t			*info_lock;
 	size_t	last_meal;
 	int		is_eating;
 	t_table	*table;
@@ -74,6 +81,7 @@ bool	all_philos_ate(t_table *table);
 void	*observer_behaviour(void *arg);
 bool	is_eating(t_philosopher *philo, t_table *table);
 bool	check_death(t_table *table, t_philosopher *philo);
+bool	check_if_dead(t_table *table);
 
 /*--------------------main---------------------*/
 void	clean_up(t_table *table);
@@ -84,6 +92,6 @@ long	get_time(void);
 int		ft_atoi(char *str);
 void	print_message(char *message, int id, t_table *table);
 void	print_table(t_table *table);
-int		ft_usleep(useconds_t time);
+int		ft_usleep(size_t milliseconds);
 
 #endif

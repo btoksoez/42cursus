@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:01:36 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/03 12:41:03 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:51:18 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	toggle_eating(t_philosopher *philo, t_table *table)
 		philo->is_eating = 0;
 		pthread_mutex_unlock(&table->eating_lock);
 	}
-	else
+	else if (!philo->is_eating)
 	{
 		pthread_mutex_lock(&table->eating_lock);
 		philo->is_eating = 1;
@@ -44,6 +44,7 @@ void	clean_up(t_table *table)
 	pthread_mutex_destroy(&table->meal_lock);
 	pthread_mutex_destroy(&table->eating_lock);
 	pthread_mutex_destroy(&table->info_lock);
+	pthread_mutex_destroy(&table->forks_lock);
 	free(table->forks);
 	free(table->philos);
 	free(table);
@@ -62,8 +63,8 @@ int	main(int argc, char *argv[])
 	table = parse_args(argc, argv);
 	if (!table)
 		return (1);
-	init_philos(table);
 	init_forks(table);
+	init_philos(table);
 	// print_table(table);
 	start_simulation(table);
 	clean_up(table);
