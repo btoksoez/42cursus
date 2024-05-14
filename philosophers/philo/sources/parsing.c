@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:28:11 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/03 12:47:07 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:39:49 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,15 @@ bool	check_args(int argc, char *argv[])
 	return (true);
 }
 
-bool	check_table(t_table *table)
+/* checks given arguments */
+bool	parse_args(int argc, char *argv[])
 {
-	if (table->num_philos < 1 || table->num_eat > 200 || table->num_eat < -1)
-	{
-		clean_up(table);
-		return (false);
-	}
-	return (true);
-}
-
-/* parses arguments into a table struct */
-t_table	*parse_args(int argc, char *argv[])
-{
-	t_table	*table;
-
 	if (!check_args(argc, argv))
-		return (printf("Error: invalid arguments\n"), NULL);
-	table = malloc(sizeof(t_table));
-	if (!table)
-		return (printf("Error: malloc failed\n"), NULL);
-	init_table(table);
-	table->num_philos = ft_atoi(argv[1]);
-	table->time_to_die = ft_atoi(argv[2]);
-	table->time_to_eat = ft_atoi(argv[3]);
-	table->time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		table->num_eat = ft_atoi(argv[5]);
-	else
-		table->num_eat = -1;
-	if (!check_table(table))
-		return (printf("Error: invalid table\n"), NULL);
-	return (table);
+		return (printf("Error: invalid arguments\n"), false);
+	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > MAX_PHILOS || ft_atoi(argv[2]) < 1
+		|| ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
+		return (printf("Error: invalid arguments\n"), false);
+	if (argc == 6 && argv[5] < 0)
+		return (false);
+	return (true);
 }

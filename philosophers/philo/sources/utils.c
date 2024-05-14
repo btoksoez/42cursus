@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/13 13:54:08 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:38:23 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ long	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	print_message(char *message, int id, t_table *table)
-{
-	long	time_ms;
+// void	print_message(char *message, int id, t_table *table)
+// {
+// 	long	time_ms;
 
-	pthread_mutex_lock(&table->info_lock);
-	time_ms = get_time() - table->start_time;
-	if (!is_dead(table))
-		printf("%ld %d %s\n", time_ms, id, message);
-	pthread_mutex_unlock(&table->info_lock);
-}
+// 	pthread_mutex_lock(&table->write_lock);
+// 	time_ms = get_time() - table->philos[0].start_time;
+// 	if (!is_dead(table))
+// 		printf("%ld %d %s\n", time_ms, id, message);
+// 	pthread_mutex_unlock(&table->write_lock);
+// }
 
 void print_table(t_table *table)
 {
@@ -66,13 +66,21 @@ void print_table(t_table *table)
     printf("Time to eat: %zu\n", table->time_to_eat);
     printf("Time to sleep: %zu\n", table->time_to_sleep);
     printf("Number of times each philosopher must eat: %d\n", table->num_eat);
+    printf("Philosopher died: %s\n", table->philo_died ? "Yes" : "No");
 
     for (int i = 0; i < table->num_philos; i++) {
         printf("Philosopher %d:\n", i);
         printf("\tID: %d\n", table->philos[i].id);
-        printf("\tLeft fork: %d\n", table->philos[i].left_fork);
-        printf("\tRight fork: %d\n", table->philos[i].right_fork);
         printf("\tNumber of times eaten: %d\n", table->philos[i].num_eaten);
+        printf("\tLast meal: %zu\n", table->philos[i].last_meal);
+        printf("\tStart time: %zu\n", table->philos[i].start_time);
+        printf("\tIs eating: %s\n", table->philos[i].is_eating ? "Yes" : "No");
+        printf("\tIs dead: %s\n", *(table->philos[i].dead) ? "Yes" : "No");
+		printf("\tLeft fork: %s\n", table->philos[i].left_fork ? "Yes" : "No");
+        printf("\tRight fork: %s\n", table->philos[i].right_fork ? "Yes" : "No");
+        printf("\tDie lock: %s\n", table->philos[i].die_lock ? "Yes" : "No");
+        printf("\tMeal lock: %s\n", table->philos[i].meal_lock ? "Yes" : "No");
+        printf("\tWrite lock: %s\n", table->philos[i].write_lock ? "Yes" : "No");
     }
 }
 

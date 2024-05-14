@@ -6,73 +6,63 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/13 14:56:15 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:29:32 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	init_forks(t_table *table)
+void	init_forks(pthread_mutex_t *forks, t_table *table)
 {
 	int				i;
-	pthread_mutex_t	*forks;
 
-	forks = malloc(sizeof(pthread_mutex_t) * table->num_philos);
 	i = 0;
 	while (i < table->num_philos)
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
-	table->forks = forks;
 }
 
-void	init_philos(t_table *table)
+void	init_philos(t_philosopher *philos, t_table *table, pthread_mutex_t *forks)
 {
 	int				i;
-	t_philosopher	*philo;
 
-	philo = malloc(sizeof(t_philosopher) * table->num_philos);
-	if (!philo)
-	{
-		printf("Error: malloc failed\n");
-		return ;
-	}
 	i = 0;
 	while (i < table->num_philos)
 	{
-		philo[i].id = i + 1;
-		philo[i].right_fork = &table->forks[i];
+		philos[i].id = i + 1;
+		philos[i].left_fork = &forks[i];
 		if (i == 0)
-			philo[i].left_fork = &table->forks[table->num_philos - 1];
+			philos[i].right_fork = &forks[table->num_philos - 1];
 		else
-			philo[i].left_fork = &table->forks[i - 1];
-		philo[i].num_eaten = 0;
-		philo[i].last_meal = get_time();
-		philo[i].table = table;
-		philo[i].is_eating = 0;
-		philo[i].meal_lock = &table->meal_lock;
-		philo[i].die_lock = &table->die_lock;
-		philo[i].info_lock = &table->info_lock;
+			philos[i].right_fork = &forks[i - 1];
+		philos[i].num_eaten = 0;
+		philos[i].meal_lock = &table->meal_lock;
+		philos[i].die_lock = &table->die_lock;
+		philos[i].write_lock = &table->write_lock;
+		philos[i].last_meal = get_time();
+		philos[i].start_time = get_time();
+		philos[i].dead = &table->philo_died;
+		philos[i].is_eating = 0;
 		i++;
 	}
-	table->philos = philo;
+	table->philos = philos;
 }
 
-void	init_table(t_table *table)
+void	init_table(char *argv[], int argc, t_table *table)
 {
-	table->num_philos = 0;
-	table->time_to_die = 0;
-	table->time_to_eat = 0;
-	table->time_to_sleep = 0;
-	table->num_eat = 0;
-	table->forks = NULL;
-	table->philos = NULL;
-	table->start_time = get_time();
-	table->philo_died = 0;
+	table->num_philos = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		table->num_eat = ft_atoi(argv[5]);
+	else
+		table->num_eat = -1;
 	pthread_mutex_init(&table->die_lock, NULL);
 	pthread_mutex_init(&table->meal_lock, NULL);
-	pthread_mutex_init(&table->eating_lock, NULL);
-	pthread_mutex_init(&table->info_lock, NULL);
-	pthread_mutex_init(&table->forks_lock, NULL);
+	pthread_mutex_init(&table->write_lock, NULL);
+	table->philos = NULL;
+	table->philo_died = 0;
 }

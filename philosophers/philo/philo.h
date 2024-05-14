@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/13 15:25:01 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/14 10:36:13 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdint.h>
 # include <sys/types.h>
 
+# define MAX_PHILOS 250
+
 
 /*-------------------structs------------------*/
 typedef struct s_table
@@ -32,39 +34,36 @@ typedef struct s_table
 	size_t					time_to_eat;
 	size_t					time_to_sleep;
 	int						num_eat;
-	int						i;
-	pthread_mutex_t			*forks;
 	pthread_mutex_t			die_lock;
 	pthread_mutex_t			meal_lock;
-	pthread_mutex_t			eating_lock;
-	pthread_mutex_t			info_lock;
-	pthread_mutex_t			forks_lock;
+	pthread_mutex_t			write_lock;
 	struct s_philosopher	*philos;
-	uint64_t				start_time;
-	int						philo_died;
+	bool					philo_died;
 }							t_table;
 
 typedef struct s_philosopher
 {
-	int		id;
+	pthread_t			thread;
+	int					id;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
-	int		num_eaten;
-	pthread_mutex_t			*die_lock;
-	pthread_mutex_t			*meal_lock;
-	pthread_mutex_t			*info_lock;
-	size_t	last_meal;
-	int		is_eating;
-	t_table	*table;
-}				t_philosopher;
+	int					num_eaten;
+	pthread_mutex_t		*die_lock;
+	pthread_mutex_t		*meal_lock;
+	pthread_mutex_t		*write_lock;
+	size_t				last_meal;
+	size_t				start_time;
+	bool				*dead;
+	int					is_eating;
+}						t_philosopher;
 
 /*--------------------init--------------------*/
-void	init_forks(t_table *table);
-void	init_table(t_table *table);
-void	init_philos(t_table *table);
+void	init_forks(pthread_mutex_t *forks, t_table *table);
+void	init_table(char *argv[], int argc, t_table *table);
+void	init_philos(t_philosopher *philos, t_table *table, pthread_mutex_t *forks);
 
 /*-------------------parsing------------------*/
-t_table	*parse_args(int argc, char *argv[]);
+bool	parse_args(int argc, char *argv[]);
 bool	check_table(t_table *table);
 bool	check_args(int argc, char *argv[]);
 
@@ -84,7 +83,7 @@ bool	check_death(t_table *table, t_philosopher *philo);
 bool	check_if_dead(t_table *table);
 
 /*--------------------main---------------------*/
-void	clean_up(t_table *table);
+void	clean_up(t_table *table, pthread_mutex_t *forks);
 void	toggle_eating(t_philosopher *philo, t_table *table);
 
 /*--------------------utils--------------------*/
