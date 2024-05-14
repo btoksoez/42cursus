@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/14 10:29:32 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:40:07 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_forks(pthread_mutex_t *forks, t_table *table)
 	}
 }
 
-void	init_philos(t_philosopher *philos, t_table *table, pthread_mutex_t *forks)
+void	init_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 {
 	int				i;
 
@@ -45,6 +45,7 @@ void	init_philos(t_philosopher *philos, t_table *table, pthread_mutex_t *forks)
 		philos[i].start_time = get_time();
 		philos[i].dead = &table->philo_died;
 		philos[i].is_eating = 0;
+		philos[i].table = table;
 		i++;
 	}
 	table->philos = philos;
