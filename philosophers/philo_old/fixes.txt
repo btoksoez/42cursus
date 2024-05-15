@@ -13,6 +13,12 @@ terminates too early
 4 410 200 200 (dies after 60 seconds, shoulnd't die at all)
 
 
+./philo 10 200 60 20000000 ->should not get stuck after one dies
+./philo 10 200 20000000 100 -> same here
+
+
+5 800 200 200
+
 
 valgrind:
 ./philo 3 100 1000 1000

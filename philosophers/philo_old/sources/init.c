@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 11:24:29 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/15 14:56:22 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:07:46 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ void	init_forks(pthread_mutex_t *forks, t_table *table)
 	}
 }
 
+void	init_philos_forks(t_philo *p, pthread_mutex_t *f, t_table *t, int i)
+{
+	p[i].left_fork = &f[i];
+	p[i].l_fork_index = i;
+	if (i == 0)
+	{
+		p[i].right_fork = &f[t->num_philos - 1];
+		p[i].r_fork_index = t->num_philos - 1;
+	}
+	else
+	{
+		p[i].right_fork = &f[i - 1];
+		p[i].r_fork_index = i - 1;
+	}
+}
+
 void	init_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 {
 	int				i;
@@ -32,11 +48,7 @@ void	init_philos(t_philo *philos, t_table *table, pthread_mutex_t *forks)
 	while (i < table->num_philos)
 	{
 		philos[i].id = i + 1;
-		philos[i].left_fork = &forks[i];
-		if (i == 0)
-			philos[i].right_fork = &forks[table->num_philos - 1];
-		else
-			philos[i].right_fork = &forks[i - 1];
+		init_philos_forks(philos, forks, table, i);
 		philos[i].num_eaten = 0;
 		philos[i].meal_lock = &table->meal_lock;
 		philos[i].die_lock = &table->die_lock;

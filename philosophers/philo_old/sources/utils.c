@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 11:10:19 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/15 15:05:41 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:16:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_usleep(size_t milliseconds, t_philo *philo)
 
 void	choose_forks(t_philo *p, pthread_mutex_t **ff, pthread_mutex_t **sf)
 {
-	if (p->id % 2 == 0)
+	if (p->l_fork_index < p->r_fork_index)
 	{
 		*ff = p->left_fork;
 		*sf = p->right_fork;

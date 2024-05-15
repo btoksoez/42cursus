@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:35:27 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/15 15:06:03 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:29:43 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	philo_eat(t_philo *philo, t_table *table)
 	choose_forks(philo, &first_fork, &second_fork);
 	pthread_mutex_lock(first_fork);
 	print_message("has taken a fork", philo);
-	ft_usleep(1, philo);
+	if (table->num_philos == 1)
+	{
+		ft_usleep(table->time_to_die, philo);
+		pthread_mutex_unlock(first_fork);
+		return ;
+	}
 	pthread_mutex_lock(second_fork);
 	print_message("has taken a fork", philo);
 	philo->is_eating = 1;
@@ -31,8 +36,8 @@ void	philo_eat(t_philo *philo, t_table *table)
 	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(table->time_to_eat, philo);
 	philo->is_eating = 0;
-	pthread_mutex_unlock(first_fork);
 	pthread_mutex_unlock(second_fork);
+	pthread_mutex_unlock(first_fork);
 }
 
 void	philo_sleep(t_philo *philo, t_table *table)
@@ -51,8 +56,6 @@ void	*philo_behaviour(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->table->num_philos == 1)
-		return (one_philo(philo), NULL);
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (!is_dead(philo))

@@ -6,17 +6,11 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:01:36 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/15 15:06:15 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:38:31 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-void	one_philo(t_philo *philo)
-{
-	print_message("has taken a fork", philo);
-	ft_usleep(philo->table->time_to_die, philo);
-}
 
 void	clean_up(t_table *table, pthread_mutex_t *forks)
 {

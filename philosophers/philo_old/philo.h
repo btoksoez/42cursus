@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 10:02:51 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/15 15:06:23 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:50:12 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_philosopher
 	int					id;
 	pthread_mutex_t		*left_fork;
 	pthread_mutex_t		*right_fork;
+	int					l_fork_index;
+	int					r_fork_index;
 	int					num_eaten;
 	pthread_mutex_t		*die_lock;
 	pthread_mutex_t		*meal_lock;
@@ -81,12 +83,12 @@ bool	check_if_dead(t_table *table);
 
 /*--------------------main---------------------*/
 void	clean_up(t_table *table, pthread_mutex_t *forks);
-void	one_philo(t_philo *philo);
 
 /*--------------------utils--------------------*/
 long	get_time(void);
 int		ft_atoi(char *str);
 void	print_message(char *message, t_philo *philo);
+void	print_table(t_table *table);
 int		ft_usleep(size_t milliseconds, t_philo *philo);
 void	choose_forks(t_philo *p, pthread_mutex_t **ff, pthread_mutex_t **sf);
 
