@@ -6,7 +6,7 @@
 /*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:39:04 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/14 12:41:02 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:35:33 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	philo_dead(t_table *table, t_philo *philo)
 {
 	pthread_mutex_lock(philo->meal_lock);
 	if (get_time() - philo->last_meal >= table->time_to_die
-		&& philo->is_eating == 0)
+		&& philo->is_eating == 0 && philo->num_eaten != table->num_eat)
 		return (pthread_mutex_unlock(philo->meal_lock), true);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (false);
