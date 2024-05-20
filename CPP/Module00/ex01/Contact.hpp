@@ -20,9 +20,14 @@ class Contact
 
 
 	public:
-		void		create_new(void);
-		void		show(void);
-		void		setIndex(int i);
+		void				create_new(void);
+		void				show(void);
+		void				setIndex(int i);
+		const std::string&	getFirst(void);
+		const std::string&	getLast(void);
+		const std::string&	getNick(void);
+		const std::string&	getNum(void);
+		const std::string&	getSecret(void);
 
 };
 

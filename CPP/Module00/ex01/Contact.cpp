@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:11:35 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/07 11:42:09 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:39:03 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,29 @@ void	Contact::show(void)
 	std::cout << "|" << std::setw(10) << _printLen(this->_last);
 	std::cout << "|" << std::setw(10) << _printLen(this->_nick);
 	std::cout << "|" << std::endl;
+}
+
+const std::string& Contact::getFirst()
+{
+	return (this->_first);
+}
+
+const std::string& Contact::getLast()
+{
+	return (this->_last);
+}
+
+const std::string& Contact::getNick()
+{
+	return (this->_nick);
+}
+
+const std::string& Contact::getNum()
+{
+	return (this->_num);
+}
+
+const std::string& Contact::getSecret()
+{
+	return (this->_secret);
 }

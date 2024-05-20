@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 11:37:21 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/08 14:32:17 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:43:21 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,15 @@ void	PhoneBook::show_entry(void)
 		std::cout << "|-------------------------------------------|\n\n\n";
 		return ;
 	}
-	//validate input, reprompt
 	std::cout << "|-------------------------------------------|" << std::endl;
 	std::cout << "|------------ Showing Entry: " << index << " -------------|" << std::endl;
 	std::cout << "|-------------------------------------------|" << std::endl;
-	std::cout << "|" << std::setw(10) << "Index";
-	std::cout << "|" << std::setw(10) << "First";
-	std::cout << "|" << std::setw(10) << "Last";
-	std::cout << "|" << std::setw(10) << "Nick";
-	std::cout << "|" << std::endl;
-	std::cout << "|-------------------------------------------|" << std::endl;
-	this->_contacts[index].show();
+	std::cout << "|" << "Index: " << index << std::endl;
+	std::cout << "|" << "First: " << _contacts[index].getFirst() << std::endl;
+	std::cout << "|" << "Last: " << _contacts[index].getLast() << std::endl;
+	std::cout << "|" << "Nick: " << _contacts[index].getNick() << std::endl;
+	std::cout << "|" << "Number: " << _contacts[index].getNum() << std::endl;
+	std::cout << "|" << "Secret: " << _contacts[index].getSecret() << std::endl;
 	std::cout << "|-------------------------------------------|\n\n\n";
 }
 
