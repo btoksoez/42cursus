@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:34:08 by btoksoez          #+#    #+#              #
-#    Updated: 2024/05/09 14:26:49 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/05/20 14:12:37 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:34:08 by btoksoez          #+#    #+#              #
-#    Updated: 2024/05/08 12:24:06 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/05/20 16:09:07 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = zombies
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = main.cpp Zombie.cpp NewZombie.cpp RandomChump.cpp
 OBJS = $(addprefix obj/, $(SRCS:.cpp=.o))
 OBJDIR = obj
 

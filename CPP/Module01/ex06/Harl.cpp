@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 11:00:33 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/10 11:45:56 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:17:38 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,16 @@ void	Harl::harlFilter(int level)
 	{
 		case 0:
 			debug();
+			//fall through
 		case 1:
 			info();
+			//fall through
 		case 2:
 			warning();
+			//fall through
 		case 3:
 			error();
+			//fall through
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 13:13:40 by btoksoez          #+#    #+#             */
-/*   Updated: 2023/11/07 17:19:56 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:29:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	line = NULL;
-	if (read(fd, 0, 0) < 0 || BUFFER_SIZE < 1)
+	if (BUFFER_SIZE < 1)
 	{
 		clean_buffer(buffer);
 		return (NULL);
@@ -62,28 +62,18 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-// int main(void)
-// {
-//     int fd;
-//     char *result;
-
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     result = get_next_line(1);
-//     printf("final: %s\n", result);
-//     free(result);
-//     return (0);
-// }
+int main()
+{
+	int fd = open("test.txt", O_RDONLY);
+	char *line;
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (!line)
+		printf("(null) EOF");
+	close(fd);
+}

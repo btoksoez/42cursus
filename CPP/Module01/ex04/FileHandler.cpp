@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileHandler.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 14:00:03 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/09 14:33:14 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:14:22 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ FileHandler::~FileHandler(void)
 
 bool	FileHandler::openFiles(const std::string& infile_name)
 {
-	_infile.open(infile_name);
+	_infile.open(infile_name.c_str());
 	if (!_infile)
 		return (std::cout << "failed to open infile" << std::endl, false);
-	_outfile.open(infile_name + ".replace");
+	_outfile.open((infile_name + ".replace").c_str());
 	if (!_outfile)
 		return (std::cout << "failed to open outfile" << std::endl, false);
 	return (true);

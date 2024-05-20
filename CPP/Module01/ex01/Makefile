@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 11:34:08 by btoksoez          #+#    #+#              #
-#    Updated: 2024/05/08 13:55:37 by btoksoez         ###   ########.fr        #
+#    Updated: 2024/05/20 16:09:26 by btoksoez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = zombiehorde
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp Zombie.cpp ZombieHorde.cpp
 OBJS = $(addprefix obj/, $(SRCS:.cpp=.o))
 OBJDIR = obj
 
