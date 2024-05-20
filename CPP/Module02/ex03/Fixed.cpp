@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: btoksoez <btoksoez@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: btoksoez <btoksoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 11:30:02 by btoksoez          #+#    #+#             */
-/*   Updated: 2024/05/16 13:13:10 by btoksoez         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:25:51 by btoksoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,3 +210,8 @@ int		Fixed::toInt(void) const
 	return ((int)value / 256);
 }
 
+Fixed abs(const Fixed& num)
+{
+	int absValue = std::abs(num.getRawBits());
+	return (Fixed(absValue));
+}
